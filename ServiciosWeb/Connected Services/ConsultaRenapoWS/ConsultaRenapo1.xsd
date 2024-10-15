@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://Renapo/" targetNamespace="http://Renapo/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="consultarCURPDetalle" type="tns:consultarCURPDetalle" />
+  <xs:element name="consultarCURPDetalleResponse" type="tns:consultarCURPDetalleResponse" />
+  <xs:element name="consultarPorCurp" type="tns:consultarPorCurp" />
+  <xs:element name="consultarPorCurpResponse" type="tns:consultarPorCurpResponse" />
+  <xs:complexType name="consultarCURPDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aNombre" type="xs:string" />
+      <xs:element minOccurs="0" name="aPrimerApellido" type="xs:string" />
+      <xs:element minOccurs="0" name="aSegundoApellido" type="xs:string" />
+      <xs:element minOccurs="0" name="aFechaNacimiento" type="xs:string" />
+      <xs:element minOccurs="0" name="aCveAlfaEntFedNac" type="xs:string" />
+      <xs:element minOccurs="0" name="aSexo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarCURPDetalleResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPorCurp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aCveCurp" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPorCurpResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

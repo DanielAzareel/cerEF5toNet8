@@ -1,0 +1,49 @@
+﻿@model BusinessModel.Models.IndicadoresML
+
+<section style="overflow-x: auto;overflow-y: hidden;">
+    <table id="idTablaStatusByIntitucion" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@ViewBag.totalRegistros'>
+        <thead>
+            <tr class="headerTabla">
+                <th rowspan="2">Concentradora</th>
+                <th rowspan="2">Clave institución</th>
+                <th rowspan="2">Nombre institución</th>
+                <th colspan="8">Estatus título</th>
+                <th rowspan="2">Total concluidos</th>
+                <th rowspan="2">Detalle</th>
+            </tr>
+            <tr class="headerTabla">
+                <th>Solicitado</th>
+                <th>Sellado por institución</th>
+                <th>Sellado por concentradora</th>
+                <th>En proceso SEP</th>
+                <th>Error en proceso SEP</th>
+                <th>Registrado en SEP</th>
+                <th>Rechazado en SEP</th>
+                <th>Cancelado en SEP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 0;}
+            @foreach (var inst in Model.listadoDatosConsulta)
+            {
+            <tr class="@((i % 2 == 0) ? "row0" : "row1")">
+                <td>@inst.conId</td>
+                <td>@inst.docInstitucionClave</td>
+                <td>@inst.docInstitucionNombre</td>
+                <td>@inst.totalSolicitado</td>
+                <td>@inst.totalSelladoPorInstitucion</td>
+                <td>@inst.totalSelladoPorConcentradora</td>
+                <td>@inst.totalEnprocesoSEP</td>
+                <td>@inst.totalErrorEnProceso</td>
+                <td>@inst.totalRegistradoEnSEP</td>
+                <td>@inst.totalRechazadoEnSEP</td>
+                <td>@inst.totalCanceladoEnSEP</td>
+                <td>@inst.totalDocumentoConcluido</td>
+                <td class="tit-AccionSinTexto"><button class="btnDetalle tit-EstiloBtnAncla" onclick="mostrarListadoIntitucionCarrerasStatus('@inst.conId', '@inst.docInstitucionClave', '@inst.docInstitucionNombre')"></button></td>
+                
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>
+<div id="idTablaStatusByIntitucion_barraPaginacion" class="divBarraPaginacion"></div>

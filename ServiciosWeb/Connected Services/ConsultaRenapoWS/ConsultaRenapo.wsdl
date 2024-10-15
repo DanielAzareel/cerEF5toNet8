@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://Renapo/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="ConsultaRenapo" targetNamespace="http://Renapo/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://servicioweb06.seg.guanajuato.gob.mx:80/CURP/ConsultaRenapo?xsd=1" namespace="http://Renapo/" />
+    </xsd:schema>
+  </types>
+  <message name="consultarPorCurp">
+    <part name="parameters" element="tns:consultarPorCurp" />
+  </message>
+  <message name="consultarPorCurpResponse">
+    <part name="parameters" element="tns:consultarPorCurpResponse" />
+  </message>
+  <message name="consultarCURPDetalle">
+    <part name="parameters" element="tns:consultarCURPDetalle" />
+  </message>
+  <message name="consultarCURPDetalleResponse">
+    <part name="parameters" element="tns:consultarCURPDetalleResponse" />
+  </message>
+  <portType name="ConsultaRenapo">
+    <operation name="consultarPorCurp">
+      <input wsam:Action="http://Renapo/ConsultaRenapo/consultarPorCurpRequest" message="tns:consultarPorCurp" />
+      <output wsam:Action="http://Renapo/ConsultaRenapo/consultarPorCurpResponse" message="tns:consultarPorCurpResponse" />
+    </operation>
+    <operation name="consultarCURPDetalle">
+      <input wsam:Action="http://Renapo/ConsultaRenapo/consultarCURPDetalleRequest" message="tns:consultarCURPDetalle" />
+      <output wsam:Action="http://Renapo/ConsultaRenapo/consultarCURPDetalleResponse" message="tns:consultarCURPDetalleResponse" />
+    </operation>
+  </portType>
+  <binding name="ConsultaRenapoPortBinding" type="tns:ConsultaRenapo">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="consultarPorCurp">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="consultarCURPDetalle">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ConsultaRenapo">
+    <port name="ConsultaRenapoPort" binding="tns:ConsultaRenapoPortBinding">
+      <soap:address location="http://servicioweb06.seg.guanajuato.gob.mx:80/CURP/ConsultaRenapo" />
+    </port>
+  </service>
+</definitions>

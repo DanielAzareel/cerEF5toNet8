@@ -1,0 +1,65 @@
+﻿@model DGSyTI_WEB.Models.CertificadoViewModel
+
+@{ 
+    var total = 1;
+}
+    <section style="width: 99%; margin-left: 15px;">
+        <div class="col-md-12" style="text-align: left; border-bottom: 2px solid #00A5E2; margin: 15px 0 15px 0; ">Alumno</div>
+        <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word; margin-bottom: 15px">
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">CURP:</div>
+                <div class="detalleConcepto">@Model.cerDocumentos[0].docAlumnoCurp</div>
+            </div>
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">Nombre:</div>
+                <div class="detalleConcepto">@Model.cerDocumentos[0].docAlumnoNombre</div>
+            </div>
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">Primer apellido:</div>
+                <div class="detalleConcepto">@Model.cerDocumentos[0].docAlumnoPrimerApellido </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">Segundo apellido:</div>
+                <div class="detalleConcepto">@Model.cerDocumentos[0].docAlumnoSegundoApellido</div>
+            </div>
+        </div> <div class="" style="text-align: left; border-bottom: 2px solid #00A5E2; margin: 15px 0 15px 0; ">Certificados </div>
+
+        <div class="col-md-12 " style="padding-bottom:30px;">
+
+
+
+            <table id="idTablaTitulos" class="TablaLista table-responsive-sm">
+                <thead>
+                    <tr class="headerTabla">
+                        <th>Tipo de certificado</th>
+                        <th>Plan de estudios</th>
+                        <th>Área de especialización</th>
+                        <th>Fecha</th>
+                        <th>Folio</th>
+                        <th class="tit-AccionSinTexto">Descargar PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var doc in Model.cerDocumentos)
+                    {
+                        <tr id="idTdTitulo-@doc.docId" class="@((total%2==0)?"row1":"row0")">
+                            @if (@doc.docTipoId=="1") {
+                                <td>Terminación</td>
+                            } else
+                            { 
+                                    <td>Parcial</td>
+                                 }
+                            <td>@doc.docPlanId</td>
+                            <td>@doc.docAreaEspecializacion</td>
+                            <td>@doc.docSepFechaSep</td>
+                            <td>@doc.docDecFolioControl</td>
+                            <td class="tit-AccionSinTexto">
+                                @Html.ActionLink(" ", "DescargarCertificado", "PlantillasCertificados", new { id = doc.docId }, new { @class = "tit-EstiloBtnAncla btnDescargar", Style = "margin-left: 40%" })
+                            </td>
+                        </tr>
+                        total++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>

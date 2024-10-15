@@ -1,0 +1,134 @@
+﻿@model string
+@{
+    Array campos = Model.Split('|');
+    string nombreComponente = "";
+    string campoOculto = "nombreDocumento";
+    string nombreDocument = "";
+    string formato = "";
+    try
+    {
+        nombreComponente = campos.GetValue(0).ToString();
+        if (campos.Length > 1)
+        {
+            campoOculto = campos.GetValue(1).ToString();
+        }
+    }
+    catch (Exception ex) { }
+
+    try
+    {
+
+        if (campos.Length > 2)
+        {
+            formato = campos.GetValue(2).ToString();
+        }
+    }
+    catch (Exception ex) { }
+
+
+
+}
+
+@*<link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />*@
+@*<link href="~/Content/jquery.fileupload.css" rel="stylesheet" />*@
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery.ui.widget.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.fileupload.js"></script>
+
+<div class="container">
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <input type="hidden" id="@campoOculto" name="@campoOculto" value="@nombreDocument" />
+        <input class="input-file" id="@nombreComponente" type="file" name="@nombreComponente" size="4096">
+        <input type="hidden" id="formato" name="formato" value="@formato" />
+        <input type="hidden" id="estatus" name="estatus" value="1" />
+    </span>
+    <br />
+    <div id="estatus_@nombreComponente" class="message-success">
+
+    </div>
+    <div id="linkDescarga_@nombreComponente">
+        @if (!nombreDocument.Equals(""))
+        {<a href="@Url.Content("/Documentos/" + nombreDocument)" target="_blank"> Ver documento </a>}
+    </div>
+</div>
+
+
+@*<br />
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            <span class="sr-only"></span>
+        </div>
+        <a href="@Url.Content(("/
+    </div>
+
+    </div>*@
+
+
+
+
+<script>
+
+    /* Valida el tamaño maximo de un archivo adjunto */
+    $('.input-file').change(function () {
+
+            var permitida = "";
+            var sizeByte = this.files[0].size;
+            var siezekiloByte = parseInt(sizeByte / 1024);
+
+            var archivo = $('.input-file').val().toLowerCase();//Convertimos a minúscula
+            var formato = '.' + '@formato'.toLowerCase(); //Convertimos en minúscula el formato
+        
+            var extension = (archivo.substring(archivo.lastIndexOf(".")));
+            if (extension != formato)
+            {
+                    $('@("#estatus_"+nombreComponente)').removeClass("message-success");
+                    $('@("#estatus_"+nombreComponente)').addClass("validation-summary-errors");
+
+                    $('@("#estatus_"+nombreComponente)').html('La extensión del archivo no es correcta (extensiones permitidas: ' + formato + ').');
+                    $('@("#"+campoOculto)').val('');
+                    $('#estatus').val(0);
+;
+            }
+
+        if (siezekiloByte > $(this).attr('size'))
+        {
+                $('@("#estatus_"+nombreComponente)').removeClass("message-success");
+                $('@("#estatus_"+nombreComponente)').addClass("validation-summary-errors");
+
+                $('@("#estatus_"+nombreComponente)').html('El tamaño del archivo supera el límite permitido (5MB).');
+                $('@("#"+campoOculto)').val('');
+                $('#estatus').val(0);
+               
+        }
+
+    });
+
+    $('@("#"+ nombreComponente)').fileupload({
+                dataType: 'json',
+                url: '/UpLoadFile/UploadFile',
+                autoUpload: true,
+                done: function (e, data) {
+                 //alert("hola");
+                 $('@("#estatus_"+nombreComponente)').attr("class", "message-success");
+                 $('@("#"+campoOculto)').val(data.result.name);
+                    if (data.result.name != "") {
+                         $('@("#estatus_"+nombreComponente)').removeClass("validation-summary-errors");
+                         $('@("#estatus_"+nombreComponente)').addClass("message-success");
+                         $("#linkDescarga_@nombreComponente").html("<a href='@Url.Content("/Documentos/")" + data.result.name + "' target='_blank'>Ver archivo</a>");
+                        $('@("#estatus_"+nombreComponente)').html(data.result.mensaje);
+                 } else {
+                        $('@("#estatus_"+nombreComponente)').removeClass("message-success");
+                        $('@("#estatus_"+nombreComponente)').addClass("validation-summary-errors");
+                        $('@("#estatus_"+nombreComponente)').html(data.result.mensaje);
+                    }
+
+
+                }
+                }).on('nombreArchivo', function (e, data) {
+                        $('@("estatus_"+nombreComponente)').html('Cargando...');
+                    });
+
+</script>

@@ -1,0 +1,70 @@
+﻿@model DGSyTI_WEB.Models.CertificadoViewModel
+
+<div class="row tarjeta1">
+    <div style="margin-left:20%" class="col-xl-4 col-lg-6 col-md-6 col-sm-8 col-8 tarjeta2">
+        @if (Model.cerDocumentos.Any())
+        {<div class="tituloTarjeta2"><span>Solicitar nuevo token</span></div>}
+        else
+        {<div class="tituloTarjeta2"><span>No es posible solicitar un token</span></div>
+
+        }
+
+
+
+        @using (Ajax.BeginForm("enviarCorreo", "DescargaCertificado", new AjaxOptions
+
+        {
+
+            HttpMethod = "POST",
+            OnBegin = "divLoading",
+            OnSuccess = "onSuccessCorreo"
+        }, new { id = "formEnviaCorreo" }))
+        {
+            <div>
+                @if (Model.cerDocumentos.Any())
+                {
+                    <div class="textoModal" style="text-align:justify">
+                        Seleccione la cuenta de correo a la cual desea recibir su nuevo token de descarga.
+                    </div>}
+                else
+                { <div class="textoModal" style="text-align:justify">
+                        No cuenta con un correo configurado para recibir código de serguridad.
+                    </div>
+                }
+            </div>
+            foreach (var item in Model.cerDocumentos)
+            {
+                <div>
+                    <div class="textoModal">
+                        @Html.RadioButton("idCorreo", item.docId, new { style = "width:25px", onclick = "quitaMensaje()" })<span>@item.docCorreo</span>
+                    </div>
+                </div>
+            }
+            <div>
+                <div class="textoModal">
+                    <span id="errorToken" class="error" hidden></span>
+                </div>
+            </div>
+        }
+
+        @if (Model.cerDocumentos.Any())
+        {
+            <div>
+                <div class="textoModal" style="text-align:right;">
+                    <div style="float:left"><button tyle="button" onclick="Autenticar()" class="btnAtras colorAzul tit-EstiloBtnAncla">Regresar</button></div>
+                    <button tyle="button" id="enviarFormulario" form="formEnviaCorreo" class="success">Enviar</button>
+                </div>
+            </div>}
+        else
+        {
+            <div>
+                <div class="textoModal" style="text-align:right;">
+                    <div style="float:left"><button tyle="button" onclick="Autenticar()" class="btnAtras colorAzul tit-EstiloBtnAncla">Regresar</button></div>
+
+                </div>
+            </div>
+        }
+
+
+
+    </div>

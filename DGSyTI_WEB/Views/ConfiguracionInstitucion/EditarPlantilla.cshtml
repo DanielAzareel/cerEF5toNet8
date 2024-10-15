@@ -1,0 +1,90 @@
+﻿@model DGSyTI_WEB.Models.ConfiguracionInstitucionViewModel
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Ajax.BeginForm("", "", new AjaxOptions
+{
+}, new { id = "formDatosPlantilla", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        @Html.HiddenFor(m => m.oPlantilla.sFileNombrePlantilla)
+        @Html.HiddenFor(m => m.oPlantilla.planId)
+
+        <div class="col-3" style="text-align:right;padding-top: 5px;padding-right:0px;">
+            @if (String.IsNullOrEmpty(Model.oPlantilla.planId))
+            {
+                <label for="planNombre" class="labelObligatorio">Archivo:</label>
+            }
+            else
+            {
+                <label for="planNombre" class="">Archivo:</label>
+            }
+        </div>
+
+
+        @if (String.IsNullOrEmpty(Model.oPlantilla.planId))
+        {
+            <div class="col-3" style="padding-left: 0px;">
+                @Html.TextBoxFor(m => m.oPlantilla.archivoPlantilla, new { id = "txtCargaFileLayout", title = "Seleccionar un archivo.", @class = "infoBootstrap", @type = "file", @accept = ".docx, .zip", style="overflow: hidden;"  })
+                @Html.ValidationMessageFor(m => m.oPlantilla.archivoPlantilla)
+            </div>
+        }
+        else
+        {
+            <div class="col-3" style="padding-left: 0px;">
+                @Html.TextBoxFor(m => m.oPlantilla.archivoPlantillaEditar, new { id = "txtCargaFileLayout", title = "Seleccionar un archivo.", @class = "infoBootstrap", @type = "file", @accept = ".docx, .zip", style="overflow: hidden;"  })
+                @Html.ValidationMessageFor(m => m.oPlantilla.archivoPlantillaEditar)
+            </div>
+
+        }
+        <div class="col-1" style="padding-top:7px;  padding-right:0px;">
+            @if (!String.IsNullOrEmpty(Model.oPlantilla.planId))
+            {
+
+                if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarPlantillaInstitucion"))
+                {
+                    @Html.ActionLink(" ", "DescargarPlantilla", "ConfiguracionInstitucion", new { sIdPlantilla = Model.oPlantilla.planId }, new { @class = "cer-EstiloBtnAncla btnDescargar", download = "download", title = "Descargar plantilla" })
+                }
+
+            }
+        </div>
+
+        <div class="col-2" style="text-align:right;padding-top: 5px;padding-right:0px;">
+            <label for="planNombre" class="labelObligatorio">Nombre:</label>
+        </div>
+        <div class="col-3" style="padding-left:0px;">
+            @Html.TextBoxFor(m => m.oPlantilla.plaNombre, new { placeholder = "Nombre", maxlength="100"})
+            @Html.ValidationMessageFor(m => m.oPlantilla.plaNombre)
+        </div>
+        <div class="col-3" style="text-align:right;padding-top: 5px;padding-right:0px;">
+            <label for="planNombre" class="labelObligatorio">Número de archivos:</label>
+
+        </div>
+        <div class="col-3" style="padding-left:0px;">
+            @Html.TextBoxFor(m => m.oPlantilla.plaNumHojas, new { placeholder = "Número de archivos", maxlength="2" })
+            @Html.ValidationMessageFor(m => m.oPlantilla.plaNumHojas)
+        </div>
+        <div class="col-3" style="text-align:right;padding-top: 5px;padding-right:0px;">
+            <label for="planNombre" class="labelObligatorio">Tipo de documento:</label>
+        </div>
+        <div class="col-3" style="padding-left:0px;">
+            @Html.DropDownListFor(c => c.oPlantilla.docTipoId, Model.listSLTipoDocumento, new { })
+            @Html.ValidationMessageFor(m => m.oPlantilla.docTipoId)
+
+        </div>
+        <div class="col-3" style="text-align:right;padding-top: 5px; padding-right:0px;">
+            <label for="planNombre" class="labelObligatorio">Plan:</label>
+        </div>
+        <div class="col-3" style="padding-left:0px;">
+            @Html.DropDownListFor(c => c.oPlantilla.idPlan, Model.listSLPlan, new { })
+            @Html.ValidationMessageFor(m => m.oPlantilla.idPlan)
+        </div>
+    </div>
+}
+
+<script>
+    $q("#oPlantilla_idPlan").val(@Model.oPlantilla.idPlan);
+    $q("#oPlantilla_docTipoId").val(@Model.oPlantilla.docTipoId);
+
+</script>

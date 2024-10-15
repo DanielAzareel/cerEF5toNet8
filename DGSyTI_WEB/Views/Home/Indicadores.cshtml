@@ -1,0 +1,5 @@
+﻿@model List<BusinessModel.Models.Personalizados.TabML>
+@using Helpers;
+
+<input id="nTabs" type="hidden" value="@ViewBag.nTabs">
+@Html.crearTabsMenu(Model, 1)

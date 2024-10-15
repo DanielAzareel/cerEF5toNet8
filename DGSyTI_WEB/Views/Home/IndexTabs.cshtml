@@ -1,0 +1,16 @@
+﻿@model CertificadosEletronicosMS.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Proceso de certificación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (SSExtensionHelper.GetAppUser() != null)
+{
+
+    @Html.crearTabsMenu(Model.tabs, 1)
+}
+
+<script>
+     CrearMiCookieTab("TabsEtapasSellado");
+</script>

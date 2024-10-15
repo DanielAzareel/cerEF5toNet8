@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6B83A74D-9964-4C8E-87B0-6A144A3E9F2E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ServiciosWeb</RootNamespace>
+    <AssemblyName>ServiciosWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Desarrollo|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Desarrollo\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Produccion|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Produccion\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Pruebas|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Pruebas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Connected Services\CertificadoMediaSuperiorWS\Reference.cs" />
+    <Compile Include="Connected Services\CertificadoMediaSuperiorWS\Reference1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CertificadosIEMS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ConsultaRenapoWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\EnvioCorreo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioIEMS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioPermisos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="LocalConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Web References\SesionWS\Reference.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\CertificadosIEMS.wsdl" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\ServiciosWeb.CertificadoMediaSuperiorWS.cancelarCertificadosIEMSResponse.datasource" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\ServiciosWeb.CertificadoMediaSuperiorWS.cancelarCertificadosIEMSResponse1.datasource" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\ServiciosWeb.CertificadoMediaSuperiorWS.cargaCertificadosIEMSResponse.datasource" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\ServiciosWeb.CertificadoMediaSuperiorWS.cargaCertificadosIEMSResponse1.datasource" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\ServiciosWeb.CertificadoMediaSuperiorWS.consultaCertificadosIEMSResponse.datasource" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\ServiciosWeb.CertificadoMediaSuperiorWS.consultaCertificadosIEMSResponse1.datasource" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\ServiciosWeb.CertificadoMediaSuperiorWS.descargaCertificadosIEMSResponse.datasource" />
+    <None Include="Connected Services\CertificadoMediaSuperiorWS\ServiciosWeb.CertificadoMediaSuperiorWS.descargaCertificadosIEMSResponse1.datasource" />
+    <None Include="Connected Services\CertificadosIEMS\CertificadosIEMS.wsdl" />
+    <None Include="Connected Services\CertificadosIEMS\ServiciosWeb.CertificadosIEMS.cancelarCertificadosIEMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CertificadosIEMS\ServiciosWeb.CertificadosIEMS.cancelarCertificadosIEMSResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CertificadosIEMS\ServiciosWeb.CertificadosIEMS.cargaCertificadosIEMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CertificadosIEMS\ServiciosWeb.CertificadosIEMS.cargaCertificadosIEMSResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CertificadosIEMS\ServiciosWeb.CertificadosIEMS.consultaCertificadosIEMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CertificadosIEMS\ServiciosWeb.CertificadosIEMS.consultaCertificadosIEMSResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CertificadosIEMS\ServiciosWeb.CertificadosIEMS.descargaCertificadosIEMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CertificadosIEMS\ServiciosWeb.CertificadosIEMS.descargaCertificadosIEMSResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ConsultaRenapoWS\ConsultaRenapo.wsdl" />
+    <None Include="Connected Services\ConsultaRenapoWS\ConsultaRenapo1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ConsultaRenapoWS\ServiciosWeb.ConsultaRenapoWS.consultarCURPDetalleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ConsultaRenapoWS\ServiciosWeb.ConsultaRenapoWS.consultarPorCurpResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EnvioCorreo\ServiciosWeb.EnvioCorreo.ArrayOfSalida.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EnvioCorreo\ServiciosWeb.EnvioCorreo.EnviarcorreoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EnvioCorreo\wscorreo.wsdl" />
+    <None Include="Connected Services\ServicioIEMS\CertificadosIEMS.wsdl" />
+    <None Include="Connected Services\ServicioIEMS\ServiciosWeb.ServicioIEMS.cancelarCertificadosIEMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioIEMS\ServiciosWeb.ServicioIEMS.cancelarCertificadosIEMSResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioIEMS\ServiciosWeb.ServicioIEMS.cargaCertificadosIEMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioIEMS\ServiciosWeb.ServicioIEMS.cargaCertificadosIEMSResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioIEMS\ServiciosWeb.ServicioIEMS.consultaCertificadosIEMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioIEMS\ServiciosWeb.ServicioIEMS.consultaCertificadosIEMSResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioIEMS\ServiciosWeb.ServicioIEMS.descargaCertificadosIEMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioIEMS\ServiciosWeb.ServicioIEMS.descargaCertificadosIEMSResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioPermisos\GenericoConsultaSCSWS.wsdl" />
+    <None Include="Connected Services\ServicioPermisos\GenericoConsultaSCSWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPermisos\GenericoConsultaSCSWS1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="ServiciosWeb.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Web References\SesionWS\Reference.map" />
+    <None Include="Web References\SesionWS\sesionImpl.datasource" />
+    <None Include="Web References\SesionWS\sesionMensajesImpl.datasource" />
+    <None Include="Web References\SesionWS\sesionStringImpl.datasource" />
+    <None Include="Web References\SesionWS\SesionWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\SesionWS\SesionWSService.wsdl" />
+    <None Include="ServiciosWeb.dll.template.config" />
+    <None Include="ServiciosWeb.dll.Desarrollo.config">
+      <DependentUpon>ServiciosWeb.dll.template.config</DependentUpon>
+    </None>
+    <None Include="ServiciosWeb.dll.Produccion.config">
+      <DependentUpon>ServiciosWeb.dll.template.config</DependentUpon>
+    </None>
+    <None Include="ServiciosWeb.dll.Pruebas.config">
+      <DependentUpon>ServiciosWeb.dll.template.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CertificadosIEMS\" />
+    <WCFMetadataStorage Include="Connected Services\ConsultaRenapoWS\" />
+    <WCFMetadataStorage Include="Connected Services\EnvioCorreo\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioIEMS\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioPermisos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EnvioCorreo\wscorreo.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EnvioCorreo\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EnvioCorreo\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EnvioCorreo\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Connected Services\ServicioPermisos\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServicioPermisos\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServicioPermisos\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ConsultaRenapoWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ConsultaRenapoWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ConsultaRenapoWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Connected Services\CertificadoMediaSuperiorWS\configuration.svcinfo" />
+    <Content Include="Connected Services\CertificadoMediaSuperiorWS\configuration91.svcinfo" />
+    <Content Include="Connected Services\CertificadoMediaSuperiorWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference1.cs</LastGenOutput>
+    </Content>
+    <None Include="Connected Services\ServicioIEMS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServicioIEMS\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioIEMS\configuration91.svcinfo" />
+    <None Include="Connected Services\CertificadosIEMS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\CertificadosIEMS\configuration.svcinfo" />
+    <None Include="Connected Services\CertificadosIEMS\configuration91.svcinfo" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />
+  <Target Name="BeforeBuild">
+    <TransformXml Source="$(AppFolderName)ServiciosWeb.dll.template.config" Transform="$(AppFolderName)ServiciosWeb.dll.$(Configuration).config" Destination="$(AppFolderName)ServiciosWeb.dll.config" />
+    <TransformXml Source="$(AppFolderName)ServiciosWeb.dll.template.config" Transform="$(AppFolderName)ServiciosWeb.dll.$(Configuration).config" Destination="$(SolutionDir)DGSyTI_WEB\bin\ServiciosWeb.dll.config" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

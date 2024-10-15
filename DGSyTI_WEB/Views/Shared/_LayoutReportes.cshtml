@@ -1,0 +1,129 @@
+﻿@*
+    Autor: Secretaría de Educación de Guanajuato
+    Fecha de Creación: 06 Junio 2014
+    Descripción: Este documento corresponde al layout aplicar a las páginas, conocido en otras referecias como
+                MasterPage. Provee los elementos de navegabilidad así como los insumos gráficos correspondientes al
+                líneamiento de comunicación de la SEG para que el contenido y estructura se visualice en los navegadores
+                de un equipo de escritorio.
+    Nota: Este esquema es una adecuación realizada por Eduardo Jaramillo en base a un ambiente equivalente realizado
+        por Jorge Tapia y Julio Rangel. Conforme a los elementos globales ya disponibles por parte del AppConfig
+*@
+@using Helpers;
+
+@{
+    Layout = null;
+    if (Session.GetWscs() == null || Session.GetAppUser() == null || Session.GetAppUser().ListaAcciones == null || Session.GetAppUser().ListaAcciones.Count == 0)
+    {
+        Session.CloseSession();
+        Response.Redirect(AppConfig.AppEnviroment.urlSieg);
+    }
+    var AppEnv = AppConfig.AppEnviroment; //Solo para simplificar su uso en la página.
+    var AppUser = Session.GetAppUser();
+    var AppWscs = Session.GetWscs();
+}
+
+
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.tituloReporte</title>
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="~/Content/Site.css" />
+
+    <style>
+        .tablaReporte {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0px;
+            table-layout: fixed;
+        }
+
+            .tablaReporte thead th {
+                background: #E6E6E6 none repeat scroll 0 0;
+                color: #0a3e57;
+                border: 1px solid black;
+                text-align: -moz-center;
+            }
+
+            .tablaReporte td {
+                border: 1px solid black;
+                text-align: left;
+                word-wrap: break-word;
+            }
+    </style>
+
+</head>
+<body>
+
+
+
+    <table width="100%">
+        <tr>
+            <td>
+                <div>
+                    <!-- Inicia definición de header -->
+                    <div class="header">
+                        <div>
+                            <div class="" style="height:205px;">
+                                <div class="float-left">      <img id="tituloReporte" src="@Url.Content(AppEnv.imgTituloReporte)" /></div>
+                                <div class="float-left" style="z-index:auto;position:absolute;top:40px;color:white;left:20px;">
+                                    <p><span style="font-size:16pt;"><strong> @ViewBag.nombreReporte</strong> </span></p>
+                                </div>
+                                <div class="float-right-encabezado-negro" style="top:35px;">
+                                    <table style=" border-spacing:0px; width:490px; height:100%; vertical-align:bottom; float: right;">
+                                        <tr>
+                                            <td style="text-wrap:normal;">
+                                                <p>
+                                                    <span style="font-size:18pt;">
+                                                        <strong>
+                                                            @DateTime.Now.ToShortDateString()
+                                                        </strong>
+                                                    </span>
+                                                </p>
+
+
+                                            </td>
+                                        </tr>
+                                        <tr style="vertical-align:bottom;height:75px;">
+                                            <td>
+                                                <p>
+                                                    <span style="font-size:18pt;margin-left:50px">
+                                                        <strong>
+                                                            @ViewBag.textoCiclo
+                                                        </strong>
+                                                    </span>
+                                                </p>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+                    <!-- Termina definción de header -->
+                    <!-- Inicia definición de Main -->
+                    <div>
+
+
+                        <!-- Inicia sección de contenido principal -->
+                        @RenderSection("featured", required: false)
+                        <section class="main-content clear-fix">
+                            @RenderBody()
+                        </section>
+
+
+                    </div>
+
+                </div>
+
+    </table>
+
+
+</body>
+</html>
+

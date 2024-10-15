@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://wscorreo.seg.guanajuato.gob.mx/wscorreo.asmx?wsdl" docRef="http://wscorreo.seg.guanajuato.gob.mx/wscorreo.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://wscorreo.seg.guanajuato.gob.mx/wscorreo.asmx" xmlns:q1="http://seg.guanajuato.gob.mx.ws.Correo/" binding="q1:WSCorreoSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://wscorreo.seg.guanajuato.gob.mx/wscorreo.asmx" xmlns:q2="http://seg.guanajuato.gob.mx.ws.Correo/" binding="q2:WSCorreoSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

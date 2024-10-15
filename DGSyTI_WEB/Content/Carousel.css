@@ -1,0 +1,70 @@
+.divAvisos {
+    background-color: transparent;
+    text-align: -webkit-center;
+    margin-left: 42%;
+    width: 300px;
+    position: relative;
+    margin-top: -250px;
+    max-height: 190px;
+    height: 190px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.tituloAviso {
+    color: #004A80;
+    font-size:14pt;
+    font-weight:bold;
+}
+
+.idAsunto {
+    color: #004A80;
+    text-align: justify;
+    padding-top: 10px;
+    font-size: 10pt;
+}
+
+.divNavegacion {
+    background-color: transparent;
+    text-align: -webkit-center;
+    text-align:center;
+    margin-left: 39%;
+    width: 300px;
+    height: 30px;
+    position: relative;
+    margin-top: -45px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 10pt;
+    color: #004A80;
+}
+
+@media screen and (max-width: 1400px) {
+    .divAvisos{
+		margin-left:39%;
+	}
+    .divNavegacion {
+        margin-left: 36%;
+    }
+}
+
+@media screen and (max-width: 1215px) {
+    .divAvisos {
+        margin-left: 37%;
+    }
+    .divNavegacion {
+        margin-left: 34%;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .divAvisos {
+        margin-left: 34%;
+    }
+    .divNavegacion {
+        margin-left: 31%;
+    }
+}

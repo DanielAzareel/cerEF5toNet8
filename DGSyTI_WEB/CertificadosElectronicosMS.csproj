@@ -1,0 +1,767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{360F9E4A-616A-422A-BDB4-85053D91D6A0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CertificadosEletronicosMS</RootNamespace>
+    <AssemblyName>CertificadosEletronicosMS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44301</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Desarrollo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Produccion|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Pruebas|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\AxShockwaveFlashObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.94.2\lib\net40\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.3.0\lib\net45\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcPaging, Version=2.1.11.44, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcPaging.2.1.11\lib\net40\MvcPaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="Simple.Data, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Simple.Data.Core.0.19.0.0\lib\net40\Simple.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.Ado, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Simple.Data.Ado.0.19.0.0\lib\net40\Simple.Data.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\MensajesValidación1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MensajesValidación.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DisplayModeConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\AppConfig.cs" />
+    <Compile Include="App_Start\Seguridad.cs" />
+    <Compile Include="CodeBase64.cs" />
+    <Compile Include="Controllers\CargaCertificadosTerminacionController.cs" />
+    <Compile Include="Controllers\CatTipoIncorporacionController.cs" />
+    <Compile Include="Controllers\CertificadoController.cs" />
+    <Compile Include="Controllers\ConfiguracionInstitucionController.cs" />
+    <Compile Include="Controllers\DescargaCertificadoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlantillasCertificadosController.cs" />
+    <Compile Include="Controllers\SelladoController.cs" />
+    <Compile Include="Controllers\VerificacionController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ActionHelpers.cs" />
+    <Compile Include="Helpers\AutoMapperProfile.cs" />
+    <Compile Include="Helpers\CodeBase64.cs" />
+    <Compile Include="Helpers\Dialog.cs" />
+    <Compile Include="Helpers\Email.cs" />
+    <Compile Include="Helpers\EstadisticaSistema.cs" />
+    <Compile Include="Helpers\ExcelColumn.cs" />
+    <Compile Include="Helpers\ExcelColumnDefinition.cs" />
+    <Compile Include="Helpers\ExcelFileExport.cs" />
+    <Compile Include="Helpers\ExcelFormat.cs" />
+    <Compile Include="Helpers\FtpClient.cs" />
+    <Compile Include="Helpers\GridHelper.cs" />
+    <Compile Include="Helpers\ImageTagHelper.cs" />
+    <Compile Include="Helpers\Mapping.cs" />
+    <Compile Include="Helpers\MenuSIEGHelper.cs" />
+    <Compile Include="Helpers\MenuTabsHelper.cs" />
+    <Compile Include="Helpers\Paginacion.cs" />
+    <Compile Include="Helpers\SSExtensionHelper.cs" />
+    <Compile Include="Helpers\UtilHelper.cs" />
+    <Compile Include="Helpers\ValidaAcceso.cs" />
+    <Compile Include="Models\CatTipoIncorporacionViewModel.cs" />
+    <Compile Include="Models\CertificadoViewModel.cs" />
+    <Compile Include="Models\ConfiguracionInstitucionViewModel.cs" />
+    <Compile Include="Models\CriteriosBusquedaMonitoreoViewModel.cs" />
+    <Compile Include="Models\CriteriosConsultaViewModel.cs" />
+    <Compile Include="Models\DatosSolicitudViewModel.cs" />
+    <Compile Include="Models\DetalleCertificadoViewModel.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\MonitoreoSEPViewModel.cs" />
+    <Compile Include="Models\SelladoViewModel.cs" />
+    <Compile Include="Models\VerificacionViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\AutoMapper.dll" />
+    <Content Include="bin\CertificadosEletronicosMS.dll" />
+    <Content Include="bin\CertificadosEletronicosMS.pdb" />
+    <Content Include="bin\Elmah.dll" />
+    <Content Include="bin\Elmah.Mvc.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EPPlus.dll" />
+    <Content Include="bin\GridMvc.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\MvcPaging.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\ServiciosWeb.dll" />
+    <Content Include="bin\Simple.Data.Ado.dll" />
+    <Content Include="bin\Simple.Data.dll" />
+    <Content Include="bin\SistemaCEMSySI.pdb" />
+    <Content Include="bin\System.ValueTuple.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\Alertify\alertify.core.min.css" />
+    <Content Include="Content\Alertify\bootstrap.css" />
+    <Content Include="Content\Alertify\bootstrap_alertify.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapCss\bootstrap-grid.css" />
+    <Content Include="Content\bootstrapCss\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrapCss\bootstrap-multiselect.css" />
+    <Content Include="Content\bootstrapCss\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrapCss\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrapCss\bootstrap.css" />
+    <Content Include="Content\bootstrapCss\bootstrap.min.css" />
+    <Content Include="Content\bootstrapJs\bootstrap-multiselect.js" />
+    <Content Include="Content\bootstrapJs\bootstrap.bundle.js" />
+    <Content Include="Content\bootstrapJs\bootstrap.bundle.min.js" />
+    <Content Include="Content\bootstrapJs\bootstrap.js" />
+    <Content Include="Content\bootstrapJs\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="bin\CertificadosEletronicosMS.dll.config" />
+    <None Include="Content\bootstrapJs\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Content\bootstrapJs\jquery-3.0.0.js" />
+    <Content Include="Content\bootstrapJs\jquery-3.0.0.min.js" />
+    <Content Include="Content\bootstrapJs\jquery-3.0.0.slim.js" />
+    <Content Include="Content\bootstrapJs\jquery-3.0.0.slim.min.js" />
+    <Content Include="Content\bootstrapJs\popper-utils.js" />
+    <Content Include="Content\bootstrapJs\popper-utils.min.js" />
+    <Content Include="Content\bootstrapJs\popper.js" />
+    <Content Include="Content\bootstrapJs\popper.min.js" />
+    <None Include="Content\bootstrapJs\_references.js" />
+    <Content Include="Content\Carousel.css" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\chosen.css" />
+    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\IconDownCrome.JPG" />
+    <Content Include="Content\IconDownMoz.JPG" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\ajax-loader.png" />
+    <Content Include="Content\images\icons-18-black.png" />
+    <Content Include="Content\images\icons-18-white.png" />
+    <Content Include="Content\images\icons-36-black.png" />
+    <Content Include="Content\images\icons-36-white.png" />
+    <Content Include="Content\jhtmlarea\jHtmlArea.ColorPickerMenu.css" />
+    <Content Include="Content\jhtmlarea\jHtmlArea.css" />
+    <Content Include="Content\jhtmlarea\jHtmlArea.Editor.css" />
+    <Content Include="Content\jhtmlarea\jHtmlArea.png" />
+    <Content Include="Content\jhtmlarea\jHtmlArea_Toolbar_Group_BG.png" />
+    <Content Include="Content\jhtmlarea\jHtmlArea_Toolbar_Group__Btn_Select_BG.png" />
+    <Content Include="Content\jquery.datetimepicker.css" />
+    <Content Include="Content\SEG.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\bootstrapCss\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrapCss\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrapCss\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrapCss\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrapCss\bootstrap.css.map" />
+    <Content Include="Content\bootstrapCss\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrapJs\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrapJs\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\bootstrapJs\bootstrap.js.map" />
+    <Content Include="Content\bootstrapJs\bootstrap.min.js.map" />
+    <Content Include="Content\bootstrapJs\jquery-3.0.0.min.map" />
+    <Content Include="Content\bootstrapJs\jquery-3.0.0.slim.min.map" />
+    <Content Include="Content\bootstrapJs\popper-utils.js.map" />
+    <Content Include="Content\bootstrapJs\popper-utils.min.js.map" />
+    <Content Include="Content\bootstrapJs\popper.js.map" />
+    <Content Include="Content\bootstrapJs\popper.min.js.map" />
+    <Content Include="Content\bootstrapJs\README.md" />
+    <Content Include="Images\Compartidas\Iconos\accion.png" />
+    <Content Include="Images\Compartidas\Iconos\cancelado.png" />
+    <Content Include="Images\Compartidas\Iconos\college.png" />
+    <Content Include="Images\Compartidas\Iconos\concluido.png" />
+    <Content Include="Images\Compartidas\Iconos\error-Gral.png" />
+    <Content Include="Images\Compartidas\Iconos\icono ocultar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono ver.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_aceptar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_agregar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_atencion.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_bien.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_buscar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_cancelar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_cargar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_concluir.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_consultar-convocatoria.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_continuar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_descargar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_editar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_eliminar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_flecha.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_generar-constancia.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_limpiar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_menu.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_mostrar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_refresh.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_regresar.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_reimpresion.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_reportarincidencia.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_salir.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_suspender.png" />
+    <Content Include="Images\Compartidas\Iconos\icono_validar.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_adelante.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_anterior.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_atras.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_correo.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_inicio.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_si Off.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_siguiente.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_titulo.png" />
+    <Content Include="Images\Compartidas\Iconos\ico_ultimo.png" />
+    <Content Include="Images\Compartidas\Iconos\img_barra_gris.png" />
+    <Content Include="Images\Compartidas\Iconos\LogoSistema.png" />
+    <Content Include="Images\Compartidas\Iconos\pendiente.png" />
+    <Content Include="Images\Compartidas\Iconos\proceso.png" />
+    <Content Include="Images\Compartidas\Iconos\Sellado.png" />
+    <Content Include="Images\Compartidas\Iconos\validar_Certificado.png" />
+    <Content Include="Images\Compartidas\logos\certificadoNoValido.emf" />
+    <Content Include="Images\Compartidas\logos\escudo gto.emf" />
+    <Content Include="Images\Compartidas\logos\escudo gto.png" />
+    <Content Include="Images\Compartidas\logos\Formatos Gto 21-06-19 OBVS_img_20.jpg" />
+    <Content Include="Images\Compartidas\logos\gto.png" />
+    <Content Include="Images\Compartidas\logos\IgualdadLaboral.png" />
+    <Content Include="Images\Compartidas\logos\logopafed.png" />
+    <Content Include="Images\Compartidas\logos\logoSeg2019.png" />
+    <Content Include="Images\Compartidas\logos\logSegPA.png" />
+    <Content Include="Images\Compartidas\logos\NoDisponible.jpg" />
+    <Content Include="Images\Compartidas\magenta.png" />
+    <Content Include="Images\Compartidas\naranja.png" />
+    <Content Include="Images\Compartidas\verde.png" />
+    <Content Include="Images\iconos\aceptar.png" />
+    <Content Include="Images\iconos\activo.png" />
+    <Content Include="Images\iconos\calendar.png" />
+    <Content Include="Images\iconos\cancelado.png" />
+    <Content Include="Images\iconos\excel.png" />
+    <Content Include="Images\iconos\finalizado.png" />
+    <Content Include="Images\iconos\icono-zip.png" />
+    <Content Include="Images\iconos\icono_atencion.png" />
+    <Content Include="Images\iconos\ico_pdf.png" />
+    <Content Include="Images\iconos\ico_xml.png" />
+    <Content Include="Images\iconos\mensaje_negativo.png" />
+    <Content Include="Images\iconos\mensaje_positivo.png" />
+    <Content Include="Images\iconos\rechazado.png" />
+    <Content Include="Images\iconos\registrado.png" />
+    <Content Include="Images\layout\01800.png" />
+    <Content Include="Images\layout\chrome.png" />
+    <Content Include="Images\layout\Facebook.png" />
+    <Content Include="Images\layout\firefox.png" />
+    <Content Include="Images\layout\fondo_tmpl.jpg" />
+    <Content Include="Images\layout\icono encabezado.png" />
+    <Content Include="Images\layout\icon_download.png" />
+    <Content Include="Images\layout\icon_select.png" />
+    <Content Include="Images\layout\icon_upload.png" />
+    <Content Include="Images\layout\imagenes_estilos\add.png" />
+    <Content Include="Images\layout\imagenes_estilos\ajax-loading.gif" />
+    <Content Include="Images\layout\imagenes_estilos\confirm.png" />
+    <Content Include="Images\layout\imagenes_estilos\delete.png" />
+    <Content Include="Images\layout\imagenes_estilos\down.png" />
+    <Content Include="Images\layout\imagenes_estilos\down_1.png" />
+    <Content Include="Images\layout\imagenes_estilos\edit.png" />
+    <Content Include="Images\layout\imagenes_estilos\fondo-gris-tabla-header.gif" />
+    <Content Include="Images\layout\imagenes_estilos\fondoTitulo.gif" />
+    <Content Include="Images\layout\imagenes_estilos\icono_atras.png" />
+    <Content Include="Images\layout\imagenes_estilos\icono_siguiente.png" />
+    <Content Include="Images\layout\imagenes_estilos\inactivo.png" />
+    <Content Include="Images\layout\imagenes_estilos\leftarrow.png" />
+    <Content Include="Images\layout\imagenes_estilos\ms-excel.png" />
+    <Content Include="Images\layout\imagenes_estilos\return.png" />
+    <Content Include="Images\layout\imagenes_estilos\rightarrow.png" />
+    <Content Include="Images\layout\imagenes_estilos\save.png" />
+    <Content Include="Images\layout\imagenes_estilos\simpleleftarrow.png" />
+    <Content Include="Images\layout\imagenes_estilos\simplerightarrow.png" />
+    <Content Include="Images\layout\imagenes_estilos\up.png" />
+    <Content Include="Images\layout\Mostrar.jpg" />
+    <Content Include="Images\layout\MostrarHover.jpg" />
+    <Content Include="Images\layout\Ocultar.jpg" />
+    <Content Include="Images\layout\OcultarHover.jpg" />
+    <Content Include="Images\layout\pie_telefono.png" />
+    <Content Include="Images\layout\reportarincidencia.png" />
+    <Content Include="Images\layout\separadorMenu.png" />
+    <Content Include="Images\layout\Twitter.png" />
+    <Content Include="Images\layout\Youtube.png" />
+    <Content Include="Scripts\additional-methods.js" />
+    <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\alertify.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\data.js" />
+    <Content Include="Scripts\drilldown.js" />
+    <Content Include="Scripts\funcionesAjax.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
+    <Content Include="Scripts\highcharts.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Content\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Fonts\FontAwesome.otf" />
+    <Content Include="Content\Fonts\Proxima Nova Black.otf" />
+    <Content Include="Content\Fonts\Proxima Nova Bold It.otf" />
+    <Content Include="Content\Fonts\Proxima Nova Bold.otf" />
+    <Content Include="Content\Fonts\Proxima Nova Light.otf" />
+    <Content Include="Content\Fonts\Proxima Nova Thin.otf" />
+    <Content Include="Content\Fonts\Proxima-Nova-Reg.otf" />
+    <Content Include="Content\Plantillas\Plantilla_1.docx" />
+    <Content Include="Content\Plantillas\titulo_no_disponible.pdf" />
+    <Content Include="Content\Plantillas\T_22\1.docx" />
+    <Content Include="Content\Plantillas\T_22\2.docx" />
+    <Content Include="Content\Plantillas\T_22\3.docx" />
+    <Content Include="Content\Plantillas\T_22\4.docx" />
+    <Content Include="Content\Plantillas\T_33\1.docx" />
+    <Content Include="Content\Plantillas\P_22\1 original.docx" />
+    <Content Include="Content\Plantillas\P_22\1.docx" />
+    <Content Include="Content\Plantillas\P_22\1zip.docx" />
+    <Content Include="Content\Plantillas\P_22\1_version_memo.docx" />
+    <Content Include="Content\Plantillas\P_22\~%241.docx" />
+    <Content Include="Content\Plantillas\P_33\1.docx" />
+    <Content Include="Content\Plantillas\P_33\~%24- copia.docx" />
+    <Content Include="Content\Plantillas\P_33\~%241.docx" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IIS_LOCAL.pubxml" />
+    <None Include="Properties\PublishProfiles\Local Pruebas.pubxml" />
+    <None Include="Properties\PublishProfiles\Producción.pubxml" />
+    <None Include="Properties\PublishProfiles\Pruebas.pubxml" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <None Include="Properties\PublishProfiles\Publicador.pubxml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jHtmlArea-0.8.js" />
+    <Content Include="Scripts\jHtmlArea-0.8.min.js" />
+    <Content Include="Scripts\jHtmlArea.ColorPickerMenu-0.8.js" />
+    <Content Include="Scripts\jHtmlArea.ColorPickerMenu-0.8.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.css" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery-ui.css" />
+    <Content Include="Scripts\jquery.datetimepicker.full.min.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
+    <Content Include="Scripts\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\jquery.maxlength-min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Scripts\jquery.timepicker.js" />
+    <Content Include="Scripts\jquery.timepicker.min.js" />
+    <Content Include="Scripts\jquery.ui.widget.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Layout\jquery.base64.js" />
+    <Content Include="Scripts\Layout\jquery.base64.min.js" />
+    <Content Include="Scripts\Layout\menu.js" />
+    <Content Include="Scripts\MenuSIEG\menusieg.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Modulos\CargaCertificados.js" />
+    <Content Include="Scripts\Modulos\ConfiguracionConcentradora.js" />
+    <Content Include="Scripts\Modulos\ConfiguracionInstitucion.js" />
+    <Content Include="Scripts\Modulos\Funcionesgenericas.js" />
+    <Content Include="Scripts\Modulos\indicadores.js" />
+    <Content Include="Scripts\Modulos\MonitoreoSEP.js" />
+    <Content Include="Scripts\Modulos\MonitoreoSolicitud.js" />
+    <Content Include="Scripts\Modulos\PortalDescarga.js" />
+    <Content Include="Scripts\Modulos\Sellado.js" />
+    <Content Include="Scripts\Modulos\SelladoConcentradora.js" />
+    <Content Include="Scripts\Modulos\SelladoInstitucion.js" />
+    <Content Include="Scripts\MultiStep\css\reset.css" />
+    <Content Include="Scripts\MultiStep\css\style.css" />
+    <Content Include="Scripts\MultiStep\img\cd-custom-icons-01.svg" />
+    <Content Include="Scripts\MultiStep\img\cd-custom-icons-02.svg" />
+    <Content Include="Scripts\MultiStep\img\cd-custom-separator.svg" />
+    <Content Include="Scripts\MultiStep\js\modernizr.js" />
+    <Content Include="Scripts\nicEdit-latest.js" />
+    <Content Include="Scripts\gridSEG.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ScriptsPantalla\SolicitudesFinalizadas.js" />
+    <Content Include="Scripts\UtileriasJS.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="ToolBaSEG\AccToolBarSEGJq.js" />
+    <Content Include="ToolBaSEG\IconosToolBar\alejar.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\busqueda.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\clicker.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\configuraciones.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\cursor.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\cursorFlecha.cur" />
+    <Content Include="ToolBaSEG\IconosToolBar\cursorMano.cur" />
+    <Content Include="ToolBaSEG\IconosToolBar\enlace-roto.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\error.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\flecha-hacia-atras.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\info.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\luna.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\oido.png" />
+    <Content Include="ToolBaSEG\IconosToolBar\zoom.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\UpLoadFile\fileComponent.cshtml" />
+    <Content Include="Scripts\MultiStep\partials\_layout.scss" />
+    <Content Include="Scripts\MultiStep\partials\_mixins.scss" />
+    <Content Include="Scripts\MultiStep\partials\_variables.scss" />
+    <Content Include="Scripts\MultiStep\scss\style.scss" />
+    <Content Include="Views\CatTipoIncorporacion\activoInactivo.cshtml" />
+    <Content Include="Views\CatTipoIncorporacion\agregar.cshtml" />
+    <Content Include="Views\CatTipoIncorporacion\critBusqueda.cshtml" />
+    <Content Include="Views\CatTipoIncorporacion\editar.cshtml" />
+    <Content Include="Views\CatTipoIncorporacion\grid.cshtml" />
+    <Content Include="Views\CatTipoIncorporacion\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\ayuda.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\getBusqueda.cshtml" />
+    <Content Include="Views\Shared\getInfoTema.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutCorreo.cshtml" />
+    <Content Include="Views\Shared\_LayoutPDF.cshtml" />
+    <Content Include="Views\Shared\_LayoutPortal.cshtml" />
+    <Content Include="Views\Shared\_LayoutReportes.cshtml" />
+    <Content Include="Views\Shared\_MensajesError.cshtml" />
+    <Content Include="Views\Verificacion\Index.cshtml" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Views\Shared\_LayoutPortalDescarga.cshtml" />
+    <Content Include="Views\Home\criterios.cshtml" />
+    <Content Include="Views\Home\criteriosInst.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\DatosConcentradora.cshtml" />
+    <Content Include="Views\Home\Indicadores.cshtml" />
+    <Content Include="Views\Home\SeccionListadoIndCarrerasInst.cshtml" />
+    <Content Include="Views\Home\SeccionListadoIndInst.cshtml" />
+    <Content Include="Views\Sellado\Index.cshtml" />
+    <Content Include="Views\Sellado\ListadoDocumentos.cshtml" />
+    <Content Include="Views\Sellado\CriteriosBusqueda.cshtml" />
+    <Content Include="Views\DescargaCertificado\Error.cshtml" />
+    <Content Include="Views\DescargaCertificado\Index.cshtml" />
+    <Content Include="Views\DescargaCertificado\ListadoDescarga.cshtml" />
+    <Content Include="Views\DescargaCertificado\modalDescargarCertificado.cshtml" />
+    <Content Include="Views\DescargaCertificado\modalEnvioCorreo.cshtml" />
+    <Content Include="Views\Sellado\TabSellado.cshtml" />
+    <Content Include="Views\Sellado\ModalSellado.cshtml" />
+    <Content Include="Views\CargaCertificadosTerminacion\CriteriosValidacion.cshtml" />
+    <Content Include="Views\CargaCertificadosTerminacion\Index.cshtml" />
+    <Content Include="Views\CargaCertificadosTerminacion\SeccionListado.cshtml" />
+    <Content Include="Views\Home\IndexTabs.cshtml" />
+    <Content Include="Views\Sellado\ModalDetalleDocumento.cshtml" />
+    <Content Include="Views\Certificado\CriteriosBusquedaCertificados.cshtml" />
+    <Content Include="Views\Certificado\CriteriosBusquedaSolicitudes.cshtml" />
+    <Content Include="Views\Certificado\DatosSolicitud.cshtml" />
+    <Content Include="Views\Certificado\DetalleCertificado.cshtml" />
+    <Content Include="Views\Certificado\Index.cshtml" />
+    <Content Include="Views\Certificado\ListadoCertificados.cshtml" />
+    <Content Include="Views\Certificado\ListadoPlantillas.cshtml" />
+    <Content Include="Views\Certificado\ListadoSolicitudes.cshtml" />
+    <Content Include="Views\Certificado\ModalCancelarCertificado.cshtml" />
+    <Content Include="Views\Certificado\ModalEnviarCorreo.cshtml" />
+    <Content Include="Views\Certificado\TabMonitoreoSEP.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\CriteriosBusquedaEtiquetas.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\CriteriosBusquedaPlantilla.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\EditarFirmante.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\EditarPlantilla.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\Formulario.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\Index.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\ListadoEtiquetas.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\ListadoFirmantes.cshtml" />
+    <Content Include="Views\ConfiguracionInstitucion\ListadoPlantillas.cshtml" />
+    <None Include="Web.template.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Desarrollo.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Produccion.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+    </None>
+    <None Include="Web.Pruebas.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Images\layout\imagenes_estilos\logos\" />
+    <Folder Include="Plantillas\" />
+    <Folder Include="Temporal\Log\" />
+    <Folder Include="Temporal\Recursos\" />
+    <Folder Include="Titulo\Temporal\Recursos\Resultado\_03fbc946-bab1-44dd-a5a2-ae05572dc530\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\bootstrapJs\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\MensajesValidación.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>MensajesValidación1.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessModel\BusinessModel.csproj">
+      <Project>{471396CE-8788-4832-9232-338FAA9843E5}</Project>
+      <Name>BusinessModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiciosWeb\ServiciosWeb.csproj">
+      <Project>{6b83a74d-9964-4c8e-87b0-6a144a3e9f2e}</Project>
+      <Name>ServiciosWeb</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Label="SlowCheetah">
+    <SlowCheetahToolsPath>$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.12\tools\))</SlowCheetahToolsPath>
+    <SlowCheetah_EnableImportFromNuGet Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
+    <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
+    <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>29608</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3000/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
+  <Target Name="BeforeBuild">
+    <TransformXml Source="$(WebFolderName)Web.template.config" Transform="$(WebFolderName)Web.$(Configuration).config" Destination="$(WebFolderName)Web.config" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

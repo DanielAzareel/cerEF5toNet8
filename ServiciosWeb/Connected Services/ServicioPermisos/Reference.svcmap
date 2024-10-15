@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5e32ac7e-eac9-4ead-9f31-56bdffc70f99" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.17.3.167/WS-SOA-IIS-SCS/Genericos/GenericoConsultaSCSWS.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GenericoConsultaSCSWS.xsd" MetadataType="Schema" ID="19904fea-9456-4761-ba15-fc5e90abd621" SourceId="1" SourceUrl="http://172.17.3.167/WS-SOA-IIS-SCS/Genericos/GenericoConsultaSCSWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="GenericoConsultaSCSWS1.xsd" MetadataType="Schema" ID="f4dc8089-5e5b-4edc-b768-698891141c08" SourceId="1" SourceUrl="http://172.17.3.167/WS-SOA-IIS-SCS/Genericos/GenericoConsultaSCSWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="GenericoConsultaSCSWS.wsdl" MetadataType="Wsdl" ID="4568b5da-e8a9-4b1f-9b23-419c306ba98b" SourceId="1" SourceUrl="http://172.17.3.167/WS-SOA-IIS-SCS/Genericos/GenericoConsultaSCSWS.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

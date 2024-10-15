@@ -1,0 +1,42 @@
+﻿@* 
+    Autor: Secretaría de Educación de Guanajuato
+    Fecha de Creación: 06 Junio 2014
+    Descripción: Este documento establece el layout por defecto de las páginas, conocido en otras referecias como
+                MasterPage. Además provee un mecanismo de validación de la sesión del usuario que trata de acceder
+                al aplicativo, en cuyo caso de no existir dicha sesión redirige hacia la página de login del sistema
+                de control de identidades SIIEg.
+    Nota: Este esquema es una adecuación realizada por Eduardo Jaramillo en base a un ambiente equivalente realizado
+        por Jorge Tapia y Julio Rangel.
+*@
+
+@using Helpers;
+@{   
+
+    //Verificamos que se tenga una sesion o se este pasando una sesion
+    if (Request["wscs"] != null || Session.GetWscs() != null)
+    {
+        if (Request["wscs"] != null)
+        {
+            Session["wscs"] = Request["wscs"];
+            if (!Session.ValidateSession())
+            {
+                //Response.Redirect(AppConfig.AppEnviroment.urlSieg);
+            }
+            else
+            {
+                Session["appIPUsuario"] = Request.UserHostAddress;
+            }
+            if (SSExtensionHelper.GetAppUser() == null)
+            {
+                //Response.Redirect(AppConfig.AppEnviroment.urlSieg);
+            }
+        }
+
+        //Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        //Response.Redirect(AppConfig.AppEnviroment.urlSieg);
+    }
+}
+    

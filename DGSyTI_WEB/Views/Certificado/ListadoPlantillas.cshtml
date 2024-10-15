@@ -1,0 +1,61 @@
+﻿@model DGSyTI_WEB.Models.MonitoreoSEPViewModel
+@{
+    var total = 1;
+}
+<input type="hidden" id="txtDocumentoId" value="@Model.sIdDocumento">
+<div id="idTablaPlantillas_barraAccionesGrid"></div>
+<table id="idTablaPlantillas" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@Model.iTotalRegistrosPlantillas'>
+    <thead>
+        <tr class="headerTabla">
+            <th>Nombre</th>
+            <th>Previsualizar</th>
+            <th>Asignar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var oPlantilla in Model.listCerCatPlantillas)
+            {
+                <tr class="@((total%2==0)?"row1":"row0")">
+                    <td>@oPlantilla.planNombre</td>
+                    <td> @Html.ActionLink(" ", "DescargarCertificadoWithSession", "PlantillasCertificados", new { id = Model.sIdDocumento, idPlantilla= oPlantilla.planId }, new { @class = "tit-EstiloBtnAncla btnPDF", Style = "margin-left: 40%", download="download" })</td>
+                    <td class="tit-AccionSinTexto">
+                        @if (Model.sIdPlantilla!=(oPlantilla.planId))
+                        {
+                            using (Ajax.BeginForm("AsignarPlantilla", "Certificado", new {  sDocId = Model.sIdDocumento, sIdPlantilla = oPlantilla.planId }, new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                LoadingElementId = "divLoading",
+                                OnSuccess = "SuccessAsignarPlantilla"
+                            }, new {  }))
+                            {
+                                <button type="submit" class="tit-EstiloBtnAncla btnDesactivado"></button>
+                            }
+                        }
+                        else
+                        {
+                            <img src="~/Images/Compartidas/Iconos/icono_aceptar.png" title="Asignada" />
+                        }
+                    </td>
+                </tr>
+                total++;
+            }
+        }
+    </tbody>
+</table>
+<div id="idTablaPlantillas_barraPaginacion" class="divBarraPaginacion"></div>
+
+<script>
+    
+
+    function SuccessAsignarPlantilla(result) {
+
+        if (result) {
+            $q("#btnCerrarPlantillas").click();
+            var idDocumento = $q("#txtDocumentoId").val();
+            alertify.success('Se asignó la plantilla correctamente.');
+        } else {
+            alertify.error('No se ha asignado la plantilla correctamente.');
+        }
+
+    }
+</script>

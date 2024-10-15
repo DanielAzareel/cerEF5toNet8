@@ -1,0 +1,105 @@
+﻿@model BusinessModel.Models.IndicadoresML
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script src="~/Scripts/jquery.datetimepicker.full.min.js"></script>
+@if (ViewBag.Graficas == "True")
+{
+    using (Ajax.BeginForm("", "", new AjaxOptions
+    {
+
+    }, new { id = "formDashboard", noValidate = "" }))
+    {
+        
+
+            <table class="tablaCriterios">
+                <thead>
+                    <tr>
+                        <td colspan="2">
+                            <table style="width:100%; text-align:right;">
+                                <tbody>
+                                    <tr>
+                                        <td class="criterios_mostrar" style="text-align:left;"></td>
+                                        <td class="criterios_titulo" style="text-align:center;">
+                                            <div>
+                                                <img src="/Images/layout/imagenes_estilos/down.png" id="mostrar_criterios" onclick="mostarCriterios()" width="24px" height="24px" border="0" style="display: none;">
+                                                <img src="/Images/layout/imagenes_estilos/up.png" id="ocultar_criterios" onclick="ocultarCriterios()" width="24px" height="24px" border="0">Criterios de búsqueda
+                                            </div>
+                                        </td>
+                                        <td class="criterios_aplicados"><div id="idTablaStatusByIntitucion_tblCriterios"></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="idTablaStatusByIntitucion_criterios_form" style="">
+                    <tr>
+                        <td colspan="2">
+                            <div id="idCriteriosGraficas">
+                                <script>
+                                    cargarCriteriosGrafica()
+
+                                </script>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td colspan="2" align="right" ;="">
+                            <div class="barraAcciones">
+                                <a onclick="cargarCriteriosGrafica()" class="linkLimpiar">Limpiar</a>&nbsp;&nbsp;<img src="../Images/Compartidas/Iconos/img_barra_gris.png" style="border:0px;">&nbsp;&nbsp;<a href="#" title="
+Buscar" onclick="CargarGraficas()" class="linkBuscar">Buscar</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        
+    }
+
+    <div class="col-sm-12" style="background-color:#f7f7f7;">
+        <div id="container" style="min-width:310px; height: 400px; margin: 0 auto; max-width:98%;margin-bottom:30px;"></div>
+        <div id="container_2" style="min-width:310px; height: 400px; margin: 0 auto; max-width:98%"></div>
+        </div>
+        }
+        @if (ViewBag.Graficas == "False")
+        {
+
+            <div id="listadoStatusInst" style="">
+                @Helpers.GridHelper.seccionBusqueda("idTablaStatusByIntitucion")
+                <div id="idTablaStatusByIntitucion_barraAccionesGrid"></div>
+                <div id="idTablaStatusByIntitucion_lista"></div>
+            </div>
+
+            <div id="listadoStatusCarrerasInst" style="display:none">
+                <div id="TablaAccionesSolicitud" class="TablaAcciones"></div>
+                <div id="datosSolicitud"></div>
+                <br />
+                @Helpers.GridHelper.seccionBusqueda("idTablaStatusByCarrerasIntitucion")
+                <div id="idTablaStatusByCarrerasIntitucion_barraAccionesGrid"></div>
+                <div id="idTablaStatusByCarrerasIntitucion_lista"></div>
+            </div>
+            <script>
+                jQuery(this).ready(function () {
+
+                    $q.ajax({
+                        type: "POST",
+                        cache: false,
+                        data: { filtro: "", pagina: 1, bloque: 10 },
+                        url: "Home/ListadoInstitucionesStatus"
+                    }).done(function (partialViewResult) {
+                        $q("#idTablaStatusByIntitucion_lista").html(partialViewResult);
+                        $q("#divLoading").hide();
+                        iniciarTabla("idTablaStatusByIntitucion", "Home/criterios");
+                    });
+                });
+            </script>
+        }
+
+        <script>
+            $q(document).ready(function () {
+                $q.datetimepicker.setLocale('es');
+            });
+        </script>

@@ -1,0 +1,120 @@
+﻿@model DGSyTI_WEB.Models.ConfiguracionInstitucionViewModel
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Ajax.BeginForm("", "", new AjaxOptions
+{
+}, new { id = "formDatosFirmante", enctype = "multipart/form-data" }))
+{
+<div class="row">
+    @Html.HiddenFor(m => m.oCatFirmante.firCurp)
+    @Html.HiddenFor(m => m.oCatFirmante.firPredeterminado)
+    @Html.HiddenFor(m => m.oCatFirmante.firId)
+    @Html.HiddenFor(m => m.oCatFirmante.firVigenciaCertificado)
+
+    <div class="row col-12">
+        @if (Model.oCatFirmante.firCurp == null)
+        {
+            <div class="col-5" style="text-align:right;padding-top: 5px;padding-right:0px;">
+                <label for="planNombre" class="labelObligatorio">Certificado:</label>
+            </div>
+        }
+        else
+        {
+            <div class="col-5" style="text-align:right;padding-top: 5px;padding-right:0px;">
+                <label for="planNombre" class="">Certificado:</label>
+            </div>
+        }
+
+        @if (Model.oCatFirmante.firCurp == null)
+        {
+            <div class="col-4" style="padding-left:0px;">
+                @Html.TextBoxFor(m => m.oCatFirmante.firArchivoCertificado, new { id = "txtCargaFileLayout", @class = "infoBootstrap", @type = "file", @accept = ".cer, .key", style = "overflow: hidden;" })
+                @Html.ValidationMessageFor(m => m.oCatFirmante.firArchivoCertificado)
+            </div>
+
+        }
+        else
+        {
+            <div class="col-4" style="padding-left:0px;">
+
+                @Html.TextBoxFor(m => m.oCatFirmante.firArchivoCertificadoEditar, new { id = "txtCargaFileLayout", @class = "infoBootstrap", @type = "file", @accept = ".cer, .key", style = "overflow: hidden;" })
+                @Html.ValidationMessageFor(m => m.oCatFirmante.firArchivoCertificadoEditar)
+            </div>
+
+        }
+        <div class="col-1" style="padding-left:0px;">
+            @if (Model.oCatFirmante.firCurp != null)
+            {
+                if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarCeritficadoInstitucion"))
+                {
+                    @Html.ActionLink(" ", "DescargarCertificado", "ConfiguracionInstitucion", new { firId = @Model.oCatFirmante.firId, insId = @Model.oCatFirmante.insId }, new { @class = "cer-EstiloBtnAncla btnDescargar", download = "download", title = "Descargar certificado" })
+                }
+            }
+        </div>
+    </div>
+
+    <div class="row col-12">
+        <div class="col-5" style="text-align:right;padding-top: 5px;padding-right:0px;">
+            <label for="planNombre" class="labelObligatorio">Nombre:</label>
+        </div>
+        <div class="col-4" style="padding-left:0px;">
+            @Html.TextBoxFor(m => m.oCatFirmante.firNombre, new { placeholder = "Nombre", maxlength = "100" })
+            @Html.ValidationMessageFor(m => m.oCatFirmante.firNombre)
+        </div>
+    </div>
+
+    <div class="row col-12">
+        <div class="col-5" style="text-align:right;padding-top: 5px;padding-right:0px;">
+            <label for="planNombre" class="labelObligatorio">Primer apellido:</label>
+        </div>
+        <div class="col-4" style="padding-left:0px;">
+            @Html.TextBoxFor(m => m.oCatFirmante.firPrimerApellido, new { placeholder = "Primer apellido", maxlength = "100" })
+            @Html.ValidationMessageFor(m => m.oCatFirmante.firPrimerApellido)
+        </div>
+    </div>
+    <div class="row col-12">
+        <div class="col-5" style="text-align:right;padding-top: 5px;padding-right:0px;">
+            <label for="planNombre">Segundo apellido:</label>
+        </div>
+        <div class="col-4" style="padding-left:0px;">
+            @Html.TextBoxFor(m => m.oCatFirmante.firSegundoApellido, new { placeholder = "Segundo apellido", maxlength = "100" })
+            @Html.ValidationMessageFor(m => m.oCatFirmante.firSegundoApellido)
+        </div>
+    </div>
+    <div class="row col-12">
+        <div class="col-5" style="text-align:right;padding-top: 5px; padding-right:0px;">
+            <label for="planNombre" class="labelObligatorio">Identificador de cargo:</label>
+        </div>
+        <div class="col-4" style="padding-left:0px;">
+            @Html.TextBoxFor(m => m.oCatFirmante.firIdCargo, new { placeholder = "Identificador de cargo", maxlength = "4" })
+            @Html.ValidationMessageFor(m => m.oCatFirmante.firIdCargo)
+        </div>
+    </div>
+    <div class="row col-12">
+        <div class="col-5" style="text-align:right;padding-top: 5px; padding-right:0px;">
+            <label for="planNombre">Cargo:</label>
+        </div>
+        <div class="col-4" style="padding-left:0px;">
+            @Html.TextBoxFor(m => m.oCatFirmante.firCargo, new { placeholder = "Cargo", maxlength = "100" })
+            @Html.ValidationMessageFor(m => m.oCatFirmante.firCargo)
+        </div>
+    </div>
+    <div class="row col-12">
+        <div class="col-5" style="text-align:right;padding-top: 5px; padding-right:0px;">
+            <label for="planNombre" class="labelObligatorio" accesskey="">Correo electrónico:</label>
+        </div>
+        <div class="col-4" style="padding-left:0px;">
+            @Html.TextBoxFor(m => m.oCatFirmante.firCorreo, new { placeholder = "Correo electrónico", @class = "labelObligatorio", maxlength = "100" })
+            @Html.ValidationMessageFor(m => m.oCatFirmante.firCorreo)
+        </div>
+    </div>
+</div>
+}
+
+<script>
+    $q("#oPlantilla_idPlan").val(@Model.oPlantilla.idPlan);
+    $q("#oPlantilla_docTipoId").val(@Model.oPlantilla.docTipoId);
+
+</script>

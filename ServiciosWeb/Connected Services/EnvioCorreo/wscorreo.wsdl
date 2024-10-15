@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://seg.guanajuato.gob.mx.ws.Correo/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://seg.guanajuato.gob.mx.ws.Correo/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://seg.guanajuato.gob.mx.ws.Correo/">
+      <s:element name="Enviarcorreo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Destinatario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asunto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cuerpo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ruta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnviarcorreoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EnviarcorreoResult" type="tns:ArrayOfSalida" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSalida">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="salida" nillable="true" type="tns:salida" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="salida">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="claveEstatus" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="estatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="extension" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="EnviarcorreoSoapIn">
+    <wsdl:part name="parameters" element="tns:Enviarcorreo" />
+  </wsdl:message>
+  <wsdl:message name="EnviarcorreoSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarcorreoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSCorreoSoap">
+    <wsdl:operation name="Enviarcorreo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Este método se utiliza para enviar correos.</wsdl:documentation>
+      <wsdl:input message="tns:EnviarcorreoSoapIn" />
+      <wsdl:output message="tns:EnviarcorreoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSCorreoSoap" type="tns:WSCorreoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Enviarcorreo">
+      <soap:operation soapAction="http://seg.guanajuato.gob.mx.ws.Correo/Enviarcorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSCorreoSoap12" type="tns:WSCorreoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Enviarcorreo">
+      <soap12:operation soapAction="http://seg.guanajuato.gob.mx.ws.Correo/Enviarcorreo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSCorreo">
+    <wsdl:port name="WSCorreoSoap" binding="tns:WSCorreoSoap">
+      <soap:address location="http://wscorreo.seg.guanajuato.gob.mx/wscorreo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSCorreoSoap12" binding="tns:WSCorreoSoap12">
+      <soap12:address location="http://wscorreo.seg.guanajuato.gob.mx/wscorreo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

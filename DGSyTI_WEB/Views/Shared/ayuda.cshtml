@@ -1,0 +1,131 @@
+﻿@model BusinessModel.Models.AyudaML
+@using Helpers;
+@{
+
+    ViewBag.Title = "";
+    var AppUser = Session.GetAppUser();
+    string rutaNavegacion = ViewBag.Title;
+
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<table width="70%">
+    <tr>
+        <td align="left" width="5%">
+            <a href="#" onclick="inicioAyuda();"><img src="~/Images/Compartidas/Iconos/icono_menu.png" /></a>
+        </td>
+        <td align="left">
+            <input type="text" id="busAyuda" name="busAyuda" value="">
+        </td>
+        <td align="left">
+            <a href="#" onclick="buscarContenido()">
+                <img src="~/Images/Compartidas/Iconos/icono_buscar.png" />
+            </a>
+        </td>
+    </tr>
+</table>
+<br />
+
+   
+@Html.GetMenuAyuda(AppUser)
+
+<div id="divTema" style="display:none"></div>
+
+<div id="divBusqueda" style="display:none"></div>
+
+<script>
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+    function inicioAyuda() {
+
+        $q('#cat').show();
+        $q('#divTema').hide();
+        $q("#divBusqueda").hide();
+        document.getElementById("busAyuda").value = "";
+    }
+
+    function consultaTema(nombreTema) {
+        //alert(nombreTema);
+        document.getElementById("busAyuda").value = "";
+
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            data: { nombreTema: nombreTema },
+            url: 'getInfoTema'
+        }).done(function (partialViewResult) {
+            //alert(partialViewResult);
+            $q("#divTema").html(partialViewResult);
+            $q("#cat").hide();
+            $q("#divTema").show();
+            $q("#divBusqueda").hide();
+            //$q("#divTema").css("display", "inline");
+        });
+
+
+    }
+
+    function buscarContenido() {
+        var txtCon = document.getElementById("busAyuda").value;
+        //alert(txtCon);
+        if (txtCon != "") {
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                data: { ayuContenido: txtCon },
+                url: 'getBusqueda'
+            }).done(function (partialViewResult) {
+                //alert(partialViewResult);
+                $q("#divBusqueda").html(partialViewResult);
+                $q("#cat").hide();
+                $q("#divBusqueda").show();
+                //alert("hola");
+                $q('#divTema').hide();
+                //$q("#divTema").css("display", "inline");
+            });
+        }
+        else
+        {
+            alertify.error("Ingresar texto en la búsqueda.");
+        }
+
+    }
+
+    function guardarUtil(idAyuda, ayuEsUtil) {
+
+        //var ayuEsUtil = true;
+
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            data: { idAyuda: idAyuda, ayuEsUtil: ayuEsUtil },
+            url: 'agregarGuardarUtil'
+        }).done(function (partialViewResult) {
+            //alert(partialViewResult);
+            //$q("#divTema").html(partialViewResult);
+            //$q("#cat").hide();
+            //$q("#divTema").show();
+            //$q("#divBusqueda").hide();
+            //$q("#divTema").css("display", "inline");
+            alertify.success("Gracias! Por ayudarnos a mejorar.");
+        });
+
+    }
+
+</script>
+
+

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SesionWSService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/SCS" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/SCS.datos" />
+      <xs:element name="getSesion">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="idSesion" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="idAplicacion" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSesionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SCS" minOccurs="0" name="getSesionResult" nillable="true" type="q1:SesionImpl" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSesionDinamica">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="idSesion" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="idAplicacion" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSesionDinamicaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SCS.datos" minOccurs="0" name="getSesionDinamicaResult" nillable="true" type="q2:sesionMensajesImpl" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getCerrarSesion">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sesGuid" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getCerrarSesionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SCS" minOccurs="0" name="getCerrarSesionResult" nillable="true" type="q3:SesionImpl" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSesionString">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="idSesion" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="idAplicacion" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSesionStringResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SCS.datos" minOccurs="0" name="getSesionStringResult" nillable="true" type="q4:SesionStringImpl" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SCS" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SCS" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="SesionImpl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arbolAcciones" nillable="true" type="tns:ArrayOfaccionSesion" />
+          <xs:element minOccurs="0" name="idStatus" type="xs:int" />
+          <xs:element minOccurs="0" name="roles" nillable="true" type="tns:ArrayOfrolSesion" />
+          <xs:element minOccurs="0" name="sesion" nillable="true" type="tns:Sesion" />
+          <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usuarioSesion" nillable="true" type="tns:UsuarioSesion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SesionImpl" nillable="true" type="tns:SesionImpl" />
+      <xs:complexType name="ArrayOfaccionSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="accionSesion" nillable="true" type="tns:accionSesion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfaccionSesion" nillable="true" type="tns:ArrayOfaccionSesion" />
+      <xs:complexType name="accionSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="accDescripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="accId" type="xs:double" />
+          <xs:element minOccurs="0" name="accIdAccionGrupo" type="xs:double" />
+          <xs:element minOccurs="0" name="accNombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="accOrden" type="xs:int" />
+          <xs:element minOccurs="0" name="accURL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="filtroAccionSesion" nillable="true" type="tns:ArrayOfFiltroAccionSesion" />
+          <xs:element minOccurs="0" name="nivel" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="accionSesion" nillable="true" type="tns:accionSesion" />
+      <xs:complexType name="ArrayOfFiltroAccionSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="FiltroAccionSesion" nillable="true" type="tns:FiltroAccionSesion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfFiltroAccionSesion" nillable="true" type="tns:ArrayOfFiltroAccionSesion" />
+      <xs:complexType name="FiltroAccionSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="fltAplicaciones" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltCatPuestoExcl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltCatPuestoIncl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltCct" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltCctExcluido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltClasificacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltDelegaciones" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltDescripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltIdAplicacion" type="xs:double" />
+          <xs:element minOccurs="0" name="fltIdentificador" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltMunicipios" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltNiveles" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltNombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltOrigen" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltSectorExcl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltSectorIncl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltZonaExcl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltZonaIncl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idProcess" type="xs:double" />
+          <xs:element minOccurs="0" name="idProcessDef" type="xs:double" />
+          <xs:element minOccurs="0" name="idStatus" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="FiltroAccionSesion" nillable="true" type="tns:FiltroAccionSesion" />
+      <xs:complexType name="ArrayOfrolSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="rolSesion" nillable="true" type="tns:rolSesion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfrolSesion" nillable="true" type="tns:ArrayOfrolSesion" />
+      <xs:complexType name="rolSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="filtroRolSesion" nillable="true" type="tns:ArrayOffiltroRolSesion" />
+          <xs:element minOccurs="0" name="idProcess" type="xs:double" />
+          <xs:element minOccurs="0" name="idProcessDef" type="xs:double" />
+          <xs:element minOccurs="0" name="idStatus" type="xs:double" />
+          <xs:element minOccurs="0" name="rolClave" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rolDescripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rolFechaFin" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="rolFechaIni" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="rolIdAplicacion" type="xs:double" />
+          <xs:element minOccurs="0" name="rolNombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="rolSesion" nillable="true" type="tns:rolSesion" />
+      <xs:complexType name="ArrayOffiltroRolSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="filtroRolSesion" nillable="true" type="tns:filtroRolSesion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOffiltroRolSesion" nillable="true" type="tns:ArrayOffiltroRolSesion" />
+      <xs:complexType name="filtroRolSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="fltAplicaciones" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltCatPuestoExcl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltCatPuestoIncl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltCct" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltCctExcluido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltClasificacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltDelegaciones" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltDescripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltIdAplicacion" type="xs:double" />
+          <xs:element minOccurs="0" name="fltIdentificador" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltMunicipios" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltNiveles" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltNombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltOrigen" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltSectorExcl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltSectorIncl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltZonaExcl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fltZonaIncl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idProcess" type="xs:double" />
+          <xs:element minOccurs="0" name="idProcessDef" type="xs:double" />
+          <xs:element minOccurs="0" name="idStatus" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="filtroRolSesion" nillable="true" type="tns:filtroRolSesion" />
+      <xs:complexType name="Sesion">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:element name="Sesion" nillable="true" type="tns:Sesion" />
+      <xs:complexType name="UsuarioSesion">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="idProcess" type="xs:double" />
+          <xs:element minOccurs="0" name="idProcessDef" type="xs:double" />
+          <xs:element minOccurs="0" name="idStatus" type="xs:double" />
+          <xs:element minOccurs="0" name="usrApellido1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usrApellido2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usrAutenticaDA" type="xs:int" />
+          <xs:element minOccurs="0" name="usrAutenticaLE" type="xs:int" />
+          <xs:element minOccurs="0" name="usrAutenticaManual" type="xs:int" />
+          <xs:element minOccurs="0" name="usrEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usrEmployeeId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usrId" type="xs:double" />
+          <xs:element minOccurs="0" name="usrLogin" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usrNombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usrURLLE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UsuarioSesion" nillable="true" type="tns:UsuarioSesion" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SCS.datos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SCS.datos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/SCS" />
+      <xs:complexType name="sesionMensajesImpl">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SCS" minOccurs="0" name="arbolAcciones" nillable="true" type="q1:ArrayOfaccionSesion" />
+          <xs:element minOccurs="0" name="idStatus" type="xs:int" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SCS" minOccurs="0" name="roles" nillable="true" type="q2:ArrayOfrolSesion" />
+          <xs:element minOccurs="0" name="sesionMensajes" nillable="true" type="tns:SesionMensajes" />
+          <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SCS" minOccurs="0" name="usuarioSesion" nillable="true" type="q3:UsuarioSesion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="sesionMensajesImpl" nillable="true" type="tns:sesionMensajesImpl" />
+      <xs:complexType name="SesionMensajes">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="estatus" type="xs:int" />
+          <xs:element minOccurs="0" name="fechaFin" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="fechaIni" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="guid" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idSesion" type="xs:int" />
+          <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+          <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="mensajes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="menu" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SesionMensajes" nillable="true" type="tns:SesionMensajes" />
+      <xs:complexType name="SesionStringImpl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="claveEstatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="error_status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usuario" nillable="true" type="tns:SesionStringUsuario" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SesionStringImpl" nillable="true" type="tns:SesionStringImpl" />
+      <xs:complexType name="SesionStringUsuario">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="strApeMat" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strApePat" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strLogin" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strMail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strMenu" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strNombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strStatus" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SesionStringUsuario" nillable="true" type="tns:SesionStringUsuario" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ISesionWSService_getSesion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSesion" />
+  </wsdl:message>
+  <wsdl:message name="ISesionWSService_getSesion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSesionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISesionWSService_getSesionDinamica_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSesionDinamica" />
+  </wsdl:message>
+  <wsdl:message name="ISesionWSService_getSesionDinamica_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSesionDinamicaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISesionWSService_getCerrarSesion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCerrarSesion" />
+  </wsdl:message>
+  <wsdl:message name="ISesionWSService_getCerrarSesion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCerrarSesionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISesionWSService_getSesionString_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSesionString" />
+  </wsdl:message>
+  <wsdl:message name="ISesionWSService_getSesionString_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSesionStringResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISesionWSService">
+    <wsdl:operation name="getSesion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISesionWSService/getSesion" message="tns:ISesionWSService_getSesion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISesionWSService/getSesionResponse" message="tns:ISesionWSService_getSesion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSesionDinamica">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISesionWSService/getSesionDinamica" message="tns:ISesionWSService_getSesionDinamica_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISesionWSService/getSesionDinamicaResponse" message="tns:ISesionWSService_getSesionDinamica_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCerrarSesion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISesionWSService/getCerrarSesion" message="tns:ISesionWSService_getCerrarSesion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISesionWSService/getCerrarSesionResponse" message="tns:ISesionWSService_getCerrarSesion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSesionString">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISesionWSService/getSesionString" message="tns:ISesionWSService_getSesionString_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISesionWSService/getSesionStringResponse" message="tns:ISesionWSService_getSesionString_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISesionWSService" type="tns:ISesionWSService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getSesion">
+      <soap:operation soapAction="http://tempuri.org/ISesionWSService/getSesion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSesionDinamica">
+      <soap:operation soapAction="http://tempuri.org/ISesionWSService/getSesionDinamica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCerrarSesion">
+      <soap:operation soapAction="http://tempuri.org/ISesionWSService/getCerrarSesion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSesionString">
+      <soap:operation soapAction="http://tempuri.org/ISesionWSService/getSesionString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SesionWSService">
+    <wsdl:port name="BasicHttpBinding_ISesionWSService" binding="tns:BasicHttpBinding_ISesionWSService">
+      <soap:address location="http://172.17.3.80:91/SesionWSService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

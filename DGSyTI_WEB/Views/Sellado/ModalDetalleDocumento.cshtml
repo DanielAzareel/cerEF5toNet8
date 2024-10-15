@@ -1,0 +1,405 @@
+﻿
+@model CertificadosEletronicosMS.Models.SelladoViewModel
+
+
+
+<div class="modal fade" id="idModalDetalle">
+    <div class="modal-dialog modal-dialog-scrollable" style="max-height:650px !important; max-width: 100% !important;width: 60% !important;left:20% !important;margin-left:0 !important;position: absolute !important;">
+        <div class="modal-content">
+            <div class="modal-header headerEmergente">
+                Detalle del certificado
+            </div>
+            <div class="modal-body bodyEmergente">
+                <div id="idModalCuerpoDetalle">
+                    <div class="colorGris headerTablaGris" style="text-align:center">Información general</div>
+                    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;text-align:center">
+                        <div class="col-sm-6">
+                            <div class="conceptoTablaGris">Fecha de registro:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docFechaRegistro</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="conceptoTablaGris">Versión:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docDecVersion</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="conceptoTablaGris">Tipo de certificado:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.cerCatTipoDocumento.docDescripcion</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="conceptoTablaGris">Folio de control:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docDecFolioControl</div>
+                        </div>
+                    </div>
+
+                    <div class="colorGris headerTablaGris" style="text-align:center">IEMS</div>
+                    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;text-align:center">
+
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre del sistema de adscripción:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioIemsNombreSEN</div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre de la dependencia:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioNombreTipoDependencia</div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador IEMS:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioIdIEMSidIEMS</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre IEMS:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioNombreIEMS</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador de tipo IEMS:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioIemsIdTipoIEMS</div>
+                        </div>
+
+
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Tipo IEMS:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioIemsTipoIEMS</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre IEMS particular:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioIemsnombreIEMSparticular</div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">RVOE de institución:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioIemsInstitucionRVOE</div>
+                        </div>
+
+
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador de opción educativa:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioIdOpcionEducativa</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Opción educativa:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docServicioOpcionEducativa</div>
+                        </div>
+                    </div>
+
+                    <div class="colorGris headerTablaGris" style="text-align:center">Plantel o Servicio Educativo</div>
+                    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px; text-align:center">
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador del tipo de plantel:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelIdTipoPlantel</div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Tipo de plantel:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelTipoPlantel</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre y/o número de plantel educativo:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelNombreNumeroPlantel</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador de municipio:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelIdLocalidad</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre de municipio:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelLocalidad</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador de entidad federativa:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelIdEntidadFederativa</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre de entidad federativa:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelEntidadFederativa</div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Clave de centro de trabajo:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelCCT</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Clave RVOE:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelClaveRvoe</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Fecha de inicio RVOE:</div>
+                            @if (Model.CerDocumento.docPlantelOServicioEducativoFechaInicioRVOE != null)
+                            {<div class="detalleConcepto">
+    @Model.CerDocumento.docPlantelOServicioEducativoFechaInicioRVOE
+</div>
+                            }
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador de género:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docplantelIdGeneroPlantel</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Género:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelGeneroPlantel</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador de sostenimiento:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelIdSostenimiento</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Sostenimiento:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docPlantelSostenimiento</div>
+                        </div>
+
+                    </div>
+
+                    <div class="colorGris headerTablaGris" style="text-align:center">Alumno</div>
+                    <div class="row colorGris3 rowTablaGris" style="        word-wrap: break-word;margin-bottom: 9px;text-align: center">
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAlumnoNombre</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Primer apellido:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAlumnoPrimerApellido</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Segundo apellido:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAlumnoSegundoApellido</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">CURP:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAlumnoCurp</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Correo:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docCorreo</div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Número de control:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAlumnoNumeroControl</div>
+                        </div>
+                    </div>
+
+                    <div class="colorGris headerTablaGris" style="text-align:center">Acreditación</div>
+                    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px; text-align:center">
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador del nivel de estudios:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionidNivelEstudios</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nivel de estudios:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionNivelEstudios</div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Identificador del tipo de estudios IEMS:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionIdTipoEstudiosIEMS</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Tipo de estudios IEMS:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionTipoEstudiosIEMS</div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Tipo de perfil laboral IEMS:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionTipoPerfilProfesionalIEMS</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Nombre del perfil laboral IEMS:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionNombreTipoPerfilProfesionalIEMS</div>
+                        </div>
+                        @if (Model.CerDocumento.docTipoId == "1")
+                        {
+                            <div class="col-sm-4">
+                                <div class="conceptoTablaGris">Clave del plan de estudios:</div>
+                                <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionClavePlanEstudios</div>
+                            </div>
+                        }
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Periodo inicio de estudios:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionPeriodoInicio</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Periodo término de estudios:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionPeriodoTermino</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Créditos obtenidos:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionCreditosObtenidos</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Total de créditos:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionTotalCreditos</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Promedio de aprovechamiento:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionPromedioAprovechamiento</div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="conceptoTablaGris">Promedio de aprovechamiento en texto:</div>
+                            <div class="detalleConcepto">@Model.CerDocumento.docAcreditacionPromedioAprovechamientoTexto</div>
+                        </div>
+
+                    </div>
+                    @if (Model.CerDocumento.docTipoId == "1")
+                    {
+                        <div class="colorGris headerTablaGris" style="text-align:center">UACDEFT</div>
+                        <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+
+                            <table class="table-hover">
+
+                                <thead>
+                                    <tr style="font-weight:bold">
+                                        <td>Nombre</td>
+                                        <td>Total de horas</td>
+                                        <td>Créditos</td>
+                                        <td>Calificación</td>
+                                        <td>Dictamen</td>
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+                                    @foreach (var competencia in Model.CerDocumento.cerCompetenciaDocumento.OrderBy(x => x.orden))
+                                    {
+                                        <tr>
+                                            <td style="text-align:left; padding-left:15px;">@competencia.competenciaNombre</td>
+                                            <td>@competencia.competenciaTotalHorasUAC</td>
+                                            <td>@competencia.competenciaCreditos</td>
+                                            <td>@competencia.competenciaCalificacion</td>
+                                            <td style="text-align:left">@competencia.competenciaDictamen</td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <div class="colorGris headerTablaGris" style="text-align:center">Perfil de egreso específico</div>
+                        <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+
+                            <div class="col-sm-4">
+                                <div class="conceptoTablaGris">Trayecto:</div>
+                                <div class="detalleConcepto">@Model.CerDocumento.docEgresoCompetenciasTrayecto</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="conceptoTablaGris">Identificador de campo disciplinar:</div>
+                                <div class="detalleConcepto">@Model.CerDocumento.docEgresoCompetenciasIdCampoDisciplinar</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="conceptoTablaGris">Descripción de campo disciplinar:</div>
+                                <div class="detalleConcepto">@Model.CerDocumento.docEgresoCompetenciasCampoDisciplinar</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="conceptoTablaGris">Tipo de perfil laboral IEMS:</div>
+                                <div class="detalleConcepto">@Model.CerDocumento.docEgresoCompetenciasTipoPerfilProfesionalIEMS</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="conceptoTablaGris">Nombre de perfil laboral IEMS:</div>
+                                <div class="detalleConcepto">@Model.CerDocumento.docEgresoCompetenciasNombrePerfilProfesionalIEMS</div>
+
+                            </div>
+                        </div>
+
+                        <div class="colorGris headerTablaGris" style="text-align:center">Competencias específicas</div>
+                        <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+                            <ul style="text-align:left;">
+                                @foreach (var competencia in Model.CerDocumento.cerCompetenciasIEMS.OrderBy(x => x.CompetenciasIEMSorden))
+                                {
+                                    <li> @competencia.CompetenciasIEMSnombreProfesional </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                    @if (Model.CerDocumento.docTipoId == "2")
+                    {
+
+                        <div class="colorGris headerTablaGris" style="text-align:center">UACS</div>
+                        <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+                            <div class="col-sm-4">
+                                <div class="conceptoTablaGris">Identificador del tipo de periodo:</div>
+                                <div class="detalleConcepto">@Model.CerDocumento.docUACSidTipoPeriodo</div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="conceptoTablaGris">Tipo de periodo:</div>
+                                <div class="detalleConcepto">@Model.CerDocumento.docUACSnombreTipoPeriodo</div>
+                            </div>
+
+
+
+                            <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px; width:100%">
+
+                                <table class="table-hover table-responsive" width="100">
+
+                                    <thead>
+                                        <tr style="font-weight:bold">
+                                            <td style="padding: 0px 5px 0px 5px;">Clave de centro de trabajo</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Identificador de tipo</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Tipo</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Nombre</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Calificación</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Dictamen</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Total de horas</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Créditos</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Periodo escolar</td>
+                                            <td style="padding: 0px 5px 0px 5px;">Número de periodo</td>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody>
+                                        @foreach (var uac in Model.CerDocumento.cerUACDocumento.OrderBy(x => x.orden))
+                                        {
+                                        <tr>
+                                            <td style="text-align:center; padding-left:15px;">
+                                                @uac.UACcct
+                                            </td>
+
+                                            <td style="padding: 0px 5px 0px 5px;"> @uac.UACidTipo</td>
+                                            <td style="text-align:center; padding: 0px 5px 0px 5px;"> @uac.UACtipo</td>
+
+                                            <td style="text-align:left; padding-left:15px;">@uac.UACnombre</td>
+                                            <td style="padding: 0px 5px 0px 5px;">@uac.UACcalificacion</td>
+                                            <td style="padding: 0px 5px 0px 5px;"> @uac.UACdictamen</td>
+                                            <td style="padding: 0px 5px 0px 5px;"> @uac.UACtotalHorasUAC</td>
+                                            <td style="text-align:center; padding: 0px 5px 0px 5px;"> @uac.UACcreditos</td>
+                                            <td style="padding: 0px 5px 0px 5px;">@uac.UACperiodoEscolar</td>
+                                            <td style="text-align:center; padding: 0px 5px 0px 5px;">@uac.UACnumeroPeriodo</td>
+
+
+                                        </tr>
+
+                                        }
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+
+
+
+                        </div>
+                    }
+
+                    <div class="modal-footer footerEmergente">
+                        <button tyle="button" id="btnCerrar" class="btnCancelar tit-EstiloBtnAncla" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>

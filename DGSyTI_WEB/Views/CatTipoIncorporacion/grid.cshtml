@@ -1,0 +1,93 @@
+﻿@model DGSyTI_WEB.Models.CatTipoIncorporacionViewModel
+@{
+    string estilo = "";
+    Model.permiteAgregar = true;// ejemplo de control de permisos desde el scs, esta variable es controlada desde el controller.
+    Model.permiteEditar = true;// ejemplo de control de permisos desde el scs, esta variable es controlada desde el controller.
+    Model.permiteActivar = true;// ejemplo de control de permisos desde el scs, esta variable es controlada desde el controller.
+
+}
+@if (Model.permiteAgregar)
+{
+    <script type="text/javascript">
+
+        $q("#barraAcciones").html('@Ajax.ActionLink("Nuevo", "agregar", null, new AjaxOptions { UpdateTargetId = "dialogContainer" }, new { @class = "linkAdd" })');
+
+    </script>
+}
+@*@if (Model.permiteExportar)
+{
+    <script type="text/javascript">
+        var filtro = "";
+        try{
+            var datos = getFiltros();
+            var datosFiltro = JSON.stringify(datos);
+            var filtro = datosFiltro
+        }catch(ex){}
+        var htmlExcel = "&nbsp;<a class='linkExcel' href=@Url.Action("htmlExcel")?filtro=" + filtro + ">Exportar</a>"
+        $q("#barraAcciones").append(htmlExcel);
+    </script>
+}*@
+
+<table id="TablaLista" class="TablaLista" data-filtro='' data-actual='0' data-total='@Model.totalRegistros'>
+    <tr class="headerTabla">
+        <th width="10%" style="word-wrap: break-word;">
+            Estatus
+        </th>
+        <th width="25%" style="word-wrap: break-word;">@Html.LabelFor(cm=>cm.tincNombre)</th>
+        <th width="25%" style="word-wrap: break-word;">@Html.LabelFor(cm => cm.tIncAbreviatura)</th>
+        <th width="20%" style="word-wrap: break-word;">@Html.LabelFor(cm => cm.tincFechaImpresion)</th>
+
+        <th width="190px"></th>
+    </tr>
+    @if (Model != null && Model != null && Model.listaTipoIncorporacion.Count() > 0)
+    {
+        foreach (var item in Model.listaTipoIncorporacion)
+        {
+            if (estilo.Equals("row1")) { estilo = "row0"; } else { estilo = "row1"; }
+            <tr class="@estilo">
+                <td style="text-align: center; width: 60px;text-align:center">
+                    <img src="~/Images/layout/imagenes_estilos/@(item.idEstatus == 2 ? "inactivo.png" : "confirm.png")">
+                </td>
+                <td width="25%" style="word-wrap: break-word;">@item.tincNombre</td>
+                <td width="25%" style="word-wrap: break-word;">@item.tIncAbreviatura</td>
+                <td width="20%" style="word-wrap: break-word;">@(item.tincFechaImpresion?"Sí":"No")</td>
+               
+                <td width="25px" style="word-wrap: break-word;">
+                    @if (item.idEstatus == 1)
+                    {
+                        //Accion editar
+                        if (Model.permiteEditar)
+                        { 
+                            @Ajax.ActionLink("Editar", "editar", new { id = item.idTipoIncorporacion }, new AjaxOptions { UpdateTargetId = "dialogContainer" }, new { @class = "linkEdit" })
+                        }
+                    }
+
+                    @if (Model.permiteActivar)
+                    {
+                        //Accion activar/desactivar
+                        if (item.idEstatus == 2)
+                        {
+                            <br />
+                            @Ajax.ActionLink("Activar", "activoInactivo", new { id = item.idTipoIncorporacion }, new AjaxOptions { UpdateTargetId = "dialogContainer" /*OnSuccess = "paginar('BLOQUE')", UpdateTargetId = "lista"*/ }, new { @class = "linkActivo" })
+                        }
+
+                        else
+                        {
+                            <br />
+                             @Ajax.ActionLink("Desactivar", "activoInactivo", new { id = item.idTipoIncorporacion }, new AjaxOptions { UpdateTargetId = "dialogContainer" }, new { @class = "linkInactivo" })
+                        }
+                    }
+                </td>
+            </tr>
+
+
+
+        }
+    }
+</table>
+<div id="barraPaginacion" class="divBarraPaginacion">
+
+</div>
+
+
+

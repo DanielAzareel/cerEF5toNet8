@@ -1,0 +1,48 @@
+﻿@model DGSyTI_WEB.Models.MonitoreoSEPViewModel
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<input type="hidden" id="txtCorreo" value="@Model.sDocCorreo" />
+@using (Ajax.BeginForm("EnviarCorreo", "Certificado", Model, new AjaxOptions
+{
+
+    HttpMethod = "POST",
+    OnBegin = "$q('#divLoading').show()",
+    OnSuccess = "onSuccessCorreo"
+}, new { id = "formCambioCorreo" }))
+{
+    @Html.HiddenFor(c => c.sIdDocumento, new { Name = "docId" })
+    <div class="row">
+        <div class="col-sm-3 etiqueta labelObligatorio" style="padding-top: 10px;" >Correo de envío:</div>
+        <div class="col-sm-7">
+            @Html.TextBoxFor(c => c.sDocCorreo, new { @readonly = "readonly", @class = "soloLectura" })
+            @Html.ValidationMessageFor(c => c.sDocCorreo)
+        </div>
+        <a id="aEditarCorreo" class="tit-EstiloBtnAncla btnEditar colorAzul" onclick="editarCorreo()">Editar</a>
+    </div>
+}
+
+<script>
+    
+    if ($q("#txtCorreo").val() == '') {
+        $q("#aEditarCorreo").hide();
+        editarCorreo();
+    }
+
+    function editarCorreo() {
+        $q("input[name='sDocCorreo']").attr({ "readonly": false, "class": "lecturaEscritura" });
+        $q("#aEditarCorreo").hide();
+    }
+
+    function onSuccessCorreo(result) {
+        $q('#divLoading').hide();
+        if (result) {
+            document.getElementById('idTablaCertificados_btnBuscar').click();
+            alertify.success('Se ha enviado el correo electrónico correctamente.');
+            $q("#idModalCorreo").modal("hide");
+        } else {
+            alertify.error('No se ha enviado el correo electrónico correctamente.');
+        }
+    }
+</script>

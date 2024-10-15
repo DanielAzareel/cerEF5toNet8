@@ -1,0 +1,102 @@
+﻿<script src="~/Scripts/Modulos/MonitoreoSEP.js"></script>
+<div id="listadoSolicitudes">
+    @Helpers.GridHelper.seccionBusqueda("idTablaSolicitudes")
+    <div id="idTablaSolicitudes_barraAccionesGrid"></div>
+    <div id="idTablaSolicitudes_lista"></div>
+</div>
+<input type="hidden" id="txtSolId" />
+<div id="listadoCertificiados" style="display:none;">
+    <div id="TablaAccionesSolicitud" class="TablaAcciones"></div>
+    <div id="datosSolicitud"></div>
+    <br />
+    <div id="divFormCriteriosCertificados">
+    </div>
+    @Helpers.GridHelper.seccionBusqueda("idTablaCertificados")
+    <div id="idTablaCertificados_barraAccionesGrid"></div>
+    <div id="idTablaCertificados_lista"></div>
+</div>
+
+
+<div class="modal fade" id="idModalDetalle">
+    <div class="modal-dialog modal-dialog-scrollable" style="max-height:650px !important; max-width: 100% !important;width: 60% !important;left:20% !important;margin-left:0 !important;position: absolute !important;">
+        <div class="modal-content">
+            <div class="modal-header headerEmergente">
+                Detalle del certificado
+            </div>
+
+            <div class="modal-body bodyEmergente">
+                <div id="idModalCuerpoDetalle">
+                    Información del detalle
+                </div>
+            </div>
+
+            <div class="modal-footer footerEmergente">
+                <button tyle="button" id="btnCerrar" class="btnCancelar tit-EstiloBtnAncla" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="idModalPlnatillas">
+    <div class="modal-dialog modal-dialog-scrollable" style="max-height:650px !important; max-width: 100% !important;width: 60% !important;left:20% !important;margin-left:0 !important;position: absolute !important;">
+        <div class="modal-content">
+            <div class="modal-header headerEmergente">
+                Cambiar plantilla
+            </div>
+
+            <div class="modal-body bodyEmergente">
+                <div id="idModalCuerpoPlantilla">
+                </div>
+                <div id="idTablaPlantillas_barraAccionesGrid">
+                    <div id="dvAgregarPlantilla">
+                    </div>
+                </div>
+                <div id="idTablaPlantillas_lista"></div>
+            </div>
+
+            <div class="modal-footer footerEmergente">
+                <button tyle="button" id="btnCerrarPlantillas" class="btnCancelar tit-EstiloBtnAncla" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="idModalCorreo">
+    <div class="modal-dialog" style="max-height:400px !important; max-width: 100% !important;width: 40% !important;left:30% !important;margin-left:0 !important;position: absolute !important;">
+        <div class="modal-content">
+            <div class="modal-header headerEmergente">
+                Enviar correo
+            </div>
+            <div class="modal-body bodyEmergente" id="idModalCuerpoCorreo">
+            </div>
+            <div class="modal-footer footerEmergente">
+                <button tyle="button" id="btnCerrar" class="btnCancelar tit-EstiloBtnAncla" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                <button tyle="button" form="formCambioCorreo" class="tit-EstiloBtnAncla btnEnviar">Enviar</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="idModalCancelarRegistro">
+    <div class="modal-dialog" style="max-height:400px !important; max-width: 100% !important;width: 40% !important;left:30% !important;margin-left:0 !important;position: absolute !important;">
+        <div class="modal-content">
+            <div class="modal-header headerEmergente">
+                Cancelar certificado
+            </div>
+            <div class="modal-body bodyEmergente" id="idModalCuerpoCancelarCertificado">
+            </div>
+            <div class="modal-footer footerEmergente">
+                <button tyle="button" id="btnCerrar" class="btnCancelar tit-EstiloBtnAncla" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                <button tyle="button" form="formCancelarRegistro" class="tit-EstiloBtnAncla btnEnviar">Cancelar</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

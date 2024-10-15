@@ -1,0 +1,45 @@
+﻿@model DGSyTI_WEB.Models.CriteriosBusquedaMonitoreoViewModel
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(" ", " ", null, null, null))
+{
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">Estatus:</div>
+        <div class="col-sm-3 info">
+            @Html.ListBoxFor(c => c.listSLEstatus, Model.listSLEstatus, new { id = "listSLEstatusCer", Style = "min-height: 29px;" })
+        </div>
+    </div>
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">Plan de estudios:</div>
+        <div class="col-sm-3 info" style="min-height: 29px;">
+            @Html.ListBoxFor(c => c.listSLPlan, Model.listSLPlan, new { id = "listSLPlanCer", Style = "min-height: 29px;" })
+        </div>
+    </div>
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">Tipo de certificado:</div>
+        <div class="col-sm-3 info" style="min-height: 29px;">
+            @Html.ListBoxFor(c => c.listSLTipoCertificado, Model.listSLTipoCertificado, new { id="listSLTipoCertificadoCer" })
+        </div>
+    </div>
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">Número de control:</div>
+        <div class="col-sm-3 info">
+            @Html.TextAreaFor(c => c.sFolioControl, new { id = "sFolioControlCer", placeholder = "La captura debe ser de 1 a 40 caracteres separados por comas." })
+            @Html.ValidationMessageFor(c => c.sFolioControl)
+        </div>
+    </div>
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">CURP:</div>
+        <div class="col-sm-3 info">
+            @Html.TextAreaFor(c => c.sCURP, new { id = "sCURPCer", placeholder = "La captura debe ser a 18 caracteres separadas por comas." })
+            @Html.ValidationMessageFor(c => c.sCURP)
+        </div>
+    </div>
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">Nombre:</div>
+        <div class="col-sm-3 info">
+            @Html.TextAreaFor(c => c.sNombre, new { placeholder = "Nombre", id = "sNombreCer" })
+            @Html.ValidationMessageFor(c => c.sNombre)
+        </div>
+    </div>
+}

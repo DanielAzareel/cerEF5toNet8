@@ -1,0 +1,11 @@
+﻿
+@model DGSyTI_WEB.Models.ConfiguracionInstitucionViewModel
+
+
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-1 col-form-label label">Tipo documento:</div>
+    <div class="col-sm-3 info">
+        @Html.DropDownListFor(c => c.listSLTipoDocumento, Model.listSLTipoDocumento, new { id = "listSLTipoDocumento" })
+    </div>
+</div>

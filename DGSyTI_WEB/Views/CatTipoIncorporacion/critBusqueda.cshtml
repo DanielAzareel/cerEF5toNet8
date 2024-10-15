@@ -1,0 +1,33 @@
+﻿@model DGSyTI_WEB.Models.CatTipoIncorporacionViewModel
+<table width="100%">
+    
+    <tr>
+        <td class="label">@Html.LabelFor(cm=>cm.tincNombre)</td>
+        <td class="info">
+           @Html.EditorFor(cm => cm.tincNombre)
+        </td>
+    </tr>
+    <tr>
+        <td class="label">@Html.LabelFor(cm => cm.tIncAbreviatura)</td>
+        <td class="info">
+            @Html.EditorFor(cm => cm.tIncAbreviatura)
+        </td>
+    </tr>
+    <tr>
+        <td class="label">Estatus:</td>
+        <td class="info">
+            <table>
+                <tr>
+                    <td align="right"><input type="radio" class="ChromeRadio" style="width:10%" name="chkEstatus" checked value="0" /></td>
+                    <td align="left">Todos&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td align="right"><input type="radio" class="ChromeRadio" style="width:10%" name="chkEstatus" value="1" /></td>
+                    <td align="left">Activos&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td align="right"><input type="radio" class="ChromeRadio" style="width:10%" name="chkEstatus" value="2" /></td>
+                    <td align="left">Inactivos&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+</table>
+

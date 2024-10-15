@@ -1,0 +1,16 @@
+﻿<script src="~/Scripts/Modulos/Sellado.js"></script>
+@Helpers.GridHelper.seccionBusqueda("idTablaSellado")
+
+<div id="idTablaSellado_barraAccionesGrid">
+    @if (Helpers.ValidaAccesoAttribute.validaAccion("SelladoSellar"))
+    {
+
+        @Ajax.ActionLink("Sellar", "MostrarModalSellado", "Sellado", new AjaxOptions { UpdateTargetId = "ContenedorModalSellado", HttpMethod = "Post", OnComplete = "$q('#idModalSellado').modal('show')" },new { id="btnSellado",@class="linkSellar linkHover"})
+    }
+</div>
+<div id="idTablaSellado_lista"></div>
+
+
+<div id="ContenedorModalSellado"> </div>
+
+<div id="ContenedorModalDetalleDocumento"> </div>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a9c700aeb2e04e19861622948c0aba1a" Name="Diagram1">
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerAreaConocimiento" Width="1.5" PointX="3.75" PointY="9.125" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerBitacora" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCarga" Width="1.5" PointX="6" PointY="27.625" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatAccion" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatEstatusDocumento" Width="1.5" PointX="6" PointY="25.25" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatEstatusSolicitud" Width="1.5" PointX="0.75" PointY="17.625" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatFirmante" Width="1.5" PointX="3" PointY="36.875" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatMateria" Width="1.5" PointX="3.75" PointY="27.75" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatPeriodo" Width="1.5" PointX="3.75" PointY="31" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatPlan" Width="1.5" PointX="1.5" PointY="26.625" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatPlantilla" Width="1.5" PointX="3" PointY="21.75" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatTipoDocumento" Width="1.5" PointX="3.75" PointY="13.5" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCatTipoUAC" Width="1.5" PointX="3" PointY="34.125" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCompetenciaDocumento" Width="1.5" PointX="10.5" PointY="20.125" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCompetenciasIEMS" Width="1.5" PointX="10.5" PointY="17.5" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerCompetenciasPlan" Width="1.5" PointX="3.75" PointY="41.875" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerConfiguracionInstitucion" Width="1.5" PointX="0.75" PointY="20.375" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerDocumento" Width="1.5" PointX="8.25" PointY="13.125" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerDocumento_Tem" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerParametroValor" Width="1.5" PointX="6" PointY="17.125" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerRelPlanPeriodoAreaConocimientoMateria" Width="1.5" PointX="6" PointY="20.625" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerSolicitud" Width="1.5" PointX="3" PointY="16.25" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerTokenDescarga" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.cerUACDocumento" Width="1.5" PointX="10.5" PointY="23.75" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.ViewCerDocumento" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.ViewPlantillas" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.ViewSolicitud" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CertificadosMediaSuperiorModel.VWGridSellado" Width="1.5" PointX="7.75" PointY="0.75" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerDocumento_cerAreaConocimiento" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerRelPlanPeriodoAreaConocimientoMateria_cerAreaConocimiento" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerBitacora_cerCatAccion" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerDocumento_cerCarga" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerDocumento_cerCatEstatusDocumento" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerSolicitud_cerCatEstatusSolicitud" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerCatFirmante_cerConfiguracionInstitucion" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerCatMateria_cerCatPlan" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerRelPlanPeriodoAreaConocimientoMateria_cerCatMateria" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerRelPlanPeriodoAreaConocimientoMateria_cerCatPeriodo" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerCompetenciasPlan_cerCatPlan" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerRelPlanPeriodoAreaConocimientoMateria_cerCatPlan" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerCatPlantilla_cerConfiguracionInstitucion" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerDocumento_cerCatPlantilla" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerDocumento_cerCatTipoDocumento" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerParametroValor_cerCatTipoDocumento" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerRelPlanPeriodoAreaConocimientoMateria_cerCatTipoDocumento" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerCatTipoUAC_cerConfiguracionInstitucion" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerCompetenciaDocumento_cerDocumento" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerCompetenciasIEMS_cerDocumento" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerDocumentos_cerConfiguracionInstitucion" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerParametroValor_cerConfiguracionInstitucion" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerRelPlanPeriodoAreaConocimientoMateria_cerConfiguracionInstitucion" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerSolicitud_cerConfiguracionInstitucion" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerDocumento_cerSolicitud" />
+        <AssociationConnector Association="CertificadosMediaSuperiorModel.FK_cerUACDocumento_cerDocumento" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

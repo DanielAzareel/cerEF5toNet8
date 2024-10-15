@@ -1,0 +1,135 @@
+﻿/**
+ * alertifyjs 1.10.0 http://alertifyjs.com
+ * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.
+ * Copyright 2017 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
+ * Licensed under GPL 3 <https://opensource.org/licenses/gpl-3.0>*/
+.alertify .ajs-dimmer{background-color:#000;opacity:.5}.alertify .ajs-dialog{max-width:600px;min-height:122px;background-color:#fff;border:1px solid rgba(0,0,0,.2);box-shadow:0 5px 15px rgba(0,0,0,.5);border-radius:6px}.alertify .ajs-header{color:#333;border-bottom:1px solid #e5e5e5;border-radius:6px 6px 0 0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px}.alertify .ajs-body{font-family:Roboto,sans-serif;color:#000}.alertify.ajs-maximized:not(.ajs-resizable) .ajs-content,.alertify.ajs-resizable .ajs-content{top:58px;bottom:68px}
+.alertify .ajs-footer {
+    background-color: #fff;
+    padding: 0px 20px 0px 0px;
+    border-top: 1px solid #e5e5e5;
+    border-radius: 0 0 6px 6px
+}.alertify-notifier .ajs-message{background:rgba(255,255,255,.95);color:#000;text-align:center;border:1px solid #ddd;border-radius:2px}
+    .alertify-notifier .ajs-message.ajs-success {
+        font-family: Verdana,Arial,Arial, Arial, Helvetica;
+        font-size: 14px;
+        float: inherit;
+        background: url("../../Images/iconos/mensaje_positivo.png") no-repeat;
+        background-color: #8BC53F;
+        width: 190px;
+        min-height: 50px;
+        border: 2px solid #769C0E;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        padding: 9px 0px 9px 31px;
+        text-align: left;
+        background-position: 3px 50%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
+    .alertify-notifier .ajs-message.ajs-error {
+        font-family: Verdana,Arial,Arial, Arial, Helvetica;
+        font-size: 14px;
+        /*color: #fff;*/
+        background: rgba(247,52,62,.95);
+        /*text-shadow: -1px -1px 0 rgba(0,0,0,.5);*/
+        float: inherit;
+        background: url("../../Images/iconos/mensaje_negativo.png") no-repeat;
+        background-color: #F7343E;
+        width: 190px;
+        min-height: 50px;
+        border: 2px solid #E20511;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        padding: 9px 0px 9px 31px;
+        text-align: left;
+        background-position: 3px 50%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }.alertify-notifier .ajs-message.ajs-warning{background:rgba(252,248,215,.95);border-color:#999}
+
+.headerAlert[warning] {
+    background: url("../../../Images/iconos/icono_atencion.png") no-repeat;
+    font-size: 16pt;
+    padding: 0px 1px 0px 32px;
+    text-align: left;
+}
+
+.headerAlert[warning] {
+
+
+}
+.headerAlert[error] {
+
+}
+
+
+.ajs-ok {
+    float: inherit;
+    background: url("../../Images/iconos/aceptar.png") no-repeat;
+    background-color: transparent;
+    width: 86px;
+    height: 25px;
+    border: none;
+    text-decoration: none;
+
+    margin: 0px 16px 0px 14px;
+    background-position: left;
+    text-align: right;
+    box-sizing: border-box;
+    position: relative;
+    color:#004A80;
+  
+}
+.ajs-cancel {
+    float: inherit;
+    background: url("../../Images/Compartidas/Iconos/icono_cancelar.png") no-repeat;
+    background-color: transparent;
+    width: 86px;
+    height: 25px;
+    border: none;
+    text-decoration: none;
+    padding: 0px 0px -3px 0px;
+    background-position: left;
+    text-align: right;
+    box-sizing: border-box;
+    position: relative;
+    color: #004A80;
+}
+.ajs-button {
+    min-width:100px!important;
+}
+
+.ajs-content {
+    text-align: left;
+}
+
+.alertify .ajs-commands {
+    position: absolute;
+    right: 0px;
+    margin: -26px 13px 0 0;
+    z-index: 2;
+}
+
+.alertify .ajs-header {
+    margin: -23px -25px 0;
+    padding: 1px 17px;
+    background-color: #fff;
+}
+
+.alertify .ajs-dialog {
+    max-width: 526px;
+    min-height: 122px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 6px;
+}

@@ -1,0 +1,72 @@
+﻿@model DGSyTI_WEB.Models.CatTipoIncorporacionViewModel
+@using DGSyTI_WEB.Helpers;
+
+<div class="modal-blocker">
+</div>
+
+@using (Ajax.BeginForm("activoInactivoGuardar", "CatTipoIncorporacion", new AjaxOptions { UpdateTargetId = "dialogContainer" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.idEstatus)
+    @Html.HiddenFor(model => model.idTipoIncorporacion)
+    <div class="modal-dialog" style="max-width:600px">
+
+        <div class="modal-header">
+            <div>
+                Activar/desactivar tipo de incorporación
+            </div>
+        </div>
+
+        <div class="modal-body">
+
+            <table class="tablaCriterios">
+
+                <tr>
+                    <td class="field-text">@Html.LabelFor(cm => cm.tincNombre)</td>
+                    <td class="info">@Model.tincNombre</td>
+                </tr>
+
+                <tr>
+                    <td class="field-text">@Html.LabelFor(cm => cm.tIncAbreviatura)</td>
+                    <td class="info">@Model.tIncAbreviatura</td>
+                </tr>
+
+                <tr>
+                    <td class="field-text">@Html.LabelFor(cm => cm.tincFechaImpresion)</td>
+                    <td class="info">@(Model.tincFechaImpresion?"Sí":"No")</td>
+                </tr>
+
+            </table>
+
+        </div>       
+
+        <div class="modal-footer">
+            <a href="#" onclick="jQuery('#dialogContainer').empty();" class="white linkCancelar">
+               Regresar
+            </a>
+            &nbsp;&nbsp;<img src="~/Images/Compartidas/Iconos/img_barra_gris.png" style="border:0px; vertical-align:text-bottom" />&nbsp;&nbsp;
+            <!--<input id="btnGuardar" type="submit" value="guardar" />-->
+            @if (@Model.idEstatus == 1)
+                {
+                    <!--<input id="btnDesactivar" type="submit" value="Desactivar" />-->
+               @Html.SubmitLinkImg("Desactivar", "activoInactivo", ActionType.Delete, "white linkAction")
+            }
+            else
+            {
+                    <!--<input id="Activar" type="submit" value="Activar" />-->
+                @Html.SubmitLinkImg("Activar", "activoInactivo", ActionType.Accept, "white linkAction")
+            }
+        </div>
+
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+

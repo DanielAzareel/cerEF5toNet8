@@ -1,0 +1,36 @@
+﻿@model BusinessModel.Models.AyudaML
+@using System.Text.RegularExpressions;
+@{
+
+    ViewBag.Title = "";
+    Layout = "";
+    var AppEnv = AppConfig.AppEnviroment;
+}
+@{
+
+    foreach (var busqueda in Model.listaTemas)
+    {
+        <a href="#" onclick="consultaTema('@busqueda.ayuTitulo');">@busqueda.ayuTitulo</a>
+        <p style="font-size: 12px; font-family:Arial;">
+            @{
+                string detalleContenido = busqueda.ayuContenido;
+                int indiceMax = 0;
+                string cadena = "";
+                //if (detalleContenido.IndexOf("<img") > 0)
+                //{
+                    //indiceMax = detalleContenido.LastIndexOf("><", detalleContenido.IndexOf("<img"));
+                    //cadena = detalleContenido.Substring(detalleContenido.IndexOf("<img"), indiceMax+8);
+                    //detalleContenido = detalleContenido.Replace(cadena, "");
+                //}
+
+                detalleContenido = Regex.Replace(detalleContenido, "<.*?>", " ");
+                detalleContenido = detalleContenido.ToUpper().Replace(Model.txtBusqueda.ToUpper(), "<b>" + Model.txtBusqueda.ToUpper() + "</b>");
+                //detalleContenido = detalleContenido.Replace()
+
+            } @Html.Raw(detalleContenido)
+        </p><br />
+
+    }
+
+}
+

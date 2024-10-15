@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://www.siged.sep.gob.mx/certificados/" targetNamespace="https://www.siged.sep.gob.mx/certificados/" elementFormDefault="qualified">
+	<xs:element name="Dec">
+		<xs:annotation>
+			<xs:documentation>Estándar para la generación del Documento Electrónico de Certificación.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ServicioFirmante">
+					<xs:annotation>
+						<xs:documentation>Nodo para identificar el servicio de firmando y la Institución de Educación Media Superior (IEMS) del firmante.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="idEntidad" use="required" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el identificador de la Institución de Educación Media Superior (IEMS) que emitirá el Documento Electrónico de Certificación.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FirmaResponsable">
+					<xs:annotation>
+						<xs:documentation>Nodo que contiene el detalle de la firma electrónica aplicada por el funcionario o responsable de la Institución Educativa.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="nombre" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el nombre del responsable que firma.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="primerApellido" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el Primer Apellido del responsable que firma.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="segundoApellido" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el Segundo Apellido del responsable que firma.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="curp" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el CURP del responsable que firma.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idCargo" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el identificador del cargo que desempeña el responsable que firma.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="cargo" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el valor del nivel del cargo que desempeña el responsable que firma.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="sello" use="required" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido con valor del sello digital del Documento Electrónico de Certificación, expresado en una cadena de texto en formato Base64.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="certificadoResponsable" use="required" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para expresar el certificado de sello (archivo .cer) que ampara al Documento Electrónico de Certificación como texto, en formato Base64.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="noCertificadoResponsable" use="optional" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para expresar el número de serie del certificado de sello (archivo .cer) del responsable que ampara al Documento Electrónico de Certificación.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Iems">
+					<xs:annotation>
+						<xs:documentation>Nodo que contiene el detalle de la institución de Educación Media Superior(IEMS).</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="nombreSEN" use="required">
+							<xs:annotation>
+								<xs:documentation>Nombre del Sistema Educativo Nacional de adscripción al que pertenece la institución o subsistema educativo.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="nombreDependencia" use="required">
+							<xs:annotation>
+								<xs:documentation>Nombre de la dependencia, órgano u organismo del SEN que coordina o realiza el control normativo y/o administrativo de la IEMS.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="idIEMS" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Identificador de la Unidad administrativa o dependencia, órgano u organismo local que regula y coordina el servicio educativo.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="nombreIEMS" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Nombre de la Unidad administrativa de la SEMS, o dependencia, órgano u organismo local que regula y coordina el servicio educativo.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idTipoIEMS" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Tipo de la Institución de Educación Media Superior por control administrativo y sostenimiento.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="tipoIEMS" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Tipo de la IEMS por control administrativo y sostenimiento.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="nombreIEMSparticular" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Nombre de la institución educativa de Educación Media Superior y/o Superior particular que coordina planteles o servicios educativos particulares de Educación Media Superior.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="institucionRVOE" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Leyenda que indica que se trata de una institución particular que cuenta con el RVOE para impartir servicios educativos.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idOpcionEducativa" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Identificador de la opción educativa de la IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="opcionEducativa" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Opción educativa de la IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PlantelOServicioEducativo" maxOccurs="1" minOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Datos del plantel o servicio educativo, de acuerdo con el Catálogo de Centros de Trabajo.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="idTipoPlantel" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el identificador del tipo del plantel o servicio educativo que emitirá el Documento Electrónico de Certificación.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="tipoPlantel" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene la descripción del tipo de plantel o servicio educativo que emitirá el Documento Electrónico de Certificación.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="nombreNumeroPlantel" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el nombre y/o número del plantel educativo donde se emitirá el DEC.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idMunicipio" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el identificador de la Delegación o Municipio donde se encuentra el CCT.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="municipio" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el nombre de la Delegación o Municipio donde se encuentra el CCT.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idEntidadFederativa" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el identificador que corresponde a la entidad federativa.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="entidadFederativa" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el valor de la entidad federativa.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="cct" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene la Clave de Centro de Trabajo.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="claveRvoe" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el número y/o siglas de la clave del Reconocimiento de Validez Oficial de Estudios (RVOE).</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="fechaInicioRvoe" type="xs:date" use="optional">
+							<xs:annotation>
+								<xs:documentation>Fecha en que se otorgó el Reconocimiento de Validez Oficial de Estudios para impartir servicios educativos de EMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idGeneroPlantel" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el identificador que señala el artículo del género del plantel o servicio educativo: El o La.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="generoPlantel" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene la descripción que permite identificar en la generación impresa los artículos El/La.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idSostenimiento" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el identificador que permite catalogar el tipo de sostenimiento: privado / público.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="sostenimiento" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene la descripción que permite catalogar el tipo de sostenimiento: privado / público.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Alumno">
+					<xs:annotation>
+						<xs:documentation>Nodo que contiene los datos del alumno.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="nombre" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el nombre del alumno.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="primerApellido" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el primer apellido del alumno.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="segundoApellido" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el segundo apellido del alumno.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="curp" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el valor del CURP del alumno.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="numeroControl" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el número de control o matrícula del alumno.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Acreditacion">
+					<xs:annotation>
+						<xs:documentation>Nodo que contiene los datos de la acreditación de estudios.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="idNivelEstudios" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el identificador del nivel de estudios y la formación laboral del tipo educativo Media Superior.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="nivelEstudios" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el nivel de estudios y la formación laboral del tipo educativo Media Superior.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idTipoEstudiosIEMS" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el Identificador del Tipo de estudios de IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="tipoEstudiosIEMS" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que define el tipo de estudios de IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="tipoPerfilLaboralEMS" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que define el tipo de perfil o cualificación de formación para el trabajo o laboral de la IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="nombreTipoPerfilLaboralEMS" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Nombre del perfil o cualificación de formación para el trabajo o laboral de la IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="clavePlanEstudios" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene la clave del plan de estudios por tipo de bachillerato y/o formación para el trabajo o laboral de la IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="periodoInicio" type="xs:dateTime" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el periodo de inicio de estudios.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="periodoTermino" type="xs:dateTime" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el periodo de término de estudios.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="creditosObtenidos" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene los créditos obtenidos en el plan de estudios.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="totalCreditos" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el total de créditos del plan de estudios.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="promedioAprovechamiento" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el promedio de Aprovechamiento.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="promedioAprovechamientoTexto" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo que contiene el Promedio de Aprovechamiento en forma de texto descriptivo.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="UacsdeFt" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nodo que agrupa a las Unidades de Aprendizaje Curricular de formación para el trabajo o laboral (UACs de FT).</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="UacdeFt" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Nodo que describe la información de cada UAC de formación para el trabajo o laboral.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="nombre" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>Atributo que contiene el nombre y/o número de la UAC.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="calificacion" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>Atributo que contiene la calificación obtenida.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="dictamen" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation>Atributo que contiene la descripción del Dictamen cualitativo.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="totalHorasUAC" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>Atributo que contiene el total de horas de la UAC.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="creditos" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation>Atributo que contiene los créditos por UAC.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PerfilEgresoEspecifico" maxOccurs="1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nodo que contiene la descripción del perfil de egreso específico y las competencias o aprendizajes relacionados con él.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="CompetenciasEspecificas">
+								<xs:annotation>
+									<xs:documentation>Nodo que contiene el detalle del nombre y/o número de las competencias del perfil específico de cada servicio educativo.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="nombreCompetenciasLaborales" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation>Atributo que define el número y/o nombre de las competencias laborales básicas o extendidas del perfil específico del servicio educativo.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="trayecto" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que indica el trayecto o área disciplinar extendida.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="idCampoDisciplinar" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que define el identificador del campo disciplinar del Marco Curricular Común de la EMS, relacionado con el trayecto o área disciplinar extendida. Es obligatorio sólo para los planes de estudio en eL MCC.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="campoDisciplinar" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que define la descripción del campo disciplinar del Marco Curricular Común de la EMS, relacionado con el trayecto o área disciplinar extendida. Es obligatorio sólo para los planes de estudio en eL MCC.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="tipoPerfilLaboralEMS" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que define el tipo de perfil o cualificación de formación laboral de la IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="nombrePerfilLaboralEMS" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo que define el nombre del perfil o cualificación de formación laboral de la IEMS.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Sep" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nodo que contiene la definición de los atributos de Sello del Documento Electrónico de Certificación.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="version" fixed="1.0" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido con el valor prefijado a 1.0 que indica la versión del estándar bajo el que se encuentra expresado el Documento Electrónico de Certificación.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="folioDigital" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido que define el Folio único del Documento Electrónico de Certificación conforme al estándar RFC 4122.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="fechaSep" type="xs:dateTime" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para expresar la fecha y hora de la generación del sello del Documento Electrónico de Certificación de la SEP. Se expresa en la forma aaaa-mm-ddThh:mm:ss.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="selloDec" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido que contiene el sello digital del Documento Electrónico de Certificación, que será timbrado. El sello deberá ser expresado cómo una cadena de texto en formato Base 64.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="noCertificadoSep" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para expresar el número de serie del certificado del responsable de la SEP, usado para generar el sello digital SEP del Documento Electrónico de Certificación.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="selloSep" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para contener el sello digital SEP al que hace referencia al Documento Electrónico de Certificación. El sello deberá ser expresado cómo una cadena de texto en formato Base 64.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" use="required" fixed="3.0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Atributo requerido con valor prefijado a 3.0 que indica la versión del estándar bajo el que se encuentra expresado el Documento Electrónico de Certificación.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="tipoCertificado" use="required">
+				<xs:simpleType>
+					<xs:annotation>
+						<xs:documentation>Atributo requerido con valor prefijado a: 12, 14 o 16 que indica que se trata de un certificado de terminación de estudios.</xs:documentation>
+					</xs:annotation>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1" />
+						<xs:enumeration value="12" />
+						<xs:enumeration value="14" />
+						<xs:enumeration value="16" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="folioControl" use="optional" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Atributo opcional que indica el folio para control interno de la institución educativa.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,92 @@
+﻿@model DGSyTI_WEB.Models.ConfiguracionInstitucionViewModel
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@{
+    var total = 1;
+    string sIdlbl = "";
+    string sIdForm = "";
+    string sClassMsjValidacion = "";
+    string sClass = "";
+}
+<input type="hidden" id="txtIdInstitucion" value="@Model.insId" />
+
+<input type="hidden" id="txtDocumentoId" value="">
+<table id="idTablaEtiquetas" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@Model.iTotalRegistrosEtiquetas'>
+    <thead>
+        <tr class="headerTabla">
+            <th width="40%">Descripción</th>
+            <th width="10%">Tipo documento</th>
+            <th width="40%">Valor</th>
+            <th width="10%">Editar</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var oParametro in Model.ListCerParametroValor)
+            {
+                sIdlbl = "lbl" + oParametro.parId + oParametro.docTipoId;
+                sIdForm = "form" + oParametro.parId + oParametro.docTipoId;
+                sClass = oParametro.parId + oParametro.docTipoId;
+                sClassMsjValidacion = sClass + "MsjValidacion";
+                <tr class="@((total%2==0)?"row1":"row0")">
+
+                    <td>
+                        @if (oParametro.parValorRequerido)
+                        {
+                            <label class="labelObligatorio">@oParametro.parDescripcion</label>
+                        }
+                        else
+                        {
+                            <label class="">@oParametro.parDescripcion</label>
+                        }
+
+                    </td>
+                    <td>@oParametro.cerCatTipoDocumento.docDescripcion</td>
+                    <td>
+                        <x id="@sIdlbl">@oParametro.parValor</x>
+                        <div class="row col-12">
+                            @using (Ajax.BeginForm("EditarEtiqueta", "ConfiguracionInstitucion", new { parId = oParametro.parId, docTipoId = oParametro.docTipoId, parValorRequerido = oParametro.parValorRequerido }, new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                LoadingElementId = "divLoading",
+                                OnSuccess = "successEditarEtiqueta"
+                            }, new { id = sIdForm, style = "width: 100%" }))
+                            {
+
+                                Model.parValor = oParametro.parValor;
+
+                                if (oParametro.parValorRequerido)
+                                {
+                                    <div>
+                                        @Html.TextBoxFor(m => m.parValor, new { placeholder = "Valor", Style = "display:none; width: 100%;", @class = sClass, @value = Model.parValor })
+                                        @Html.ValidationMessageFor(m => m.parValor, "", new { @class = sClassMsjValidacion })
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        @Html.TextBoxFor(m => m.parValorNoRequerido, new { placeholder = "Valor", Style = "display:none; width: 100%;", @class = sClass, @value = Model.parValorNoRequerido })
+                                        @Html.ValidationMessageFor(m => m.parValorNoRequerido, "", new { @class = sClassMsjValidacion })
+                                    </div>
+                                }
+
+                            }
+                            <div>
+                                <button type="submit" form="@sIdForm" class="@oParametro.parId@oParametro.docTipoId linkSave " style="border: 0px!important; background: transparent; display:none;" title="Guardar">Guardar</button>
+                                <button onclick="CancelarEdicionEtiqueta('@oParametro.parId@oParametro.docTipoId')" style="display:none; border: 0px!important; background: transparent; " class="linkEliminar @oParametro.parId@oParametro.docTipoId" title="Cancelar">Cancelar</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="tit-AccionSinTexto ">
+                        <button onclick="EditarEtiqueta('@oParametro.parId@oParametro.docTipoId', '@oParametro.parValor')" class="tit-EstiloBtnAncla btnEditar"></button>
+                    </td>
+                </tr>
+                total++;
+            }
+        }
+    </tbody>
+</table>
+
+<div id="idTablaEtiquetas_barraPaginacion" class="divBarraPaginacion"></div>

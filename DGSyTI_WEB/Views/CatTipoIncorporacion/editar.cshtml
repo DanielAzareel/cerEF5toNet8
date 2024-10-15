@@ -1,0 +1,70 @@
+﻿@model DGSyTI_WEB.Models.CatTipoIncorporacionViewModel
+@using DGSyTI_WEB.Helpers;
+
+<div class="modal-blocker">
+</div>
+
+@using (Ajax.BeginForm("editarGuardar", "CatTipoIncorporacion", new AjaxOptions { UpdateTargetId = "dialogContainer" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.idEstatus, new { Value = "1" })
+    @Html.HiddenFor(model => model.idTipoIncorporacion)
+    <div class="modal-dialog" style="max-width:600px">
+
+        <div class="modal-header">
+            <div>
+                Editar tipo de incorporación
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div id="mensajeCamposRequeridos"></div>
+
+            <table class="tablaCriterios">
+
+                <tr>
+                    <td class="field-text required">@Html.LabelFor(cm => cm.tincNombre)</td>
+                    <td class="info">@Html.EditorFor(model => model.tincNombre)</td>
+                </tr>
+
+                <tr>
+                    <td class="field-text required">@Html.LabelFor(cm => cm.tIncAbreviatura)</td>
+                    <td class="info">@Html.EditorFor(model => model.tIncAbreviatura)</td>
+                </tr>
+
+                <tr>
+                    <td class="field-text">@Html.LabelFor(cm => cm.tincFechaImpresion)</td>
+                    <td class="info" style="overflow-wrap: break-word!important;">
+                        @Html.EditorFor(model => model.tincFechaImpresion)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center" style="color:#f27221; font-size:10pt;">Marca la casilla para indicar Sí o desmarca para indicar No.</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+        @Html.ValidationSummary(false)
+
+        <div class="modal-footer">
+            <a href="#" onclick="jQuery('#dialogContainer').empty();" class="white linkCancelar">
+                Regresar
+            </a>
+            <!--<input id="btnGuardar" type="submit" value="guardar" />-->
+            &nbsp;&nbsp;<img src="~/Images/Compartidas/Iconos/img_barra_gris.png" style="border:0px; vertical-align:text-bottom" />&nbsp;&nbsp;@Html.SubmitLinkImg("Guardar", "Guardar", ActionType.Save, "white linkAction")
+        </div>
+
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+

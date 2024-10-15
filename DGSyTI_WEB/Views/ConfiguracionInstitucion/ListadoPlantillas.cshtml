@@ -1,0 +1,109 @@
+﻿@model DGSyTI_WEB.Models.ConfiguracionInstitucionViewModel
+@{
+    var total = 1;
+}
+<input type="hidden" id="txtIdInstitucion" value="@Model.insId" />
+
+<input type="hidden" id="txtDocumentoId" value="">
+
+<table id="idTablaPlantillas" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@Model.iTotalRegistrosPlantillas'>
+    <thead>
+        <tr class="headerTabla">
+            <th>Nombre</th>
+            <th>Número de archivos</th>
+            <th>Plan</th>
+            <th>Tipo de documento</th>
+            <th>Registros asociados</th>
+            @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarPlantillaInstitucion"))
+            {
+                <th>Descargar</th>
+            }
+            @if (Helpers.ValidaAccesoAttribute.validaAccion("AgregarActualizarFirmanteInstitucion"))
+            {
+                <th>Editar</th>
+            }@if (Helpers.ValidaAccesoAttribute.validaAccion("EliminarPlantillaInstitucion"))
+            {
+                <th>Eliminar</th>
+            }
+            @if (Helpers.ValidaAccesoAttribute.validaAccion("AsignarPlantillaInstitucion"))
+            {
+                <th>Predeterminada</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var oPlantilla in Model.listPlantillas)
+            {
+                <tr class="@((total%2==0)?"row1":"row0")">
+                    <td>@oPlantilla.planNombre</td>
+                    <td>@oPlantilla.planNumHojas</td>
+                    <td>@oPlantilla.planDescripcion</td>
+                    <td>@oPlantilla.tdDescripcion</td>
+                    <td>@oPlantilla.registros</td>
+                    @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarPlantillaInstitucion"))
+                    {
+                        <td class="tit-AccionSinTexto">
+                            @Html.ActionLink(" ", "DescargarPlantilla", "ConfiguracionInstitucion", new { sIdPlantilla = oPlantilla.planId }, new { @class = "cer-EstiloBtnAncla btnDescargar", download = "download", title = "Descargar plantilla" })
+                        </td>
+                    }
+                    @if (Helpers.ValidaAccesoAttribute.validaAccion("AgregarActualizarFirmanteInstitucion"))
+                    {
+                        <td class="tit-AccionSinTexto">
+
+                            @using (Ajax.BeginForm("EditarPlantilla", "ConfiguracionInstitucion", new { sIdPlantilla = oPlantilla.planId }, new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                LoadingElementId = "divLoading",
+                                OnSuccess = "successViewEditarPlantilla",
+                                UpdateTargetId = "dvEditarPlantilla"
+                            }, new { id = "" }))
+                            {
+                                <button type="submit" class="tit-EstiloBtnAncla btnEditar"></button>
+                            }
+
+                        </td>
+                    }
+                    @if (Helpers.ValidaAccesoAttribute.validaAccion("EliminarPlantillaInstitucion"))
+                    {
+                        <td class="tit-AccionSinTexto">
+                            @using (Ajax.BeginForm("EliminarPlantilla", "ConfiguracionInstitucion", new { sIdPlantilla = oPlantilla.planId }, new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                LoadingElementId = "divLoading",
+                                OnSuccess = "successEliminarPlantilla"
+                            }, new { id = "" }))
+                            {
+                                <button type="submit" class="tit-EstiloBtnAncla btnEliminar"></button>
+                            }
+                        </td>
+                    }
+                    @if (Helpers.ValidaAccesoAttribute.validaAccion("AsignarPlantillaInstitucion"))
+                    {
+                        <td class="tit-AccionSinTexto">
+                            @if (!oPlantilla.planEstatus.Value)
+                            {
+                                using (Ajax.BeginForm("AsignarPlantilla", "ConfiguracionInstitucion", new { sIdPlantilla = oPlantilla.planId }, new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    LoadingElementId = "divLoading",
+                                    OnSuccess = "SuccessAsignarPlantilla"
+                                }, new { id = "" }))
+                                {
+                                    <button type="submit" class="tit-EstiloBtnAncla btnDesactivado"></button>
+                                }
+                            }
+                            else
+                            {
+                                <img src="~/Images/Compartidas/Iconos/icono_aceptar.png" title="Asignada" />
+                            }
+                        </td>
+                    }
+                </tr>
+                total++;
+            }
+        }
+    </tbody>
+</table>
+<div id="idTablaPlantillas_barraPaginacion" class="divBarraPaginacion"></div>
+
+

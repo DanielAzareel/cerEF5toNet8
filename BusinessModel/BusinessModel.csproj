@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{471396CE-8788-4832-9232-338FAA9843E5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BusinessModel</RootNamespace>
+    <AssemblyName>BusinessModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Desarrollo|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Desarrollo\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Produccion|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Produccion\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Pruebas|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Pruebas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.94.2\lib\net40\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.11.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.11.0\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.3.0\lib\net45\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QrCode.Net.0.4.0.0\lib\net45\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcPaging, Version=2.1.11.44, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcPaging.2.1.11\lib\net40\MvcPaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="Spire.Doc, Version=7.11.0.41040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeSpire.Doc.7.11.0\lib\net40\Spire.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.3.7.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeSpire.Doc.7.11.0\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=5.11.0.2040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeSpire.Doc.7.11.0\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\AccesosBL.cs" />
+    <Compile Include="Business\BitacoraBL.cs" />
+    <Compile Include="Business\CargaCertificadosBL.cs" />
+    <Compile Include="Business\CatTipoIncorporacionBL.cs" />
+    <Compile Include="Business\CertificadosBL.cs" />
+    <Compile Include="Business\ConfiguracionInstitucionBL.cs" />
+    <Compile Include="Business\ConversionesBL.cs" />
+    <Compile Include="Business\EncriptarAES.cs" />
+    <Compile Include="Business\EnvioSEPBL.cs" />
+    <Compile Include="Business\FirmanteBL.cs" />
+    <Compile Include="Business\MetodosGenericosBL.cs" />
+    <Compile Include="Business\OpenSSLKey.cs" />
+    <Compile Include="Business\PDF.cs" />
+    <Compile Include="Business\PlantillaCertificadosBL.cs" />
+    <Compile Include="Business\SelladoBL.cs" />
+    <Compile Include="Business\TemporalBL.cs" />
+    <Compile Include="Business\WSCertificacionBL.cs" />
+    <Compile Include="DataAccess\CerAreaConocimientoDAL.cs" />
+    <Compile Include="DataAccess\cerCargaDAL.cs" />
+    <Compile Include="DataAccess\CerCatEstatusDocumentoDAL.cs" />
+    <Compile Include="DataAccess\CerCatEstatusSolicitudDAL.cs" />
+    <Compile Include="DataAccess\CerCatFirmanteDAL.cs" />
+    <Compile Include="DataAccess\CatTipoIncorporacionDAL.cs" />
+    <Compile Include="DataAccess\cerCatMateriaDAL.cs" />
+    <Compile Include="DataAccess\CerCatPlanDAL.cs" />
+    <Compile Include="DataAccess\CerCatPlantillaDAL.cs" />
+    <Compile Include="DataAccess\cerCatTipoDocumentoDAL.cs" />
+    <Compile Include="DataAccess\cerCatTipoUacDAL.cs" />
+    <Compile Include="DataAccess\cerCompetenciaDocumentoDAL.cs" />
+    <Compile Include="DataAccess\cerCompetenciasIEMSDAL.cs" />
+    <Compile Include="DataAccess\cerCompetenciasPlanDAL.cs" />
+    <Compile Include="DataAccess\CerConfiguracionInstitucionDAL.cs" />
+    <Compile Include="DataAccess\CerDocumentoDAL.cs" />
+    <Compile Include="DataAccess\CerDocumento_TemDAL.cs" />
+    <Compile Include="DataAccess\cerParametroValorDAL.cs" />
+    <Compile Include="DataAccess\cerRelPlanPeriodoAreaConocimientoMateriaDAL.cs" />
+    <Compile Include="DataAccess\cerSolicitudDAL.cs" />
+    <Compile Include="DataAccess\CerTokenDescargaDAL.cs" />
+    <Compile Include="DataAccess\cerUACDocumentoDAL.cs" />
+    <Compile Include="DataAccess\StoredProcedure.cs" />
+    <Compile Include="DataAccess\VWGridSelladoDAL.cs" />
+    <Compile Include="DataAccess\WSAutenticacionDAL.cs" />
+    <Compile Include="LocalConfiguration.cs" />
+    <Compile Include="MapperProfile\BussinessMapperProfile.cs" />
+    <Compile Include="Models\BitacoraML.cs" />
+    <Compile Include="Models\CargaCertificadosML.cs" />
+    <Compile Include="Models\CatTipoIncorporacionML.cs" />
+    <Compile Include="Models\CerDocumentoML.cs" />
+    <Compile Include="Models\CerDocumento_TemML.cs" />
+    <Compile Include="Models\CertificadoML.cs" />
+    <Compile Include="Models\cerUACDocumentoML.cs" />
+    <Compile Include="Models\CriteriosBusquedaML.cs" />
+    <Compile Include="Models\CriteriosBusquedaMonitoreoModel.cs" />
+    <Compile Include="Models\DatosXML.cs" />
+    <Compile Include="Models\DecParcial.cs">
+      <DependentUpon>DecParcial.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DecTerminacion.cs">
+      <DependentUpon>DECTerminacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentoSelladoML.cs" />
+    <Compile Include="Models\ExtendedStringWriter.cs" />
+    <Compile Include="Models\FirmanteML.cs" />
+    <Compile Include="Models\FirmaResponsableSelladoML.cs" />
+    <Compile Include="Models\InstitucionML.cs" />
+    <Compile Include="Models\MonitoreoSEPML.cs" />
+    <Compile Include="Models\PerfilML.cs" />
+    <Compile Include="Models\PlantillaCertificadoML.cs" />
+    <Compile Include="Models\RespuestaWSML.cs" />
+    <Compile Include="Models\ResultExcelML.cs" />
+    <Compile Include="Models\RExiste.cs" />
+    <Compile Include="Models\SelladoML.cs" />
+    <Compile Include="Models\SEP_XSDTituloElectronico.cs">
+      <DependentUpon>SEP_XSDTituloElectronico.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabML.cs" />
+    <Compile Include="Models\WSFirmanteML.cs" />
+    <Compile Include="Models\WSRespuestaML.cs" />
+    <Compile Include="Persistence\BD_FrameWork\BD_FrameWork.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_FrameWork.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD_FrameWork\BD_FrameWork.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_FrameWork.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD_FrameWork\BD_FrameWork.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_FrameWork.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD_FrameWork\catEstatus.cs">
+      <DependentUpon>BD_FrameWork.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD_FrameWork\catTipoIncorp.cs">
+      <DependentUpon>BD_FrameWork.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerAreaConocimiento.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerBitacora.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCarga.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatAccion.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatEstatusDocumento.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatEstatusSolicitud.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatFirmante.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatMateria.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatPeriodo.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatPlan.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatPlantilla.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatTipoDocumento.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCatTipoUAC.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCompetenciaDocumento.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCompetenciasIEMS.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerCompetenciasPlan.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerConfiguracionInstitucion.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerDocumento.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerDocumento_Tem.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerParametroValor.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerRelPlanPeriodoAreaConocimientoMateria.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerSolicitud.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\CertificadosEMS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CertificadosEMS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\CertificadosEMS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\CertificadosEMS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CertificadosEMS.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerTokenDescarga.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\cerUACDocumento.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\ViewCerDocumento.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\ViewPlantillas.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\ViewSolicitud.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CertificadosElectronicosMS\VWGridSellado.cs">
+      <DependentUpon>CertificadosEMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceAccess\SEPSA.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BusinessModel.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BusinessModel.dll.template.config" />
+    <None Include="BusinessModel.dll.Desarrollo.config">
+      <DependentUpon>BusinessModel.dll.template.config</DependentUpon>
+    </None>
+    <None Include="BusinessModel.dll.Produccion.config">
+      <DependentUpon>BusinessModel.dll.template.config</DependentUpon>
+    </None>
+    <None Include="BusinessModel.dll.Pruebas.config">
+      <DependentUpon>BusinessModel.dll.template.config</DependentUpon>
+    </None>
+    <None Include="Models\DecParcial.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\DECTerminacion.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\SEP_XSDTituloElectronico.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="Persistence\BD_FrameWork\BD_FrameWork.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BD_FrameWork.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Persistence\BD_FrameWork\BD_FrameWork.edmx.diagram">
+      <DependentUpon>BD_FrameWork.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Persistence\CertificadosElectronicosMS\CertificadosEMS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CertificadosEMS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Persistence\CertificadosElectronicosMS\CertificadosEMS.edmx.diagram">
+      <DependentUpon>CertificadosEMS.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Persistence\BD_FrameWork\BD_FrameWork.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BD_FrameWork.edmx</DependentUpon>
+      <LastGenOutput>BD_FrameWork.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Persistence\BD_FrameWork\BD_FrameWork.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BD_FrameWork.edmx</DependentUpon>
+      <LastGenOutput>BD_FrameWork.cs</LastGenOutput>
+    </Content>
+    <Content Include="Persistence\CertificadosElectronicosMS\CertificadosEMS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CertificadosEMS.edmx</DependentUpon>
+      <LastGenOutput>CertificadosEMS.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Persistence\CertificadosElectronicosMS\CertificadosEMS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CertificadosEMS.edmx</DependentUpon>
+      <LastGenOutput>CertificadosEMS.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Desarrollo\" />
+    <Folder Include="bin\Pruebas\" />
+    <Folder Include="Persistence\PRUEBA\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClienteIEMS\ClienteIEMS.csproj">
+      <Project>{b17ae820-b57c-4e00-b62b-20db06e5945c}</Project>
+      <Name>ClienteIEMS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiciosWeb\ServiciosWeb.csproj">
+      <Project>{6b83a74d-9964-4c8e-87b0-6a144a3e9f2e}</Project>
+      <Name>ServiciosWeb</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />
+  <Target Name="BeforeBuild">
+    <TransformXml Source="$(AppFolderName)BusinessModel.dll.template.config" Transform="$(AppFolderName)BusinessModel.dll.$(Configuration).config" Destination="$(AppFolderName)BusinessModel.dll.config" />
+    <TransformXml Source="$(AppFolderName)BusinessModel.dll.template.config" Transform="$(AppFolderName)BusinessModel.dll.$(Configuration).config" Destination="$(SolutionDir)DGSyTI_WEB\bin\BusinessModel.dll.config" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

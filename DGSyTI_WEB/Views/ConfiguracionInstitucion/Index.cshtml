@@ -1,0 +1,18 @@
+﻿@model DGSyTI_WEB.Models.ConfiguracionInstitucionViewModel
+@{
+    ViewBag.Title = "Administración > Configuración de institución";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/Modulos/ConfiguracionInstitucion.js"></script>
+
+
+
+<div id="listadoConcentradoras">
+    <div id="idTablaConfiguracion_barraAccionesGrid"></div>
+    <div id="idTablaConfiguracion_lista">
+        @Html.Partial("Formulario", Model)
+    </div>
+</div>

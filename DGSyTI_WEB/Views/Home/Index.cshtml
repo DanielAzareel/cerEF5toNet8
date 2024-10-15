@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Proceso de certificación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+
+
+
+    <script>
+        setTimeout(function () { prepararInformacionUsuario(); }, 0);
+
+        function prepararInformacionUsuario() {
+            $q.ajax({
+                async: false,
+                url: '/Home/prepararInformacionUsuario',
+                type: 'POST',
+            }).done(function (result) {
+                window.location.replace(result);
+
+            })
+        }
+
+    </script>
+
+@*@using Helpers;
+    @{
+        ViewBag.Title = "Inicio";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <script src="~/Scripts/highcharts.js"></script>
+    <script src="~/Scripts/data.js"></script>
+    <script src="~/Scripts/drilldown.js"></script>
+
+
+
+    <script src="~/Scripts/Modulos/indicadores.js"></script>
+    <div id="Contenedorindicadores"></div>
+    <div id="idDivAccionesTabla" style="display:none;">
+    </div>
+    <section id="seccionDashboard">
+    </section>
+    <script>
+        function indicadores() {
+            $q.ajax({
+                type: "POST",
+                data: {},
+                url: 'Home/Indicadores',
+                success: function (view) {
+
+                    jQuery("#Contenedorindicadores").html(view);
+                    $q("#labelTab-1").trigger('click');
+                    if ($q("#nTabs").val() == "1") {
+                        $q("#tabsNiv1").hide()
+                        $q("#divLodingTabs").remove()
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) { }
+            });
+
+        }
+    </script>
+
+
+    <script>
+
+        window.onload = function () {
+            indicadores()
+            $q('#fechaInicial').datetimepicker({
+                dayOfWeekStart: 1,
+                formatDate: 'd.m.Y',
+                format: 'd/m/Y',
+                timepicker: false,
+                onShow: function () {
+                    this.setOptions({
+                        maxDate: $q('#fechaFinal').val() ? $q('#fechaFinal').val() : false
+                    })
+                }
+            });
+            $q('#fechaFinal').datetimepicker({
+                dayOfWeekStart: 1,
+                formatDate: 'd.m.Y',
+                format: 'd/m/Y',
+                timepicker: false,
+                onShow: function () {
+                    this.setOptions({
+                        minDate: $q('#fechaInicial').val() ? $q('#fechaInicial').val() : false
+                    })
+                }
+            });
+
+        }
+    </script>*@

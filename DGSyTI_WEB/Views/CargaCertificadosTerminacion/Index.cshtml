@@ -1,0 +1,162 @@
+﻿@model BusinessModel.Models.CargaCertificadosML
+@{
+    ViewBag.Title = "Proceso de certificación > Cargar certificados terminación";
+
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/Modulos/CargaCertificados.js"></script>
+@{
+    object htmlAttributes;
+    htmlAttributes = new { id = "txtCargaFileLayout", title = "Seleccionar un archivo.", @class = "infoBootstrap", @type = "file", @accept = ".xlsx", Style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden" };
+
+}
+@using (Ajax.BeginForm("", "", new AjaxOptions
+{
+}, new { id = "formValidarLayout" }))
+{
+    @Html.HiddenFor(c=>c.tipoDocumento)
+    <input id="carId" name="carId" type="hidden" value="">
+    <div>
+        <div class="row justify-content-sm-start">
+            <div class="col-sm-2 col-form-label labelMenu">Tipo de certificado:</div>
+            <div class="col-sm-3 info">
+                @Html.DropDownListFor(c => c.comboTipoDocumento, Model.comboTipoDocumento, new { Style = "min-height: 29px;" ,onchange="CambiarTipoDocumento()" })
+            </div>
+        </div>
+        <div class="row justify-content-sm-start">
+            <div class="col-sm-2 col-form-label labelMenu"></div>
+            <div class="col-sm-3 info">
+                @Html.ActionLink("Descargar layout", "ExportLayout", "CargaCertificadosTerminacion", new { }, new { @class = "tit-EstiloBtnAncla btnDescargar", @style = "text-align: left;",onchange="CambiarTipoDocumento()",id="descargarlayout" })
+            </div>
+        </div>
+        <div class="row justify-content-sm-start">
+            <div class="col-sm-2 col-form-label labelMenu" style="padding-top: 10px;">Seleccionar archivo:</div>
+            <div class="col-sm-3 info" style="">
+                @Html.TextBoxFor(m => m.certificadoIntegracion, htmlAttributes)
+                @Html.ValidationMessageFor(m => m.certificadoIntegracion)
+            </div>
+
+        </div>
+        <div class="row justify-content-sm-start">
+            <div class="col-sm-2 col-form-label labelMenu"></div>
+            <div class="col-sm-3 info">
+                <button id="btnEnviar" type="button" onclick="ValidarFormularioValidarLayout()" class="tit-EstiloBtnAncla btnEnviar" style="color: #004a80;">Validar archivo</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div id="acciones" style="display:none">
+    @Ajax.ActionLink("Cargar registros", "", "", null, null, new { @class = "linkValidar", onclick = "cargarModalCargaArchivo()", id = "registrosCargar" })
+</div>
+
+<div id="listadoCargaRegistros" style="display:none">
+    @Helpers.GridHelper.seccionBusqueda("idTablaListadoValidacionCarga")
+    <div id="idTablaListadoValidacionCarga_barraAccionesGrid">
+
+    </div>
+    <div id="idTablaListadoValidacionCarga_lista"></div>
+</div>
+<script>
+       $q("#tipoDocumento").val($q("#comboTipoDocumento option:selected").val())
+       document.getElementById("descargarlayout").href = "/CargaCertificadosTerminacion/ExportLayout/?tipoDocumento=" + $q("#comboTipoDocumento option:selected").val()+"&docDescripcion="+$q("#comboTipoDocumento option:selected").text()
+    function CambiarTipoDocumento() {
+        document.getElementById("descargarlayout").href = "/CargaCertificadosTerminacion/ExportLayout/?tipoDocumento=" + $q("#comboTipoDocumento option:selected").val()+"&docDescripcion="+$q("#comboTipoDocumento option:selected").text()
+        $q("#tipoDocumento").val($q("#comboTipoDocumento option:selected").val())
+    }
+    
+
+
+    function CargarListadoValidacion() {
+        $q.ajax({
+            type: "POST",
+            cache: false,
+            data: { filtro: "{\"idDeCarga\":\"" + $q("#carId").val() + "\" ,\"tipoDocumento\":\"" + $q("#tipoDocumento").val() + "\"   }", pagina: 1, bloque: 10 },
+            url: "/CargaCertificadosTerminacion/ListadoResultadosValidacionCarga"
+        }).done(function (partialViewResult) {
+
+            checarSesion(partialViewResult)
+            $q("#idTablaListadoValidacionCarga_lista").html(partialViewResult);
+            $q("#divLoading").hide();
+            iniciarTabla("idTablaListadoValidacionCarga", "/CargaCertificadosTerminacion/criterios");
+            $q("#listadoCargaRegistros").show();
+
+        });
+
+    }
+</script>
+<!-- Modal para cargar el archivo -->
+<div class="modal fade" id="idModalCancelar" tabindex="-1" role="dialog" aria-labelledby="modalCancelarLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header header headerEmergente">
+                Cargar
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="font-size:12px;">
+
+                <div class="row justify-content-sm-start">
+                    <div class="col-sm-9 col-form-label">Registros correctos:</div>
+                    <div class="col-sm-3 info">
+                        <label id="lbl1"></label>
+                    </div>
+                </div>
+                <div class="row justify-content-sm-start">
+                    <div class="col-sm-9 col-form-label" style="padding-top: 10px;">Registros que pueden subir con advertencias:</div>
+                    <div class="col-sm-3 info">
+                        <label id="lbl2"></label>
+                    </div>
+                </div>
+                <div class="row justify-content-sm-start">
+                    <div class="col-sm-9 col-form-label" style="padding-top: 10px;">Registros con errores que no pueden subir:</div>
+                    <div class="col-sm-3 info">
+                        <label id="lbl3"></label>
+                    </div>
+
+                </div>
+                <div id="cargarConObservaciones" class="row justify-content-sm-center" style="display:none">
+                    <div class="col-sm-9 col-form-label">Subir registros con advertencias:</div>
+                    <div class="col-sm-3 info">
+                        @Html.CheckBox("checkSubirConObservaciones", new { Style = "margin-top: 10px;" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="idFormCancelar" class="btnAceptar tit-EstiloBtnAncla" onclick="cargarRegistros()">Aceptar</button>
+                <button type="button" data-dismiss="modal" class="btnCancelar tit-EstiloBtnAncla">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para cargar el archivo -->
+<div class="modal fade" id="idModalObservaciones" tabindex="-1" role="dialog" aria-labelledby="modalCancelarLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="tituloModalObservaciones"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="overflow-y: scroll;height: 400px;">
+
+                <div class="row justify-content-sm-start">
+                    <div class="col-sm-12 info">
+                        <div id="lstObservaciones"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btnCancelar tit-EstiloBtnAncla">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

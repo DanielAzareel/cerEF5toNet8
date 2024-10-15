@@ -1,0 +1,394 @@
+﻿@model DGSyTI_WEB.Models.DetalleCertificadoViewModel
+
+<div class="colorGris headerTablaGris" style="text-align:center">Información general</div>
+<div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+    <div class="col-sm-6">
+        <div class="conceptoTablaGris">Fecha de registro:</div>
+        <div class="detalleConcepto">@Model.docFechaRegistro</div>
+    </div>
+    <div class="col-sm-6">
+        <div class="conceptoTablaGris">Versión:</div>
+        <div class="detalleConcepto">@Model.docDecVersion</div>
+    </div>
+    <div class="col-sm-6">
+        <div class="conceptoTablaGris">Tipo de certificado:</div>
+        <div class="detalleConcepto">@Model.sDocTipoCertificado</div>
+    </div>
+    <div class="col-sm-6">
+        <div class="conceptoTablaGris">Folio de control:</div>
+        <div class="detalleConcepto">@Model.docDecFolioControl</div>
+    </div>
+</div>
+
+<div class="colorGris headerTablaGris" style="text-align:center">Firma de responsable</div>
+<div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre:</div>
+        <div class="detalleConcepto">@Model.docFirmaResponsableNombre</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Primer apellido:</div>
+        <div class="detalleConcepto">@Model.docFirmaResponsablePrimerApellido</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Segundo apellido:</div>
+        <div class="detalleConcepto">@Model.docFirmaResponsableSegundoApellido</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">CURP:</div>
+        <div class="detalleConcepto">@Model.docFirmaResponsableCurp</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador cargo:</div>
+        <div class="detalleConcepto">@Model.docFirmaResponsableIdCargo</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Cargo:</div>
+        <div class="detalleConcepto">@Model.docFirmaResponsableCargo</div>
+    </div>
+    <div class="col-sm-12">
+        <div class="conceptoTablaGris">Cadena original:</div>
+        <div class="detalleConcepto">@Model.docCadenaOriginal</div>
+    </div>
+    <div class="col-sm-12">
+        <div class="conceptoTablaGris">Sello:</div>
+        <div class="detalleConcepto">@Model.docFirmaResponsableSello</div>
+    </div>
+    <div class="col-sm-12">
+        <div class="conceptoTablaGris">Certificado:</div>
+        <div class="detalleConcepto">@Model.docFirmaResponsableCertificadoResponsable</div>
+    </div>
+    <div class="col-sm-12">
+        <div class="conceptoTablaGris">Número de certificado:</div>
+        <div class="detalleConcepto">@Model.docfirmaResponsableNoCertificadoResponsable</div>
+    </div>
+</div>
+
+<div class="colorGris headerTablaGris" style="text-align:center">IEMS</div>
+<div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre del sistema de adscripción:</div>
+        <div class="detalleConcepto">@Model.docServicioIemsNombreSEN</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre de la dependencia:</div>
+        <div class="detalleConcepto">@Model.docServicioNombreTipoDependencia</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador IEMS:</div>
+        <div class="detalleConcepto">@Model.docServicioIdIEMSidIEMS</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre IEMS:</div>
+        <div class="detalleConcepto">@Model.docServicioNombreIEMS</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador de tipo IEMS:</div>
+        <div class="detalleConcepto">@Model.docServicioIemsIdTipoIEMS</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Tipo IEMS:</div>
+        <div class="detalleConcepto">@Model.docServicioIemsTipoIEMS</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre IEMS particular:</div>
+        <div class="detalleConcepto">@Model.docServicioIemsnombreIEMSparticular</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">RVOE de institución :</div>
+        <div class="detalleConcepto">@Model.docServicioIemsInstitucionRVOE</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador de opción educativa:</div>
+        <div class="detalleConcepto">@Model.docServicioIdOpcionEducativa</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Opción educativa:</div>
+        <div class="detalleConcepto">@Model.docServicioOpcionEducativa</div>
+    </div>
+</div>
+
+<div class="colorGris headerTablaGris" style="text-align:center">Plantel o Servicio Educativo</div>
+<div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador del tipo de plantel:</div>
+        <div class="detalleConcepto">@Model.docPlantelIdTipoPlantel</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Tipo de plantel:</div>
+        <div class="detalleConcepto">@Model.docPlantelTipoPlantel</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre y/o número de plantel educativo:</div>
+        <div class="detalleConcepto">@Model.docPlantelNombreNumeroPlantel</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador de municipio:</div>
+        <div class="detalleConcepto">@Model.docPlantelIdLocalidad</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre de municipio:</div>
+        <div class="detalleConcepto">@Model.docPlantelLocalidad</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador de entidad federativa:</div>
+        <div class="detalleConcepto">@Model.docPlantelIdEntidadFederativa</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre de entidad federativa:</div>
+        <div class="detalleConcepto">@Model.docPlantelEntidadFederativa</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Clave de centro de trabajo:</div>
+        <div class="detalleConcepto">@Model.docPlantelCCT</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Clave RVOE:</div>
+        <div class="detalleConcepto">@Model.docPlantelClaveRvoe</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Fecha de inicio RVOE:</div>
+        @if (Model.docPlantelOServicioEducativoFechaInicioRVOE != null)
+        {
+            <div class="detalleConcepto">@Model.docPlantelOServicioEducativoFechaInicioRVOE</div>
+        }
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador de género:</div>
+        <div class="detalleConcepto">@Model.docplantelIdGeneroPlantel</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Género:</div>
+        <div class="detalleConcepto">@Model.docPlantelGeneroPlantel</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador de sostenimiento:</div>
+        <div class="detalleConcepto">@Model.docPlantelIdSostenimiento</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Sostenimiento:</div>
+        <div class="detalleConcepto">@Model.docPlantelSostenimiento</div>
+    </div>
+
+</div>
+
+<div class="colorGris headerTablaGris" style="text-align:center">Alumno</div>
+<div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre:</div>
+        <div class="detalleConcepto">@Model.docAlumnoNombre</div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Primer apellido:</div>
+        <div class="detalleConcepto">@Model.docAlumnoPrimerApellido</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Segundo apellido:</div>
+        <div class="detalleConcepto">@Model.docAlumnoSegundoApellido</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">CURP:</div>
+        <div class="detalleConcepto">@Model.docAlumnoCurp</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Correo:</div>
+        <div class="detalleConcepto">@Model.docCorreo</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Número de control:</div>
+        <div class="detalleConcepto">@Model.docAlumnoNumeroControl</div>
+    </div>
+</div>
+
+<div class="colorGris headerTablaGris" style="text-align:center">Acreditación</div>
+<div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador del nivel de estudios:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionidNivelEstudios</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nivel de estudios:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionNivelEstudios</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Identificador del tipo de estudios IEMS:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionIdTipoEstudiosIEMS</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Tipo de estudios IEMS:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionTipoEstudiosIEMS</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Tipo de perfil laboral IEMS:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionTipoPerfilProfesionalIEMS</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Nombre del perfil laboral IEMS:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionNombreTipoPerfilProfesionalIEMS</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Clave del plan de estudios:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionClavePrograma</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Periodo inicio de estudios:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionPeriodoInicio</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Periodo término de estudios:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionPeriodoTermino</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Créditos obtenidos:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionCreditosObtenidos</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Total de créditos:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionTotalCreditos</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Promedio de aprovechamiento:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionPromedioAprovechamiento</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Promedio de aprovechamiento en texto:</div>
+        <div class="detalleConcepto">@Model.docAcreditacionPromedioAprovechamientoTexto</div>
+    </div>
+</div>
+@if (Model.docTipoId == "1")
+{
+    <div class="colorGris headerTablaGris" style="text-align:center">UACSDEFT</div>
+    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+        <table class="table-hover">
+            <thead>
+                <tr style="font-weight:bold">
+                    <td>Nombre</td>
+                    <td>Total de horas</td>
+                    <td>Créditos</td>
+                    <td>Calificación</td>
+                    <td>Dictamen</td>
+                </tr>
+            </thead>
+            @foreach (var competencia in Model.cerCompetenciaDocumento)
+            {
+                <tr>
+                    <td style="text-align:left; padding-left:15px;">@competencia.competenciaNombre</td>
+                    <td>@competencia.competenciaTotalHorasUAC</td>
+                    <td>@competencia.competenciaCreditos</td>
+                    <td>@competencia.competenciaCalificacion</td>
+                    <td>@competencia.competenciaDictamen</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="colorGris headerTablaGris" style="text-align:center">Perfil de egreso específico</div>
+    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+        <div class="col-sm-4">
+            <div class="conceptoTablaGris">Trayecto:</div>
+            <div class="detalleConcepto">@Model.docEgresoCompetenciasTrayecto</div>
+        </div>
+        <div class="col-sm-4">
+            <div class="conceptoTablaGris">Identificador de campo disciplinar:</div>
+            <div class="detalleConcepto">@Model.docEgresoCompetenciasIdCampoDisciplinar</div>
+        </div>
+        <div class="col-sm-4">
+            <div class="conceptoTablaGris">Descripción de campo disciplinar:</div>
+            <div class="detalleConcepto">@Model.docEgresoCompetenciasCampoDisciplinar</div>
+        </div>
+        <div class="col-sm-4">
+            <div class="conceptoTablaGris">Tipo de perfil laboral IEMS:</div>
+            <div class="detalleConcepto">@Model.docEgresoCompetenciasTipoPerfilProfesionalIEMS</div>
+        </div>
+        <div class="col-sm-4">
+            <div class="conceptoTablaGris">Nombre de perfil laboral IEMS:</div>
+            <div class="detalleConcepto">@Model.docEgresoCompetenciasNombrePerfilProfesionalIEMS</div>
+        </div>
+    </div>
+
+    <div class="colorGris headerTablaGris" style="text-align:center">Competencias específicas </div>
+    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+        <ul style="text-align:left;">
+            @foreach (var competencia in Model.cerCompetenciasIEMS)
+            {
+                <li> @competencia.CompetenciasIEMSnombreProfesional </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div class="colorGris headerTablaGris" style="text-align:center">UACS</div>
+
+    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+        <div class="col-sm-4">
+            <div class="conceptoTablaGris">Identificador del tipo de periodo:</div>
+            <div class="detalleConcepto">@Model.docUACSidTipoPeriodo</div>
+        </div>
+        <div class="col-sm-4">
+            <div class="conceptoTablaGris">Tipo de periodo:</div>
+            <div class="detalleConcepto">@Model.docUACSnombreTipoPeriodo</div>
+        </div>
+    </div>
+
+    <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px; overflow:auto">
+        <table class="table-hover" width="100%">
+            <thead>
+                <tr style="font-weight:bold">
+                    <td>Clave de centro de trabajo</td>
+                    <td>Identificador de tipo</td>
+                    <td>Tipo</td>
+                    <td>Nombre</td>
+                    <td>Calificación</td>
+                    <td>Dictamen</td>
+                    <td>Total de horas</td>
+                    <td>Créditos</td>
+                    <td>Periodo escolar</td>
+                    <td>Número de periodo escolar</td>
+                </tr>
+            </thead>
+            @foreach (var uac in Model.listUACDocumento)
+            {
+                <tr>
+                    <td>@uac.UACcct</td>
+                    <td>@uac.UACidTipo</td>
+                    <td>@uac.UACtipo</td>
+                    <td>@uac.UACnombre</td>
+                    <td>@uac.UACcalificacion</td>
+                    <td>@uac.UACdictamen</td>
+                    <td>@uac.UACtotalHorasUAC</td>
+                    <td>@uac.UACcreditos</td>
+                    <td>@uac.UACperiodoEscolar</td>
+                    <td>@uac.UACnumeroPeriodo</td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+<div class="colorGris headerTablaGris" style="text-align:center">Sello autenticación</div>
+<div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Versión:</div>
+        <div class="detalleConcepto">@Model.docSEPVersion</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Folio digital:</div>
+        <div class="detalleConcepto">@Model.docSepFolioDigital</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="conceptoTablaGris">Fecha SEP:</div>
+        <div class="detalleConcepto">@Model.docSepFechaSep</div>
+    </div>
+    <div class="col-sm-12">
+        <div class="conceptoTablaGris">Sello Dec:</div>
+        <div class="detalleConcepto">@Model.docSepSelloDec</div>
+    </div>
+    <div class="col-sm-12">
+        <div class="conceptoTablaGris">Sello Sep:</div>
+        <div class="detalleConcepto">@Model.docSepSelloSep</div>
+    </div>
+    <div class="col-sm-12">
+        <div class="conceptoTablaGris">Número certificado SEP:</div>
+        <div class="detalleConcepto">@Model.docSepNoCertificadoSep</div>
+    </div>
+</div>

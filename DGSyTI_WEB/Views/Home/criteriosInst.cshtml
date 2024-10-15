@@ -1,0 +1,21 @@
+﻿@model BusinessModel.Models.IndicadoresML
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(" ", " ", null, null, null))
+{
+    <div>
+        <div class="row justify-content-sm-center">
+            <div class="col-sm-1 col-form-label label">Clave carrera:</div>
+            <div class="col-sm-3 info">
+                @Html.TextBoxFor(x => x.docCarreraClaveConsultar)
+            </div>
+        </div>
+        <div class="row justify-content-sm-center">
+            <div class="col-sm-1 col-form-label label">Nombre carrera:</div>
+            <div class="col-sm-3 info">
+                @Html.TextBoxFor(x => x.docCarreraNombreConsultar)
+            </div>
+        </div>
+    </div>
+}

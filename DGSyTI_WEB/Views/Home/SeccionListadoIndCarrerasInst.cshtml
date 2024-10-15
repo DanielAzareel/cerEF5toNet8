@@ -1,0 +1,45 @@
+﻿@model BusinessModel.Models.IndicadoresML
+
+<section style="overflow-x: auto;overflow-y: hidden;">
+    <table id="idTablaStatusByCarrerasIntitucion" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@ViewBag.totalRegistros'>
+        <thead>
+            <tr class="headerTabla">
+                <th rowspan="2">Clave carrera</th>
+                <th rowspan="2">Carrera nombre</th>
+                <th colspan="7">Estatus título</th>
+                <th rowspan="2">Total concluidos</th>
+                <th rowspan="2">Cancelado en SEP</th>
+            </tr>
+            <tr class="headerTabla">
+                <th>Solicitado</th>
+                <th>Sellado por institución</th>
+                <th>Sellado por concentradora</th>
+                <th>En proceso SEP</th>
+                <th>Error en proceso SEP</th>
+                <th>Registrado en SEP</th>
+                <th>Rechazado en SEP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 0;}
+            @foreach (var inst in Model.listadoDatosConsulta)
+            {
+                <tr class="@((i % 2 == 0) ? "row0" : "row1")">
+                    <td>@inst.docCarreraClave</td>
+                    <td>@inst.docCarreraNombre</td>
+                    <td>@inst.totalSolicitado</td>
+                    <td>@inst.totalSelladoPorInstitucion</td>
+                    <td>@inst.totalSelladoPorConcentradora</td>
+                    <td>@inst.totalEnprocesoSEP</td>
+                    <td>@inst.totalErrorEnProceso</td>
+                    <td>@inst.totalRegistradoEnSEP</td>
+                    <td>@inst.totalRechazadoEnSEP</td>
+                    <td>@inst.totalDocumentoConcluido</td>
+                    <td>@inst.totalCanceladoEnSEP</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+<div id="idTablaStatusByCarrerasIntitucion_barraPaginacion" class="divBarraPaginacion"></div>
+

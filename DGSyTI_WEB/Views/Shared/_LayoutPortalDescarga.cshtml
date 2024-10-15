@@ -1,0 +1,142 @@
+﻿@{
+    var AppEnv = AppConfig.AppEnviroment;
+}
+
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="utf-8" />
+    <title>@AppEnv.applicationTitle - @ViewBag.Title</title>
+    <link href="@Url.Content(AppEnv.favicon)" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="@(AppEnv.urlSiegwithContext)fuentesSIEGNuevo/css/CSS.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/Site.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/SEG.css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Alertify/alertify.core.min.css" rel="stylesheet" />
+    <link href="~/Content/Alertify/bootstrap_alertify.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/alertify.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+
+        #page_size {
+            width: 120px;
+        }
+
+        .something {
+        }
+
+        .hover {
+            background: blue;
+        }
+    </style>
+</head>
+<body style="height:100% !important; text-align:center;" class="deleteMargenRow">
+    <div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001; opacity: .8; filter: alpha(opacity=70); display: none">
+        <p style="position: absolute; top: 30%; left: 45%; color: White;">
+            <img src="@Url.Content(AppEnv.imgCargandoSep)">
+        </p>
+    </div>
+    <div class="contenedor-tabla" id="contenedorPagina" style="text-align:left;width:100%; text-anchor:middle; min-height:13.5%; height:auto; background-color: #0059bc;">
+        <div class="contenedor-fila">
+            <div class="contenedor-columna">
+                <header>
+                    <div style="min-height:35px;width:100%;background:#142390;display:flex;position:relative;line-height: 3.5;">
+                        <div class="contacto col-lg-10">
+                            <a href="" target="_blank" class="fas fa-phone" style="float:left;margin-left:10px;margin-right:10px;font-size:20px;color:white;margin-top: 11px;text-decoration:none;"></a><a class="textHidden" style="float:left;text-decoration:none;color: white;font-family: proxima nova;font-size: 10px;margin-top: 6px;">800 890 30 80 EDUCACIÓN</a>
+                            <a href="https://correo.seg-gto.gob.mx/" target="_blank" class="fas fa-envelope" style="float:left;margin-left:10px;margin-right:10px;font-size:20px;color:white;margin-top: 11px;text-decoration:none;"></a><a class="textHidden" style="float:left;text-decoration:none;color: white;font-family: proxima nova;font-size: 10px;margin-top: 6px;" href="https://correo.seg-gto.gob.mx/" target="_blank">Correo Institucional</a>
+                            <a href="http://www.seg.guanajuato.gob.mx/SitePages/Escribenos.aspx" target="_blank" class="fas fa-pencil-alt" style="float:left;margin-left:10px;margin-right:10px;font-size:20px;color:white;margin-top: 11px;text-decoration:none;"></a><a class="textHidden" style="float:left;text-decoration:none;color: white;font-family: proxima nova;font-size: 10px;margin-top: 6px;" href="http://www.seg.guanajuato.gob.mx/SitePages/Escribenos.aspx" target="_blank">Escríbenos</a>
+                            <a href="#" class="fas fa-wheelchair navegacion accesibilidad" style="float:left;margin-left:10px;margin-right:10px;font-size:20px;color:white;margin-top: 11px;text-decoration:none;"></a><a href="#" class="textHidden accesibilidad" style="float:left;text-decoration:none;color: white;font-family: proxima nova;font-size: 10px;margin-top: 6px;">Accesibilidad</a>
+                        </div>
+                        <div class="redesSociales1 col-lg-2">
+                            <a href="https://www.facebook.com/Secretar%C3%ADa-de-Educaci%C3%B3n-de-Guanajuato-SEG-340786939279382/?ref=hl" target="_blank" class="fab fa-facebook-square redesSociales" style="margin-right:10px;font-size:20px;color:white;text-decoration:none;"></a>
+                            <a href="https://twitter.com/ComunicacionSEG" target="_blank" class="fab fa-twitter redesSociales" style="margin-right:10px;font-size:20px;color:white;text-decoration:none;"></a>
+                            <a href="https://www.youtube.com/user/EducacionGuanajuato" target="_blank" class="fab fa-youtube redesSociales" style="margin-right:10px;font-size:20px;color:white;text-decoration:none;"></a>
+                            <a href="https://soundcloud.com/educacion-gto/" target="_blank" class="fab fa-soundcloud redesSociales" style="margin-right:10px;font-size:20px;color:white;text-decoration:none;"></a>
+                        </div>
+                    </div>
+                    <div class="contacto contenedor-columna" id="divLogoYTitulo" style="width:90%;text-align:left; height:110px">
+                        <div class="float-left">
+                            <img id="logoSEG" src="@Url.Content(AppEnv.repositorioImagenes + "Logo-SEG-portal.png")" class="img-responsive" style="margin-left: -14px;min-height:110px !important;min-width:180px !important" />
+
+                        </div>
+                        <div style="padding-top:20px; padding-left: 0px;">
+                            <p class="tituloSEG" style="margin-top: 10px; font-size:22px; ">&nbsp;&nbsp;Portal de <span class="tituloResaltado">Descarga </span> de Certificados Electrónicos</p>
+                        </div>
+                    </div>
+
+                </header>
+            </div>
+        </div>
+    </div>
+    @*<div class="row" id="divInferiorEncabezado" style="min-height:1.5% !important; height:auto">
+            <div id="divColumna1InferiorEncabezado"></div><div id="divColumna2InferiorEncabezado"></div>
+        </div>*@
+    <div style="width:100%;align-items:center; display:flex;font-family:Arial, Helvetica" class="barranavegacion col-lg-12">
+        <div class=" col-8" style="text-align:left; float:left">
+            &nbsp;Portal de Descarga de Certificados Electrónicos
+        </div>
+        <div id="botonesPortalDescarga" class="col-md-4 contacto textHidden" style="text-align: right; padding-top: 10px;">
+
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-xs-12" style="height:3px; background-color:#00A5E2; width:100%"></div>
+    <div style="min-height:41.5%; text-align:center">
+        @RenderSection("featured", required: false)
+        <section class="main-content clear-fix">
+            @RenderBody()
+        </section>
+        <div class="clear"></div>
+    </div>
+    <div class="row col-lg-12" style="height:335px; background-color:#dadada; line-height:12.5px;">
+        <div class="col-lg-4 footer" style="font-size:12px; font-family:'Proxima Nova'; padding-top: 100px;">
+            <label>&nbsp;</label>
+            <label>Puentecillas:</label>
+            <label>Carretera Guanajuato-Puentecillas km 9.5</label>
+            <label>Guanajuato, Gto.</label>
+            <label>Teléfono: (473) 735-1200</label>
+        </div>
+        <div class="col-lg-4" style="font-size:12px; font-family:'Proxima Nova'">
+            <img src="~/Images/Compartidas/logos/IgualdadLaboral.png" width="100px" height="100px" />
+            <label>SECRETARÍA DE EDUCACIÓN DE GUANAJUATO</label>
+            <label>Pozuelos:</label>
+            <label>Conjunto Administrativo Pozuelos S/N</label>
+            <label>Guanajuato, Gto.</label>
+            <label>Teléfono: (473) 735-1000</label>
+            <label>
+                Para mejor funcionalidad utilice:
+                <img id="firefox" src="http://repositorioimagenes.seg.guanajuato.gob.mx/img_firefox.png">
+                <img id="separador" src="http://repositorioimagenes.seg.guanajuato.gob.mx/separadorMenu.png">
+                <img id="chrome" src="http://repositorioimagenes.seg.guanajuato.gob.mx/img_chrome.png">
+            </label>
+            <img src="~/Images/layout/01800.png" />
+            <label>© 2019 Secretaría de Educación de Guanajuato, Derechos Reservados</label>
+            <label></label>
+            <a href="https://www.guanajuato.gob.mx/aviso-legal.php" style="color:#2f7799;font-family:'Proxima Nova' !important;" target="_blank">
+                Aviso de privacidad
+            </a>
+        </div>
+        <div class="col-lg-4 footer" style="font-size:12px; font-family:'Proxima Nova';padding-top: 100px;">
+            <label>&nbsp;</label>
+            <label>Profesiones:</label>
+            <label>Carretera Guanajuato-Juventino Rosas km 6.5 Esq. Jazmín.</label>
+            <label>Col. Arroyo Verde</label>
+            <label>Teléfono: (473) 1020 200</label>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+</script>

@@ -1,0 +1,36 @@
+﻿
+<div class="contenedorPagina" style="width:100%;height:100%; align-content:center">
+
+    <div style="text-align:center;justify-content:center;margin-left:20%" class="col-6">
+        <div class="tituloTarjeta2" style="font-size:14px;text-align:center"><span>Autenticación</span></div>
+        @using (Ajax.BeginForm("verificarToken", "DescargaCertificado", new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnBegin = "divLoading",
+            OnSuccess = "onSuccessDescarga"
+        }, new { id = "formDescargaCertificado" }))
+        {
+
+            <div style="font-size:12px">
+                Ingrese el código de descarga que fue enviado a su correo electrónico. En caso de no contar con un token de clic <a style="text-decoration:underline;color:blue" href="#" onclick="nuevoToken()">aquí</a> para solicitar uno nuevo.
+            </div>
+
+            <div>
+                <div class="textoModal">
+                    @Html.TextBox("idToken", "", new { placeholder = "Token de descarga", onchange = "quitaMensaje()" })
+                </div>
+            </div>
+            <div>
+                <div class="textoModal">
+                    <span id="errorToken" class="error" hidden></span>
+                </div>
+            </div>
+        }
+        <div>
+            <div class="textoModal" style="text-align:right">
+                <button tyle="button" id="enviarFormulario" form="formDescargaCertificado" class="success">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

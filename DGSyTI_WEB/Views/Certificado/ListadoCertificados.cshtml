@@ -1,0 +1,188 @@
+﻿@model DGSyTI_WEB.Models.MonitoreoSEPViewModel
+@{
+    var total = 1;
+}
+<section style="overflow-x: auto;overflow-y: hidden;">
+    <table id="idTablaCertificados" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@Model.totalRegistrosCertificados'>
+        <thead>
+            <tr class="headerTabla">
+                <th>Estatus</th>
+                <th>Mensaje SEP</th>
+                <th>Número de control</th>
+                <th>Nombre</th>
+                <th>Primer apellido</th>
+                <th>Segundo apellido</th>
+                <th>CURP</th>
+                <th>Institución</th>
+                <th>Plan de estudios</th>
+                <th>Tipo de certificado</th>
+                <th>Ver detalle</th>
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPCambiarPlantilla"))
+                {
+                    <th>Cambiar plantilla</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPCancelar"))
+                {
+                    <th>Cancelar</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPEnviarCorreo"))
+                {
+                    <th>Enviar correo</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPDescargaSEP"))
+                {
+                    <th>XML enviado</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                {
+                    <th>XML sellado</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                {
+                    <th>Descargar PDF</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (var oDocumento in Model.listCerDocumento)
+                {
+                    <tr class="@((total%2==0)?"row1":"row0")">
+                        <td class="tit-AccionSinTexto">
+                            @switch (oDocumento.estDocumentoId)
+                            {
+                                case 2:
+                                    <img src="~/Images/Compartidas/Iconos/proceso.png" title="Sellado" />
+                                    break;
+                                case 3:
+                                    <img src="~/Images/Compartidas/Iconos/proceso.png" title="En proceso" />
+                                    break;
+                                case 4:
+                                    <img src="~/Images/Compartidas/Iconos/icono_aceptar.png" title="Registrado en SEP" />
+                                    break;
+                                case 5:
+                                    <img src="~/Images/iconos/rechazado.png" title="Rechazado en SEP" />
+                                    break;
+                                case 6:
+                                    <img src="~/Images/Compartidas/Iconos/cancelado.png" title="Cancelado en SEP" />
+                                    break;
+                                default:
+                                    <a></a>
+                                    break;
+                            }
+                        </td>
+                        <td>@oDocumento.docMensajeResultado</td>
+                        <td>@oDocumento.docAlumnoNumeroControl</td>
+                        <td>@oDocumento.docAlumnoNombre</td>
+                        <td>@oDocumento.docAlumnoPrimerApellido</td>
+                        <td>@oDocumento.docAlumnoSegundoApellido</td>
+                        <td>@oDocumento.docAlumnoCurp</td>
+                        <td>@oDocumento.Institucion</td>
+                        <td>@oDocumento.PlanEstudios</td>
+                        <td>@oDocumento.TipoCertificado</td>
+
+                        <td class="tit-AccionSinTexto">
+                            @using (Ajax.BeginForm("DetalleCertificado", "Certificado", new { idDocumento = oDocumento.docId }, new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                LoadingElementId = "divLoading",
+                                UpdateTargetId = "idModalCuerpoDetalle",
+                            }, new { id = "idFormDetalle-" + oDocumento.docId }))
+                            {
+                                <button type="submit" form="idFormDetalle-@oDocumento.docId" class="cer-EstiloBtnAncla btnDetalle" data-toggle="modal" data-target="#idModalDetalle"></button>
+                            }
+                        </td>
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPCambiarPlantilla"))
+                        {
+                            <td class="tit-AccionSinTexto">
+
+                                @if (oDocumento.estDocumentoId == 4)
+                                {
+                                    using (Ajax.BeginForm("ListadoPlantillas", "Certificado", new { sIdDocumento = oDocumento.docId, sIdPlan = oDocumento.docPlanId, sIdTipoDocumento= oDocumento.docTipoId }, new AjaxOptions
+                                    {
+                                        HttpMethod = "POST",
+                                        LoadingElementId = "divLoading",
+                                        UpdateTargetId = "idTablaPlantillas_lista",
+                                        OnSuccess="iniciarTablaPlantilla"
+                                    }, new { id = "idFormPlantilla-" + oDocumento.docId }))
+                                    {
+                                        <button id="btnListarPlantilla-@oDocumento.docId" onclick="setCamposPlantilla('@oDocumento.docId',  '@oDocumento.docPlanId', '@oDocumento.docTipoId');" type="submit" class="cer-EstiloBtnAncla btnEditar" data-toggle="modal" data-target="#idModalPlnatillas"></button>
+                                    }
+                                }
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPCancelar"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (oDocumento.estDocumentoId == 4)
+                                {
+                                    using (Ajax.BeginForm("ModalCancelarCertificado", "Certificado", new { idDocumento = oDocumento.docId }, new AjaxOptions
+                                    {
+                                        HttpMethod = "POST",
+                                        LoadingElementId = "divLoading",
+                                        UpdateTargetId = "idModalCuerpoCancelarCertificado",
+                                    }, new { id = "idFormCancela-" + oDocumento.docId }))
+                                    {
+                                        <button type="submit" form="idFormCancela-@oDocumento.docId" class="cer-EstiloBtnAncla btnCancelar" data-toggle="modal" data-target="#idModalCancelarRegistro"></button>
+                                    }
+                                }
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPEnviarCorreo"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (oDocumento.estDocumentoId == 4)
+                                {
+                                    using (Ajax.BeginForm("ModalEnviarCorreo", "Certificado", new { sIdDocumento = oDocumento.docId, sCorreo = oDocumento.docCorreo }, new AjaxOptions
+                                    {
+                                        HttpMethod = "POST",
+                                        LoadingElementId = "divLoading",
+                                        UpdateTargetId = "idModalCuerpoCorreo",
+                                    }, new { id = "idFormCorreo-" + oDocumento.docId }))
+                                    {
+                                        <button type="submit" form="idFormCorreo-@oDocumento.docId" class="cer-EstiloBtnAncla btnReenviar" data-toggle="modal" data-target="#idModalCorreo"></button>
+                                    }
+                                }
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPDescargaSEP"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (oDocumento.estDocumentoId > 2)
+                                {
+
+                                    @Html.ActionLink(" ", "DescargaXMLEnvioByIdDoc", "Certificado", new { sDocId = oDocumento.docId }, new { @class = "cer-EstiloBtnAncla btnXML", download = "download" })
+                                }
+
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (oDocumento.estDocumentoId == 4 || oDocumento.estDocumentoId == 6)
+                                {
+
+                                    @Html.ActionLink(" ", "DescargaXMLRetornoByIdDoc", "Certificado", new { sDocId = oDocumento.docId }, new { @class = "cer-EstiloBtnAncla btnXML", download = "download" })
+                                }
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (oDocumento.estDocumentoId == 4)
+                                {
+
+                                    @Html.ActionLink(" ", "DescargarCertificadoWithSession", "PlantillasCertificados", new { id = oDocumento.docId }, new { @class = "cer-EstiloBtnAncla btnPDF", download = "download" })
+                                }
+                            </td>
+                        }
+                    </tr>
+                    total++;
+                }
+            }
+        </tbody>
+    </table>
+</section>
+<div id="idTablaCertificados_barraPaginacion" class="divBarraPaginacion"></div>
+<input type="hidden"  id="sIdDocumentoPlantilla" />
+<input type="hidden" id="sIdPlanPlantilla" />
+<input type="hidden" id="sIdTipoDocumento" />

@@ -1,0 +1,36 @@
+﻿@model DGSyTI_WEB.Models.CertificadoViewModel
+@{
+    ViewBag.Title = "Index";
+    if (!ViewBag.error)
+    {
+        Layout = "~/Views/Shared/_LayoutPortalDescarga.cshtml";
+    }
+    else { Layout = "~/Views/DescargaCertificado/Error.cshtml"; }
+}
+
+@if (!ViewBag.error && Model.docAlumnoCurp != null && Model.docAlumnoCurp != "")
+{
+    <script src="~/Scripts/Modulos/PortalDescarga.js"></script>
+    <section id="idSeccionDescarga">
+        @if (ViewBag.autenticado)
+        {
+            @Html.Partial("ListadoDescarga", Model)
+        }
+        else
+        {
+            @Html.Partial("modalDescargarCertificado")
+        }
+    </section>
+}
+else
+{
+    if (!ViewBag.error)
+    {
+        <script>
+        alertify.alert("", '@Model.observaciones.ToString()', function () {
+            window.location.href = '@ViewBag.urlRedirect';
+        }).setHeader('<section class="headerAlert" warning>Alerta</section> ');
+        </script>
+    }
+}
+

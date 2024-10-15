@@ -1,0 +1,113 @@
+﻿@model DGSyTI_WEB.Models.ConfiguracionInstitucionViewModel
+@{
+    var total = 1;
+}
+<input type="hidden" id="txtIdInstitucion" value="@Model.insId" />
+
+<input type="hidden" id="txtDocumentoId" value="">
+
+<section style="overflow:auto">
+    <table id="idTablaFirmantes" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@Model.iTotalRegistrosFirmantes'>
+        <thead>
+            <tr class="headerTabla">
+                <th>Nombre</th>
+                <th>Primer apellido</th>
+                <th>Segundo apellido</th>
+                <th>CURP</th>
+                <th>Cargo</th>
+                <th>Correo</th>
+                <th>Número de certificado público</th>
+                <th>Vigencia de certificado público</th>
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarCeritficadoInstitucion"))
+                {
+                    <th>Descargar</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("AsignarFirmanteInstitucion"))
+                {
+                    <th>Asignar</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("AgregarActualizarFirmanteInstitucion"))
+                {
+                    <th>Editar</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("EliminarFirmanteInstitucion"))
+                {
+                    <th>Eliminar</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (var oFirmante in Model.listCatFirmantes)
+                {
+                    <tr class="@((total%2==0)?"row1":"row0")">
+                        <td>@oFirmante.firNombre</td>
+                        <td>@oFirmante.firPrimerApellido</td>
+                        <td>@oFirmante.firSegundoApellido</td>
+                        <td>@oFirmante.firCurp</td>
+                        <td>@oFirmante.firCargo</td>
+                        <td>@oFirmante.firCorreo</td>
+                        <td>@oFirmante.firNumeroCertificado</td>
+                        <td>@oFirmante.firVigenciaCertificado</td>
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarCeritficadoInstitucion"))
+                        {
+                            <td class="tit-AccionSinTexto">@Html.ActionLink(" ", "DescargarCertificado", "ConfiguracionInstitucion", new { firId = oFirmante.firId, insId = oFirmante.insId }, new { @class = "cer-EstiloBtnAncla btnDescargar", download = "download", title = "Descargar certificado" })</td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("AsignarFirmanteInstitucion"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (!oFirmante.firPredeterminado)
+                                {
+                                    using (Ajax.BeginForm("AsignarFirmante", "ConfiguracionInstitucion", new { firId = oFirmante.firId, insId = oFirmante.insId }, new AjaxOptions
+                                    {
+                                        HttpMethod = "POST",
+                                        LoadingElementId = "divLoading",
+                                        OnSuccess = "SuccessAsignarFirmante"
+                                    }, new { id = "" }))
+                                    {
+                                        <button type="submit" class="tit-EstiloBtnAncla btnDesactivado" title="Asignar"></button>
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="~/Images/Compartidas/Iconos/icono_aceptar.png" title="Asignada" />
+                                }
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("AgregarActualizarFirmanteInstitucion"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @using (Ajax.BeginForm("EditarFirmante", "ConfiguracionInstitucion", new { firId = oFirmante.firId, insId = oFirmante.insId }, new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    LoadingElementId = "divLoading",
+                                    OnSuccess = "successViewEditarFirmante",
+                                    UpdateTargetId = "dvEditarFirmantes"
+                                }, new { id = "" }))
+                                {
+                                    <button type="submit" class="tit-EstiloBtnAncla btnEditar" title="Editar"></button>
+                                }
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("EliminarFirmanteInstitucion"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @using (Ajax.BeginForm("EliminarFirmante", "ConfiguracionInstitucion", new { firId = oFirmante.firId, insId = oFirmante.insId }, new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    LoadingElementId = "divLoading",
+                                    OnSuccess = "successEliminarFirmante"
+                                }, new { id = "" }))
+                                {
+                                    <button type="submit" class="tit-EstiloBtnAncla btnEliminar" title="Eliminar"></button>
+                                }
+                            </td>
+                        }
+
+                    </tr>
+                    total++;
+                }
+            }
+        </tbody>
+    </table>
+</section>
+<div id="idTablaFirmantes_barraPaginacion" class="divBarraPaginacion"></div>

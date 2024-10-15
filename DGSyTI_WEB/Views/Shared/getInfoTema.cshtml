@@ -1,0 +1,47 @@
+﻿@model BusinessModel.Models.AyudaML
+@{
+
+    ViewBag.Title = "";
+    Layout = "";
+    var AppEnv = AppConfig.AppEnviroment;
+}
+@{
+
+    if (Model != null)
+    {
+    <div style="display:block; width:100%;">
+        @Model.ayuTitulo
+    </div>
+    if (Model.ayuNota != null && Model.ayuNota != "")
+    {
+        <br />
+        <div class="notasSugerenciasAyuda" style="display:block; width:100%;">
+            <img src="@(AppEnv.repositorioImagenes+"/Iconos/icono_atencion.png")" />
+            <b>Notas</b><br />@Model.ayuNota
+        </div>
+    }
+        <br />
+        <div class="contenidoAyuda" style="display:block; width:60%;">
+            @Html.Raw(Model.ayuContenido)
+        </div>
+        <br />
+        <br />
+        <div style="padding: 10px; width:60%;">
+            Vea también:<br />
+            <a href="@Model.urlPreguntasFrecuentes" target="_blank">Preguntas frecuentes</a>
+            <br />
+            <br />
+            ¿Le ha sido útil esta información?<br />
+            <button class="buttonSiNo" onclick="guardarUtil(@Model.idAyuda, true)">Si</button>
+            <button class="buttonSiNo" onclick="registrarComentarios()">No</button>
+            <div style="display:none">
+                <textarea type="text" id="txtObservaciones" name="txtObservaciones" />
+                <button class="buttonSiNo" onclick="guardarUtil(@Model.idAyuda, false)">Enviar</button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div style="width:60%;">No existe documentación.</div>
+    }
+}

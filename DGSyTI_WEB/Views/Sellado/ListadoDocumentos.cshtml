@@ -1,0 +1,86 @@
+﻿@model CertificadosEletronicosMS.Models.SelladoViewModel
+
+@{
+    var total = 1;
+}
+<section style="overflow-x: auto;overflow-y: hidden;">
+    <table id="idTablaSellado" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@Model.totalRegistros'>
+
+        <thead>
+            <tr class="headerTabla">
+                <th>Nombre</th>
+                <th>Primer apellido</th>
+                <th>Segundo apellido</th>
+                <th>CURP</th>
+                <th>Número de control </th>
+                <th>Plan de estudios</th>
+                <th>Área de especialidad</th>
+                <th>Tipo de certificado</th>
+                <th>Fecha de registro</th>
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("SelladoCancelar"))
+                {
+                    <th>Cancelar </th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("SelladoConsultar"))
+                {
+                    <th>Ver detalle</th>
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var documento in Model.documentos)
+            {
+
+                <tr class="@((total%2==0)?"row1":"row0")">
+                    <td>@documento.docAlumnoNombre</td>
+                    <td>@documento.docAlumnoPrimerApellido</td>
+                    <td>@documento.docAlumnoSegundoApellido</td>
+                    <td>@documento.docAlumnoCurp</td>
+                    <td>@documento.docAlumnoNumeroControl</td>
+                    <td>@documento.planDescripcion</td>
+                    <td>@documento.areaConocimientoDescripcion</td>
+                    <td>@documento.docDescripcion</td>
+                    <td>@documento.docFechaRegistro</td>
+                    @if (Helpers.ValidaAccesoAttribute.validaAccion("SelladoCancelar"))
+                    {
+                        <td style="text-align:center"><a onclick="CancelarDocumento('@documento.docId')" class="linkEliminar"></a></td>
+
+                    }
+                    @if (Helpers.ValidaAccesoAttribute.validaAccion("SelladoConsultar"))
+                    {
+                        <td style="text-align:center">
+                            @Ajax.ActionLink("  ", "MostrarModalVerDetalleRegistro", "Sellado", new { documentoId = documento.docId }, new AjaxOptions { UpdateTargetId = "ContenedorModalDetalleDocumento", HttpMethod = "POST", OnComplete = "$q('#idModalDetalle').modal('show')" }, new { @class = "linkDetalle" })
+                        </td>
+                    }
+                </tr>
+                total++;
+            }
+        </tbody>
+    </table>
+</section>
+<div id="idTablaSellado_barraPaginacion" class="divBarraPaginacion"></div>
+
+
+@*<div id="listado" style="">
+        @Helpers.GridHelper.seccionBusqueda("idTablaSellado")
+        <div id="idTablaSellado_barraAccionesGrid"></div>
+        <div id="idTablaSellado_lista"></div>
+    </div>*@
+
+@if (Model.totalRegistros > 0)
+{
+    <script>
+    $q("#btnSellado").show();
+
+    </script>
+}
+else
+{
+
+    <script>
+    $q("#btnSellado").hide();
+
+    </script>
+}
+

@@ -1,0 +1,150 @@
+﻿@model DGSyTI_WEB.Models.MonitoreoSEPViewModel
+@{
+    var total = 1;
+}
+<section style="overflow-x: auto;overflow-y: hidden;">
+    <table id="idTablaSolicitudes" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@Model.totalRegistrosSolicitudes'>
+        <thead>
+            <tr class="headerTabla">
+                <th>Estatus</th>
+                <th>Folio de lote SEP</th>
+                <th>Fecha de sellado</th>
+                <th>Número de registros</th>
+                <th>Envío SEP</th>
+                <th>Resultado SEP</th>
+                <th>Guardar sellos SEP</th>
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPProcesarLote"))
+                {
+                    <th>Procesar lote</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                {
+                    <th>Descargar envío</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                {
+                    <th>Descargar resultado</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                {
+                    <th>Descargar resultado XML</th>
+                }
+                @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPVerDetalle"))
+                {
+                    <th>Ver detalle</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (var oSolicitud in Model.listCerSolicitud)
+                {
+                    <tr class="@((total%2==0)?"row1":"row0")">
+                        <td>@oSolicitud.EstatusDescripcion</td>
+                        <td>@oSolicitud.solFolioLoteSEP</td>
+                        <td>@oSolicitud.solFechaSellado</td>
+                        <td>@oSolicitud.numerocertificados</td>
+                        <td class="tit-AccionSinTexto">
+                            @if (oSolicitud.estSolicitudId >= 3)
+                            {
+                                <img src="~/Images/Compartidas/Iconos/icono_aceptar.png" title="@oSolicitud.solMensajeEnvio" />
+                            }
+                            else
+                            {
+                                <img src="~/Images/Compartidas/Iconos/pendiente.png" title="Pendiente" />
+                            }
+                        </td>
+                        <td class="tit-AccionSinTexto">
+                            @if (oSolicitud.estSolicitudId >= 5)
+                            {
+                                <img src="~/Images/Compartidas/Iconos/icono_aceptar.png" title="@oSolicitud.solMensajeResultado" />
+                            }
+                            else
+                            {
+                                <img src="~/Images/Compartidas/Iconos/pendiente.png" title="Pendiente" />
+                            }
+                        </td>
+                        <td class="tit-AccionSinTexto">
+                            @if (oSolicitud.estSolicitudId >= 6 && oSolicitud.estSolicitudId != 7)
+                            {
+                                <img src="~/Images/Compartidas/Iconos/icono_aceptar.png" title="@oSolicitud.solMensajeRetorno" />
+                            }
+                            else
+                            {
+                                <img src="~/Images/Compartidas/Iconos/pendiente.png" title="Pendiente" />
+                            }
+                        </td>
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPProcesarLote"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (oSolicitud.estSolicitudId == 2)
+                                {
+                                    <img src="~/Images/Compartidas/Iconos/proceso.png" title="En proceso" />
+                                }
+                                else if (oSolicitud.estSolicitudId == 6 || oSolicitud.estSolicitudId == 7)
+                                {
+                                    <img src="~/Images/Compartidas/Iconos/icono_aceptar.png" title="Concluido" />
+                                }
+                                else
+                                {
+                                    if (oSolicitud.solEnProceso != null)
+                                    {
+                                        if (oSolicitud.solEnProceso.GetValueOrDefault())
+                                        {
+                                            <img src="~/Images/Compartidas/Iconos/proceso.png" title="En proceso" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Images/Compartidas/Iconos/proceso.png" onclick="procesarSolicitud('@oSolicitud.solId')" title="Procesar" />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Images/Compartidas/Iconos/proceso.png" onclick="procesarSolicitud('@oSolicitud.solId')" title="Procesar" />
+                                    }
+                                }
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (oSolicitud.estSolicitudId >= 3)
+                                {
+                                    @Html.ActionLink(" ", "DescargarEnvioSEP", "Certificado", new { sSolId = oSolicitud.solId }, new { @class = "cer-EstiloBtnAncla btnDescargar", download = "download" })
+                                }
+                            </td>
+                        }
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                        {
+                            <td class="tit-AccionSinTexto">
+                                @if (oSolicitud.estSolicitudId >= 5)
+                                {
+                                    @Html.ActionLink(" ", "DescargarResultadoSEP", "Certificado", new { sSolId = oSolicitud.solId }, new { @class = "cer-EstiloBtnAncla btnDescargar", download = "download" })
+                                }
+                            </td>
+                        }
+
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("DescargarResultadoSEP"))
+                        {
+                            <td style="text-align: -webkit-center;">
+                                @if (oSolicitud.estSolicitudId >= 5 && oSolicitud.estSolicitudId != 7)
+                                {
+                                    @Html.ActionLink(" ", "DescargarRetornoSEP", "Certificado", new { sSolId = oSolicitud.solId }, new { @class = "cer-EstiloBtnAncla btnDescargar", download = "download" })
+                                }
+                            </td>
+                        }
+
+                        @if (Helpers.ValidaAccesoAttribute.validaAccion("EnvioSEPVerDetalle"))
+                        {
+                            <td style="text-align: -webkit-center;">
+                                <button class="btnDetalle tit-EstiloBtnAncla" onclick="MostrarListadoCertificados('@oSolicitud.solId')"></button>
+
+                            </td>
+                        }
+                    </tr>
+                    total++;
+                }
+            }
+        </tbody>
+    </table>
+</section>
+<div id="idTablaSolicitudes_barraPaginacion" class="divBarraPaginacion"></div>

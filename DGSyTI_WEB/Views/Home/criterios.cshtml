@@ -1,0 +1,62 @@
+﻿@model BusinessModel.Models.IndicadoresML
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(" ", " ", null, null, null))
+{
+    @Html.HiddenFor(x => x.conId)
+    @Html.HiddenFor(x => x.docInstitucionClave)
+    @Html.HiddenFor(x => x.docInstitucionNombre)
+<div>
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">Fecha inicio:</div>
+        <div class="col-sm-3 info">
+            @Html.TextBoxFor(x => x.fechaInicial, new { @class = "txtFecha fechaEstilo", onpaste = "", id = "fechaInicial", @style = "width: 100%;" })
+            @Html.ValidationMessageFor(x => x.fechaInicial)
+        </div>
+    </div>
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">Fecha fin:</div>
+        <div class="col-sm-3 info">
+            @Html.TextBoxFor(x => x.fechaFinal, new { @class = "txtFecha fechaEstilo", onpaste = "", id = "fechaFinal", @style = "width: 100%;" })
+            @Html.ValidationMessageFor(x => x.fechaFinal)
+        </div>
+    </div>
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 col-form-label label">Institución:</div>
+        <div class="col-sm-3 info">
+            @Html.DropDownListFor(c => c.comboInstituciones, Model.comboInstituciones)
+        </div>
+    </div>
+   
+</div>
+}
+
+<script>
+
+
+    $q('#fechaInicial').datetimepicker({
+        formatDate: 'd.m.Y',
+        format: 'd/m/Y',
+        timepicker: false,
+        dayOfWeekStart: 1,
+        onShow: function () {
+            this.setOptions({
+                maxDate: $q('#fechaFinal').val() ? $q('#fechaFinal').val() : false
+            })
+        }
+    });
+    $q('#fechaFinal').datetimepicker({
+        formatDate: 'd.m.Y',
+        format: 'd/m/Y',
+        timepicker: false,
+        dayOfWeekStart: 1,
+        onShow: function () {
+            this.setOptions({
+                minDate: $q('#fechaInicial').val() ? $q('#fechaInicial').val() : false
+            })
+        }
+    });
+
+
+</script>

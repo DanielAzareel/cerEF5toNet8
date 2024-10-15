@@ -1,0 +1,133 @@
+﻿@using Helpers;
+@{
+
+    var AppEnv = AppConfig.AppEnviroment;
+
+}
+
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+
+    <meta name="robots" content="noindex" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content(AppEnv.favicon)" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content(AppEnv.repositorioImagenes+"css/Site.css")" />
+
+</head>
+
+<body id="bodyNormal">
+    <div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001; opacity: .8; filter: alpha(opacity=70); display: none">
+        <p style="position: absolute; top: 30%; left: 45%; color: White;">
+            <img src="@Url.Content(AppEnv.imgCargandoSep)">
+        </p>
+    </div>
+
+
+    <div class="page">
+        <!-- Inicia definición de header -->
+        <header>
+            <div id="banner">
+
+                <div id="titulo">
+
+                    @*<img src="@Url.Content("~/Images/template_escritorio/Encabezado.png")" />*@
+                    <div class="textoDependencia"><img src="@Url.Content(AppEnv.repositorioImagenes + "seg.png")" /></div>
+                    @*<div class="nombrePortal">@AppEnv.tituloCorreo</div>*@
+
+
+
+                </div>
+            </div>
+        </header>
+        <!-- Termina definción de header -->
+        <!-- Inicia definición de Main -->
+        <div id="body" class="main">
+            <!--<table style="width:100%">
+                <tr>
+                    <td style="width:100%; text-align:start; vertical-align:top; ">-->
+
+                        <table style="width:100%; height:57px; vertical-align:central" class="barranavegacion">
+                            <tr class="barranavegacion">
+                                <td style="text-align:left">
+                                    <nav>
+                                        @AppEnv.applicationTitle
+                                    </nav>
+
+                                </td>
+                                <td style="text-align:right; ">
+
+                                    @*<nav>
+                                            <a href="/Home" style="text-decoration:none;">
+                                                <img id="img_incidencia" src="@(AppEnv.repositorioImagenes+"iconos/icono_menu.png")" style="vertical-align:text-bottom" />
+                                                Menú principal
+                                            </a>
+                                            &nbsp;
+                                            <img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/img_barra_gris.png")" style="vertical-align:text-bottom" />
+                                            <a title="Salir" href="@AppEnv.close" style="text-decoration:none;">
+                                                <img alt="Salir" src="@Url.Content(AppEnv.imgSalir)" style="vertical-align:middle" />&nbsp;Salir&nbsp;
+
+                                            </a>
+                                        </nav>*@
+
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="celAzulCielo">&nbsp;</div>
+                        <!-- Inicia sección de contenido principal -->
+                        @RenderSection("featured", required: false)
+                        <section class="main-content clear-fix">
+                            @RenderBody()
+                        </section>
+                        <!-- Termina sección de contenido principal -->
+                        <div class="clear">
+                        </div>
+                    <!--</td>
+                </tr>
+            </table>-->
+        </div>
+        <!-- Termina definición de Main -->
+        <!-- Inicia definición de Footer -->
+        <br />
+        @*<div class="footer">
+                <footer>
+
+                    <table align="center">
+                        <tr>
+                            <td width="35%">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a href="https://twitter.com/ComunicacionSEG" target="_blank"><img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/IMAGENES_FOOTER/twitter-i.png")" onmouseover="hover(this, 'twitter-i-roll.png')" onmouseout="unhover(this, 'twitter-i.png')" /></a>
+                                            <a href="https://www.facebook.com/EducacionGto/?ref=hl" target="_blank"><img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/IMAGENES_FOOTER/facebook-i.png")" onmouseover="hover(this, 'facebook-i-roll.png')" onmouseout="unhover(this, 'facebook-i.png')" /></a>
+                                            <a href="https://www.youtube.com/user/EducacionGuanajuato" target="_blank"><img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/IMAGENES_FOOTER/youtube-i.png")" onmouseover="hover(this, 'youtube-i-roll.png')" onmouseout="unhover(this, 'youtube-i.png')" /></a>
+                                            <a href="www.https://soundcloud.com/educacion-gto.com" target="_blank"><img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/IMAGENES_FOOTER/sound.png")" onmouseover="hover(this, 'sound2.png')" onmouseout="    unhover(this, 'sound.png')" /></a>
+                                        </td>
+                                    </tr>
+                                    <tr><td colspan="4">Para mejor funcionalidad utilice</td></tr>
+                                    <tr><td valign="middle"><img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/IMAGENES_FOOTER/firefox.png")" /><img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/img_barra_gris.png")" /> <img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/IMAGENES_FOOTER/chrome.png")" /></td></tr>
+                                </table>
+                            </td>
+                            <td align="left" width="65%">
+                                <img src="@Url.Content(AppEnv.repositorioImagenes +"iconos/IMAGENES_FOOTER/01800.png")" /><br />
+                                Unidad Pozuelos: Conjunto Administrativo Pozuelos S/N. Guanajuato, Gto. (473)73 5 10 00 <br />
+                                Unidad Puentecillas: Carretera Guanajuato Puentecillas Km. 9.5 Guanajuato, Gto. (473)73 5 12 00 <br />
+                                Profesiones: Carretera Guanajuato-Juventino Rosas km 6.5 Esq. Jazmín, Col. Arroyo Verde. (473)10 20 200<br />
+
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    @*</p><img src="~/Images/template_escritorio/login/logo_impulso_login.png" />
+
+                </footer>
+            </div>*@
+        <!-- Termina definición de Footer -->
+    </div>
+
+    @Styles.Render("~/Content/css")
+    
+</body>
+</html>

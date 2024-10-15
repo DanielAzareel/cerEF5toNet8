@@ -1,0 +1,30 @@
+﻿@model DGSyTI_WEB.Models.DatosSolicitudViewModel
+
+<div class="colorGris headerTablaGris" style="text-align:center">Datos de solicitud</div>
+<div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;">
+    <div class="col-3">
+        <div class="conceptoTablaGris">Estatus:</div>
+        <div class="detalleConcepto">@Model.sEstatusSolicitud</div>
+    </div>
+    <div class="col-3">
+        <div class="conceptoTablaGris">Total documentos:</div>
+        <div id="idTotalDocumentos" class="detalleConcepto">@Model.sTotalDocumentos</div>
+    </div>
+    <div class="col-3">
+        <div class="conceptoTablaGris">Fecha sellado:</div>
+        <div class="detalleConcepto">@Model.FechaSellado</div>
+    </div>
+    <div class="col-3">
+        <div class="conceptoTablaGris">Folio de lote SEP:</div>
+        <div class="detalleConcepto">@Model.sLoteSEP</div>
+    </div>
+    <div class="col-3">
+        <div class="conceptoTablaGris">Fecha envío SEP:</div>
+        <div class="detalleConcepto">@Model.FechaEnvioSEP</div>
+    </div>
+    <div class="col-3">
+        <div class="conceptoTablaGris">Fecha respuesta SEP:</div>
+        <div class="detalleConcepto">@Model.FechaRespuestaSEP</div>
+    </div>
+</div>
+

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+    <head>
+        <link type="text/css" rel="stylesheet" href="~/Content/Site.css" />
+    </head>
+<body>
+    <div class="row tarjeta1">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-8 col-8 ">
+            <div>
+                <img src='~/Images/Compartidas/Iconos/error-Gral.png' />
+            </div>
+            <div>
+                <p style="font-size:14px;text-align:center;font-family: Verdana, Arial, Helvetica, sans-serif;color:#6a6a6a;"><strong>Error 404</strong> - Lo sentimos, la página que buscas no se encuentra disponible.<br />
+                Por favor intente más tarde</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="main-content clear-fix">
+        @RenderBody()
+    </section>
+</body>

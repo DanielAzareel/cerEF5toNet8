@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="didaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="catEstatus">
+          <Key>
+            <PropertyRef Name="idEstatus" />
+          </Key>
+          <Property Name="idEstatus" Type="int" Nullable="false" />
+          <Property Name="estNombre" Type="varchar" MaxLength="50" />
+          <Property Name="estModulo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="catTipoIncorp">
+          <Key>
+            <PropertyRef Name="idTipoIncorporacion" />
+          </Key>
+          <Property Name="idTipoIncorporacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tincNombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tIncAbreviatura" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tincFechaImpresion" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="int" />
+        </EntityType>
+        <Association Name="FK_catTipoIncorp_catEstatus">
+          <End Role="catEstatus" Type="Self.catEstatus" Multiplicity="0..1" />
+          <End Role="catTipoIncorp" Type="Self.catTipoIncorp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catEstatus">
+              <PropertyRef Name="idEstatus" />
+            </Principal>
+            <Dependent Role="catTipoIncorp">
+              <PropertyRef Name="idEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="didaModelStoreContainer">
+          <EntitySet Name="catEstatus" EntityType="Self.catEstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="catTipoIncorp" EntityType="Self.catTipoIncorp" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_catTipoIncorp_catEstatus" Association="Self.FK_catTipoIncorp_catEstatus">
+            <End Role="catEstatus" EntitySet="catEstatus" />
+            <End Role="catTipoIncorp" EntitySet="catTipoIncorp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="didaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="didaEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="catEstatus" EntityType="didaModel.catEstatus" />
+          <EntitySet Name="catTipoIncorp" EntityType="didaModel.catTipoIncorp" />
+          <AssociationSet Name="FK_catTipoIncorp_catEstatus" Association="didaModel.FK_catTipoIncorp_catEstatus">
+            <End Role="catEstatus" EntitySet="catEstatus" />
+            <End Role="catTipoIncorp" EntitySet="catTipoIncorp" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="catEstatus">
+          <Key>
+            <PropertyRef Name="idEstatus" />
+          </Key>
+          <Property Name="idEstatus" Type="Int32" Nullable="false" />
+          <Property Name="estNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estModulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="catTipoIncorp" Relationship="didaModel.FK_catTipoIncorp_catEstatus" FromRole="catEstatus" ToRole="catTipoIncorp" />
+        </EntityType>
+        <EntityType Name="catTipoIncorp">
+          <Key>
+            <PropertyRef Name="idTipoIncorporacion" />
+          </Key>
+          <Property Name="idTipoIncorporacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tincNombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tIncAbreviatura" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tincFechaImpresion" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int32" />
+          <NavigationProperty Name="catEstatus" Relationship="didaModel.FK_catTipoIncorp_catEstatus" FromRole="catTipoIncorp" ToRole="catEstatus" />
+        </EntityType>
+        <Association Name="FK_catTipoIncorp_catEstatus">
+          <End Type="didaModel.catEstatus" Role="catEstatus" Multiplicity="0..1" />
+          <End Type="didaModel.catTipoIncorp" Role="catTipoIncorp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catEstatus">
+              <PropertyRef Name="idEstatus" />
+            </Principal>
+            <Dependent Role="catTipoIncorp">
+              <PropertyRef Name="idEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="didaModelStoreContainer" CdmEntityContainer="didaEntities" >
+          <EntitySetMapping Name="catEstatus">
+            <EntityTypeMapping TypeName="didaModel.catEstatus">
+              <MappingFragment StoreEntitySet="catEstatus">
+                <ScalarProperty Name="estModulo" ColumnName="estModulo" />
+                <ScalarProperty Name="estNombre" ColumnName="estNombre" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catTipoIncorp">
+            <EntityTypeMapping TypeName="didaModel.catTipoIncorp">
+              <MappingFragment StoreEntitySet="catTipoIncorp">
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="tincFechaImpresion" ColumnName="tincFechaImpresion" />
+                <ScalarProperty Name="tIncAbreviatura" ColumnName="tIncAbreviatura" />
+                <ScalarProperty Name="tincNombre" ColumnName="tincNombre" />
+                <ScalarProperty Name="idTipoIncorporacion" ColumnName="idTipoIncorporacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

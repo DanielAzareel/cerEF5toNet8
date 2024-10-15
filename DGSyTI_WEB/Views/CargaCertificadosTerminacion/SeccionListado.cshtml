@@ -1,0 +1,415 @@
+﻿@model BusinessModel.Models.ObjetosCargaCertificadosML
+
+
+@{
+
+    int maxEspecialidadesIEMS = 0;
+    int maxCompetencias = 0;
+    int maxUACS = 0;
+  
+    try
+    {
+
+
+        foreach (var registro in Model.listadoDocumentosAcargar)
+        {
+            maxEspecialidadesIEMS = registro.listlstCompertenciasIEMS != null && registro.listlstCompertenciasIEMS.Count() > maxEspecialidadesIEMS ? registro.listlstCompertenciasIEMS.Count() : maxEspecialidadesIEMS;
+            maxCompetencias = registro.listlstCompertenciasIEMS != null && registro.listCompetencias.Count() > maxCompetencias ? registro.listCompetencias.Count() : maxCompetencias;
+            maxUACS = registro.listUACS != null && registro.listUACS.Count() > maxUACS ? registro.listUACS.Count() : maxUACS;
+
+
+
+        }
+    }
+    catch (Exception ex)
+    {
+    }
+
+}
+<section style="overflow-x: auto;overflow-y: hidden;">
+
+    <input id="totalRsinErrores" name="totalRsinErrores" type="hidden" value="@ViewBag.RegistrosSinErrores">
+    <input id="totalRconErrores" name="totalRconErrores" type="hidden" value="@ViewBag.totalRconErrores">
+    <input id="totalRconObservaciones" name="totalRconObservaciones" type="hidden" value="@ViewBag.totalRconObservaciones">
+    <input id="RegistrosTotales" name="RegistrosTotales" type="hidden" value="@ViewBag.RegistrosTotales">
+    <table id="idTablaListadoValidacionCarga" class="TablaLista table-responsive-sm" data-filtro='' data-actual='1' data-total='@ViewBag.totalRegistros'>
+        <thead>
+            <tr class="headerTabla">
+                <th class="sticky">Estatus</th>
+                <th class="sticky2" style="width:30px">Fila</th>
+                <th class="sticky3" style="width:30px">Errores</th>
+                <th class="sticky4" style="width:30%">Advertencias</th>
+
+                <th class="sticky5" style="width:30%">Observaciones</th>
+                <th class="sticky6" style="width:30px">CURP</th>
+                <th class="first-col">Identificador de plan de estudios</th>
+
+                <!--Se agrega el nodo Servicio-->
+                <th>Nombre SEN</th>
+                <th>Nombre IEMS particular</th>
+                <th>Institución RVOE</th>
+                <th>Identificador tipo IEMS</th>
+                <th>Tipo IEMS</th>
+
+                <th>Nombre tipo dependencia</th>
+                <th>Identificador IEMS</th>
+                <th>Nombre IEMS</th>
+                <th>Identificador opción educativa</th>
+                <th>Opción educativa</th>
+                <!--Se agrega el nodo Plantel-->
+                <th>Identificador tipo plantel</th>
+                <th>Tipo plantel</th>
+                <th>Nombre número plantel</th>
+                <th>Identificador municipio</th>
+                <th>Municipio</th>
+                <th>Identificador entidad federativa</th>
+                <th>Entidad federativa</th>
+                <th>CCT</th>
+                <th>Clave RVOE</th>
+                <th>Fecha inicio RVOE</th>
+                <th>Identificador  genero plantel</th>
+                <th>Genero plantel</th>
+                <th>Identificador de sostenimiento</th>
+                <th>Sostenimiento</th>
+
+
+                <!--Se agrega el nodo Alumno-->
+                <th>Identificador de área de especialidad</th>
+                <th>Nombre</th>
+                <th>Primer apellido</th>
+                <th>Segundo apellido</th>
+                <th>Número de control</th>
+                <th>Correo</th>
+                <!--Se llena el Nodo Acreditación-->
+                <th>Identificador nivel estudios</th>
+                <th>Nivel estudios</th>
+
+                <th>Periodo de inicio de estudios</th>
+                <th>Periodo de término de estudios</th>
+                <th>Identificador del tipo de estudios IEMS</th>
+                <th>Tipo estudios IEMS</th>
+                <th>Tipo de perfil laboral IEMS</th>
+                <th>Nombre tipo perfil laboral IEMS</th>
+                <th>Clave del plan de estudios</th>
+                <th>Créditos obtenidos</th>
+                <th>Total créditos</th>
+                <th>Promedio de aprovechamiento</th>
+                <th>Promedio de aprovechamiento en texto</th>
+                @if (ViewBag.tipoDocumento == "1")
+                {
+                    <!--Se llena el nodo Competencias-->
+                    try
+                    {
+                        foreach (var materia in Model.listadoMateriasCargar)
+                        {
+                            <th>@(materia.idMateria + "_" + materia.idPlan)</th>
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    <!---->
+                    <!--Se llena el nodo EgresoCompetencias-->
+                    <th>Trayecto</th>
+                    <th>Identificador de campo disciplinar</th>
+                    <th>Descripción de campo disciplinar</th>
+                    <th>Tipo de perfil laboral IEMS</th>
+                    <th>Nombre de perfil laboral IEMS</th>
+                    <!--Se llena el nodo CompetenciasIEMS-->
+                    <th colspan="@maxEspecialidadesIEMS">Competencias especificas</th>
+                    <!---->
+
+                }
+
+                @if (ViewBag.tipoDocumento == "2")
+                {
+                    <!--Se llena el nodo UACS-->
+                    try
+                    {
+                        string[] datos = { "CCT", "IT", "N", "C", "P", "NP" };
+
+                        string campo = "";
+
+
+                        foreach (var materia in Model.listadoMateriasCargar)
+                        {
+                            foreach (string item in datos)
+                            {
+
+                                campo = materia.idMateria + "_" + materia.idPlan + " " + item;
+                                <th>@campo </th>
+                            }
+
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+
+
+            </tr>
+
+        </thead>
+        <tbody>
+            @{int i = 0;}
+            @foreach (var doc in Model.listadoDocumentosAcargar)
+            {
+            <tr class="@((i%2==0)?"row0":"row1")">
+                <th class="sticky">
+                    @if (doc.totalErrores > 0)
+                    {
+                        <span class="tit-EstiloBtnAncla btnIncorrecto" style="pointer-events:none;padding-left:10px;"></span>
+
+                    }
+                    else if (doc.totalObservaciones > 0)
+                    {
+                        <span class="tit-EstiloBtnAncla headerWarning" style="pointer-events:none;padding-left:10px;"></span>
+                    }
+                    else
+                    {
+                        <span class="tit-EstiloBtnAncla btnCorrecto" style="pointer-events:none;padding-left:10px;"></span>
+
+                    }
+                </th>
+                <th class="sticky2" style="width:30px; text-align:center;">@doc.fila</th>
+                <th class="sticky3" style="width:30px; text-align:center;">@doc.totalErrores</th>
+                <th class="sticky4" style="width:30%; text-align:center;">@doc.totalObservaciones</th>
+                <th class="sticky5" style="height:auto; text-align:center;">
+                    @if (doc.docObservaciones != "")
+                    {
+                        <button id="" type="button" onclick="modalObservaciones('@doc.docObservaciones','Observaciones Fila:@doc.fila Curp:@doc.docAlumnoCurp')" class="tit-EstiloBtnAncla linkBuscar"></button>
+
+
+                    }
+
+
+                </th>
+                <th class="sticky6">@doc.docAlumnoCurp</th>
+
+                <td class="first-col">@doc.docPlanId</td>
+
+                <!--Se agrega el nodo Servicio-->
+                <td>@doc.docServicioIemsNombreSEN</td>
+                <td>@doc.docServicioIemsnombreIEMSparticular</td>
+                <td>@doc.docServicioIemsInstitucionRVOE</td>
+                <td>@doc.docServicioIemsIdTipoIEMS</td>
+                <td>@doc.docServicioIemsTipoIEMS</td>
+
+                <td>@doc.docServicioNombreTipoDependencia</td>
+                <td>@doc.docServicioIdIEMS</td>
+                <td>@doc.docServicioNombreIEMS</td>
+                <td>@doc.docServicioIdOpcionEducativa</td>
+                <td>@doc.docServicioOpcionEducativa</td>
+
+
+                <!--Se agrega el nodo Plantel-->
+                <td>@doc.docPlantelIdTipoPlantel</td>
+                <td>@doc.docPlantelTipoPlantel</td>
+                <td>@doc.docPlantelNombreNumeroPlantel</td>
+                <td>@doc.docPlantelIdLocalidad</td>
+                <td>@doc.docPlantelLocalidad</td>
+                <td>@doc.docPlantelIdEntidadFederativa</td>
+                <td>@doc.docPlantelEntidadFederativa</td>
+                <td>@doc.docPlantelCCT</td>
+                <td>@doc.docPlantelClaveRvoe</td>
+                <td>@doc.docPlantelOServicioEducativoFechaInicioRVOE</td>
+                <td>@doc.docplantelIdGeneroPlantel</td>
+                <td>@doc.docPlantelGeneroPlantel</td>
+                <td>@doc.docPlantelIdSostenimiento</td>
+                <td>@doc.docPlantelSostenimiento</td>
+
+                <!--Se agrega el nodo Alumno-->
+                <td>@doc.idAreaConocimiento</td>
+                <td>@doc.docAlumnoNombre</td>
+                <td>@doc.docAlumnoPrimerApellido</td>
+                <td>@doc.docAlumnoSegundoApellido</td>
+                <td>@doc.docAlumnoNumeroControl</td>
+                <td>@doc.docCorreo</td>
+                <!--Se llena en Nodo Acreditación-->
+                <td>@doc.docAcreditacionidNivelEstudios</td>
+                <td>@doc.docAcreditacionNivelEstudios</td>
+
+                <td>@doc.docAcreditacionPeriodoInicio</td>
+                <td>@doc.docAcreditacionPeriodoTermino</td>
+
+
+                <td>@doc.docAcreditacionIdTipoEstudiosIEMS</td>
+                <td>@doc.docAcreditacionTipoEstudiosIEMS</td>
+                <td>@doc.docAcreditacionTipoPerfilProfesionalIEMS</td>
+                <td>@doc.docAcreditacionNombreTipoPerfilProfesionalIEMS</td>
+                <td>@doc.docAcreditacionClavePlanEstudios</td>
+                <td>@doc.docAcreditacionCreditosObtenidos</td>
+                <td>@doc.docAcreditacionTotalCreditos</td>
+                <td>@doc.docAcreditacionPromedioAprovechamiento</td>
+                <td>@doc.docAcreditacionPromedioAprovechamientoTexto</td>
+                @if (ViewBag.tipoDocumento == "1")
+                {
+                    <!--Se llena el nodo Competencias-->
+                    try
+                    {
+
+                        foreach (var materia in Model.listadoMateriasCargar)
+                        {
+                            if ((from c in doc.listCompetencias where c.idMateria == materia.idMateria && c.idPlan == materia.idPlan select c).Count() > 0)
+                            {
+
+                                <td style="text-align:center;">@((from c in doc.listCompetencias where c.idMateria == materia.idMateria && c.idPlan == materia.idPlan select c).FirstOrDefault().calificacion)</td>
+
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    <!---->
+                    <!--Se llena el nodo EgresoCompetencias-->
+                    <td>@doc.docEgresoCompetenciasTrayecto</td>
+                    <td>@doc.docEgresoCompetenciasIdCampoDisciplinar</td>
+                    <td>@doc.docEgresoCompetenciasCampoDisciplinar</td>
+                    <td>@doc.docEgresoCompetenciasTipoPerfilProfesionalIEMS</td>
+                    <td>@doc.docEgresoCompetenciasNombrePerfilProfesionalIEMS</td>
+                    <!--Se llena el nodo CompetenciasIEMS-->
+                    string especialidad;
+
+
+                    if (maxEspecialidadesIEMS == 0)
+                    {
+                        <td></td>
+                    }
+                    for (int td = 0; td < maxEspecialidadesIEMS; td++)
+                    {
+
+                        try
+                        {
+                            especialidad = @doc.listlstCompertenciasIEMS.ElementAt(td).competenciaDescripcion;
+
+                            <td>
+                                @especialidad
+                            </td>
+                        }
+                        catch (Exception)
+                        {
+                            <td></td>
+                        }
+
+                    }
+                }
+                @if (ViewBag.tipoDocumento == "2")
+                {
+
+                    try
+                    {
+
+                        foreach (var materia in Model.listadoMateriasCargar)
+                        {
+
+                            try
+                            {
+                                <td style="text-align:center;">@((from c in doc.listUACS where c.idMateria == materia.idMateria && c.idPlan == materia.idPlan select c).FirstOrDefault().UACcct)</td>
+
+                            }
+                            catch (Exception)
+                            {
+
+                                @*<td></td>*@
+                            }
+                            try
+                            {
+                                <td style="text-align:center;">@((from c in doc.listUACS where c.idMateria == materia.idMateria && c.idPlan == materia.idPlan select c).FirstOrDefault().UACidTipo)</td>
+
+                            }
+                            catch (Exception)
+                            {
+
+                                @*<td></td>*@
+                            }
+                            try
+                            {
+                                <td style="text-align:center;">@((from c in doc.listUACS where c.idMateria == materia.idMateria && c.idPlan == materia.idPlan select c).FirstOrDefault().UACnombre)</td>
+
+                            }
+                            catch (Exception)
+                            {
+
+                                @*<td></td>*@
+
+                            }
+                            try
+                            {
+                                <td style="text-align:center;">@((from c in doc.listUACS where c.idMateria == materia.idMateria && c.idPlan == materia.idPlan select c).FirstOrDefault().UACcalificacion)</td>
+
+                            }
+                            catch (Exception)
+                            {
+
+                                @*<td></td>*@
+                            }
+                            try
+                            {
+                                <td style="text-align:center;">@((from c in doc.listUACS where c.idMateria == materia.idMateria && c.idPlan == materia.idPlan select c).FirstOrDefault().UACperiodoEscolar)</td>
+
+                            }
+                            catch (Exception)
+                            {
+
+                                @*<td></td>*@
+                            }
+                            try
+                            {
+                                <td style="text-align:center;">@((from c in doc.listUACS where c.idMateria == materia.idMateria && c.idPlan == materia.idPlan select c).FirstOrDefault().UACnumeroPeriodo)</td>
+
+                            }
+                            catch (Exception)
+                            {
+
+                                @*<td></td>*@
+                            }
+
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
+                }
+
+            </tr>
+                i++;
+            }
+
+        </tbody>
+    </table>
+
+    @*</div>*@
+</section>
+<div id="idTablaListadoValidacionCarga_barraPaginacion" class="divBarraPaginacion"></div>
+<script>
+    $q(document).ready(function () {
+
+        var r = parseInt($q("#RegistrosTotales").val()) - parseInt($q("#totalRconErrores").val())
+        if (r > 0) {
+
+            //$q("#acciones").show()
+            htmlAcciones = $q("#acciones").html();
+
+            $q("#idTablaListadoValidacionCarga_barraAcciones").html(htmlAcciones);
+        } else {
+            $q("#idTablaListadoValidacionCarga_barraAcciones").html("");
+        }
+
+    })
+
+
+
+</script>

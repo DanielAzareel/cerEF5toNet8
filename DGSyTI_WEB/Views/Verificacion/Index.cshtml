@@ -1,0 +1,561 @@
+﻿@model DGSyTI_WEB.Models.VerificacionViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-primary; " role="alert" style="text-align:center; font-family:Arial, Helvetica; font-size:14px; margin-bottom: 0px;">
+        <strong style="color:#2461AB;">Documento no válido</strong>
+        <p>El presente certificado no  es válido,  ya que no fue expedido por Preparatoria Abierta,  para observaciones y/o comentarios favor de  comunicarse a la Dirección de Preparatoria Abierta y a Distancia a los teléfonos  473 733 12 58, 4737332630 o 4737346132.</p>
+    </div>
+}
+else
+{
+    switch (Model.idEstatusDocumento)
+    {
+        case 6:
+            <div class="alert alert-danger" role="alert" style="text-align:center; font-family:Verdana,Arial,Helvetica; font-size:14px; margin-bottom: 0px;">
+                <strong style="color:#E20511;">Documento cancelado</strong>
+                <p>El presente certificado fue cancelado,  para mayores informes favor de  comunicarse a la Dirección de Preparatoria Abierta y a Distancia a los teléfonos  473 733 12 58, 4737332630 o 4737346132.</p>
+            </div>
+            break;
+        case 4:
+            <div class="alert alert-success" role="alert" style="text-align:center; font-family:Verdana,Arial,Helvetica; font-size:14px; margin-bottom: 0px;">
+                <strong style="color:#769C0E;">Documento válido</strong>
+                <p>El  presente certificado válido  ampara los  estudios realizados en el nivel  medio superior  a  través de  Preparatoria Abierta, para observaciones y/o comentarios favor de  comunicarse a la Dirección de Preparatoria Abierta y a Distancia a los teléfonos  473 733 12 58, 4737332630 o 4737346132.</p>
+            </div>
+            break;
+    }
+
+    @* CERTIFICADO ELECTRÓNICO *@
+    <div class="colorGris headerTablaGris" style="text-align:center; font-family:Verdana,Arial,Helvetica;">Información general</div>
+    <div class="row colorGris3 rowTablaGris">
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Versión:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.version
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Tipo de certificado:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.CerDocumento.cerCatTipoDocumento.docDescripcion
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Folio de control:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.folioControl
+            </div>
+        </div>
+    </div>
+
+    @* RESPONSABLE DE FIRMA*@
+    //foreach (var firmante in Model.datosCertificado.FirmaResponsable)
+    //{
+    <div class="colorGris headerTablaGris" style="text-align:center; font-family:Verdana,Arial,Helvetica;">Firma de responsable</div>
+    <div class="row colorGris3 rowTablaGris">
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.nombre
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Primer apellido:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.primerApellido
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Segundo apellido:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.segundoApellido
+            </div>
+        </div>
+
+        @*<div class="col-sm-3">
+            <div class="conceptoTablaGris">CURP:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.curp
+            </div>
+        </div>*@
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">
+                Identificador cargo:
+            </div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.idCargo
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Cargo:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.cargo
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="conceptoTablaGris">Sello:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.sello
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="conceptoTablaGris">Certificado:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.certificadoResponsable
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="conceptoTablaGris">Número de certificado:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.FirmaResponsable.noCertificadoResponsable
+            </div>
+        </div>
+    </div>
+    @*}*@
+
+
+
+    @* Servicio*@
+    <div class="colorGris headerTablaGris" style="text-align: center; font-family:Verdana,Arial,Helvetica;">IEMS</div>
+    <div class="row colorGris3 rowTablaGris">
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre del sistema de adscripción:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.nombreSEN
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre de la dependencia:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.nombreDependencia
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador IEMS:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.idIEMS
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre IEMS:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.nombreIEMS
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador de tipo IEMS:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.idTipoIEMS
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Tipo IEMS:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.tipoIEMS
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre IEMS particular:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.nombreIEMSparticular
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">RVOE de institución:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.institucionRVOE
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador de opción educativa:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.idOpcionEducativa
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Opción educativa:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Iems.opcionEducativa
+            </div>
+        </div>
+
+    </div>
+
+    @* Plantel*@
+    <div class="colorGris headerTablaGris" style="text-align:center; font-family:Verdana,Arial,Helvetica;">Plantel o Servicio Educativo</div>
+    <div class="row colorGris3 rowTablaGris">
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador del tipo de plantel:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.idTipoPlantel
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Tipo de plantel:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.tipoPlantel
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre y/o número de plantel educativo:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.nombreNumeroPlantel
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador de municipio:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.idMunicipio
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre de municipio:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.municipio
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador de entidad federativa:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.idEntidadFederativa
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre de entidad federativa:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.entidadFederativa
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Clave de centro de trabajo:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.cct
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Clave RVOE:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.claveRvoe
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Fecha de inicio RVOE:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @if (Model.CerDocumento.docPlantelOServicioEducativoFechaInicioRVOE != null) { Model.CerDocumento.docPlantelOServicioEducativoFechaInicioRVOE.GetValueOrDefault(); }
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador de género:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.idGeneroPlantel
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Género:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.generoPlantel
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador de sostenimiento:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.idSostenimiento
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Sostenimiento:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.PlantelOServicioEducativo.sostenimiento
+            </div>
+        </div>
+    </div>
+    @* ALUMNO*@
+    <div class="colorGris headerTablaGris" style="text-align:center;font-family:Verdana,Arial,Helvetica;">Alumno</div>
+    <div class="row colorGris3 rowTablaGris">
+
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Alumno.nombre
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Primer apellido:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Alumno.primerApellido
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Segundo apellido:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Alumno.segundoApellido
+            </div>
+        </div>
+        @*<div class="col-sm-3">
+            <div class="conceptoTablaGris">CURP:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Alumno.curp
+            </div>
+        </div>*@
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Número de control:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Alumno.numeroControl
+            </div>
+        </div>
+
+    </div>
+
+    @* ACREDITACION*@
+    <div class="colorGris headerTablaGris" style="text-align:center; font-family:Verdana,Arial,Helvetica;">Acreditación </div>
+    <div class="row colorGris3 rowTablaGris" ; style="font-size:12px">
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador del nivel de estudios:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.idNivelEstudios
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nivel de estudios:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.nivelEstudios
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Identificador del tipo de estudios IEMS:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.idTipoEstudiosIEMS
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Tipo de estudios IEMS:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.tipoEstudiosIEMS
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Tipo de perfil laboral IEMS:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.tipoPerfilLaboralEMS
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Nombre del perfil laboral IEMS:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.nombreTipoPerfilLaboralEMS
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Clave del plan de estudios:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.clavePlanEstudios
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Periodo inicio de estudios:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.periodoInicio
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Periodo término de estudios:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.periodoTermino
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Créditos obtenidos:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.creditosObtenidos
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Total de créditos:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.totalCreditos
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Promedio de aprovechamiento:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.promedioAprovechamiento
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="conceptoTablaGris">Promedio de aprovechamiento en texto:</div>
+            <div class="detalleConcepto" style="word-wrap: break-word;">
+                @Model.datosCertificado.Acreditacion.promedioAprovechamientoTexto
+            </div>
+        </div>
+
+    </div>
+    if (Model.CerDocumento.docTipoId == "1")
+    {
+        @*COMPETENCIAS*@
+        <div class="colorGris headerTablaGris" style="text-align:center; font-family:Verdana,Arial,Helvetica;"> UACSDEFT </div>
+        <table style="word-wrap: break-word;margin-bottom:9px;font-size:12px; border-spacing:10px;font-family:Verdana,Arial,Helvetica" class="table-striped table-responsive">
+
+            <thead>
+                <tr class="conceptoTablaGris" style="font-weight:bold;">
+
+                    <td style="width:50%;padding:10px">Nombre</td>
+                    <td style="width:15%;padding:10px">Total de horas</td>
+
+                    <td style="width:15%;padding:10px">Créditos</td>
+
+                    <td style="width:15%;padding:10px">Calificación</td>
+
+                    <td style="width:20%; padding:10px">Dictamen</td>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var competencia in Model.datosCertificado.UacsdeFt)
+                {
+                    <tr class="detalleConcepto">
+
+                        <td style="text-align:center;">@competencia.nombre</td>
+
+                        <td>@competencia.totalHorasUAC</td>
+                        &nbsp;
+                        <td>@competencia.creditos</td>
+                        &nbsp;
+                        <td>@competencia.calificacion</td>
+                        &nbsp;
+                        <td style="text-align:left">@competencia.dictamen</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+        //EGRESO COMPETENCIAS
+
+        <div class="colorGris headerTablaGris" style="text-align:center; font-family:Verdana,Arial,Helvetica;">Perfil de egreso específico</div>
+        <div class="row colorGris3 rowTablaGris">
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">Trayecto:</div>
+                <div class="detalleConcepto" style="word-wrap: break-word;">
+                    @Model.datosCertificado.PerfilEgresoEspecifico.trayecto
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">Identificador de campo disciplinar:</div>
+                <div class="detalleConcepto" style="word-wrap: break-word;">
+                    @Model.datosCertificado.PerfilEgresoEspecifico.idCampoDisciplinar
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">Descripción de campo disciplinar:</div>
+                <div class="detalleConcepto" style="word-wrap: break-word;">
+                    @Model.datosCertificado.PerfilEgresoEspecifico.campoDisciplinar
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">Tipo de perfil laboral IEMS:</div>
+                <div class="detalleConcepto" style="word-wrap: break-word;">
+                    @Model.datosCertificado.PerfilEgresoEspecifico.tipoPerfilLaboralEMS
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="conceptoTablaGris">Nombre de perfil laboral IEMS:</div>
+                <div class="detalleConcepto" style="word-wrap: break-word;">
+                    @Model.datosCertificado.PerfilEgresoEspecifico.nombrePerfilLaboralEMS
+                </div>
+            </div>
+
+        </div>
+        <div class="colorGris headerTablaGris" style="text-align:center">Competencias específicas</div>
+        <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+            <ul style="text-align:left;">
+                @foreach (var competencia in Model.CerDocumento.cerCompetenciasIEMS.OrderBy(x => x.CompetenciasIEMSorden))
+                {
+                    <li> @competencia.CompetenciasIEMSnombreProfesional </li>
+                }
+            </ul>
+        </div>
+    }
+
+    if (Model.CerDocumento.docTipoId == "2")
+    {
+
+        <div class="colorGris headerTablaGris" style="text-align:center;font-family:Verdana,Arial,Helvetica;">UACS</div>
+        <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px;">
+
+            <div class="col-sm-4">
+                <div class="conceptoTablaGris">Identificador del tipo de periodo:</div>
+                <div class="detalleConcepto">@Model.CerDocumento.docUACSidTipoPeriodo</div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="conceptoTablaGris">Tipo de periodo:</div>
+                <div class="detalleConcepto">@Model.CerDocumento.docUACSnombreTipoPeriodo</div>
+            </div>
+            <div class="row colorGris3 rowTablaGris" style="word-wrap: break-word;margin-bottom:9px; overflow:auto">
+                <table class="table-hover" width="100%">
+                    <thead>
+                        <tr style="font-weight:bold">
+                            <td style="padding-left:50px;width:200px">Clave de centro de trabajo</td>
+
+                            <td style="width:50px;padding-left:5px;">Identificador de tipo</td>
+                            <td>Tipo</td>
+                            <td>Nombre</td>
+                            <td style="padding-left:10px">Calificación </td>
+                            <td style="padding-left:10px">Dictamen</td>
+                            <td style="padding-left:10px">Total de horas</td>
+                            <td style="padding-left:10px">Créditos</td>
+
+                            <td style="width:50px;padding-left:10px">Periodo escolar</td>
+                            <td style="width:150px">Número de periodo escolar</td>
+
+                        </tr>
+                    </thead>
+                    @foreach (var uac in Model.CerDocumento.cerUACDocumento.OrderBy(x => x.orden))
+                    {
+                <tr>
+                    <td style="padding-left:50px;width:100px">@uac.UACcct</td>
+
+                    <td>@uac.UACidTipo</td>
+                    <td>@uac.UACtipo</td>
+                    <td>@uac.UACnombre</td>
+                    <td style="padding-left:10px">@uac.UACcalificacion</td>
+                    <td style="padding-left:10px">@uac.UACdictamen</td>
+                    <td>@uac.UACtotalHorasUAC</td>
+                    <td style="padding-left:10px">@uac.UACcreditos</td>
+
+                    <td style="padding-left:10px">@uac.UACperiodoEscolar</td>
+                    <td>@uac.UACnumeroPeriodo</td>
+
+                </tr>
+                    }
+                </table>
+            </div>
+
+
+
+        </div>
+    }
+
+
+
+
+
+
+}
